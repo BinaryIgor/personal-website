@@ -50,13 +50,42 @@
         <a href="#technologies" class="nav-item left-underline">Technologies</a>
         <a href="#experience" class="nav-item left-underline">Experience</a>
         <a href="#code" class="nav-item left-underline">Code</a>
+
+        <div class="theme-mode"><img class="theme-mode-image"
+                src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" alt=""></div>
+        <div class="nav-mobile-menu nav-mobile-open">
+            <div id="nav-mobile-menu">Menu</div>
+        </div>
     </nav>
-    <div class="theme-mode"><img class="theme-mode-image"
-            src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" alt=""></div>
-    <!-- <div class="nav-mobile-menu nav-mobile-open">
-    <span>Menu</span>
-</div> -->
+
+    <nav class="top-nav-mobile">
+        <span class="nav-mobile-close">
+            &#x2715;
+        </span>
+
+        <div class="nav-mobile-list">
+            <ul>
+                <li class="nav-mobile-list-item">
+                    <a href="#home" class="left-underline">Home</a>
+                </li>
+                <li class="nav-mobile-list-item">
+                    <a href="#about" class="left-underline">About</a>
+                </li>
+                <li class="nav-mobile-list-item">
+                    <a href="#technologies" class="left-underline">Technologies</a>
+                </li>
+                <li class="nav-mobile-list-item">
+                    <a href="#experience" class="left-underline">Experience</a>
+                </li>
+                <li class="nav-mobile-list-item">
+                    <a href="#code" class="left-underline">Code</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
     <canvas id="canvas"></canvas>
+    <div id="component"></div>
     <script>
         const URL_PROPERTY_REGEX = /url\((.*)\)/;
 
@@ -77,6 +106,9 @@
             const lightThemeIconSrc = extractedImageSrc('theme-light-icon');
 
             const themeModeImage = document.querySelector('.theme-mode-image');
+            const topNavMobile = document.querySelector('.top-nav-mobile');
+            const navMobileOpen = document.querySelector('.nav-mobile-open');
+            const navMobileClose = document.querySelector('.nav-mobile-close');
 
             const currentMode = () => {
                 const mode = localStorage.getItem(KEY);
@@ -127,10 +159,22 @@
                 }
 
             });
+            navMobileOpen.addEventListener('click', () => {
+                topNavMobile.classList.add('display');
+                document.body.classList.add("modal-open");
+            });
+            navMobileClose.addEventListener('click', function () {
+                topNavMobile.classList.remove('display');
+                document.body.classList.remove("modal-open");
+            });
         }
 
-
         setupMode();
+
+        document.getElementById("nav-mobile-menu").onclick = () => {
+            console.log("Clicking on..")
+        };
+
     </script>
     <script type="module" src="/js/app.js">
     </script>
