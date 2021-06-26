@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Igor Roztropiński</title>
+    <meta property="description" content="Some description" />
+    <meta name="author" content="Igor Roztropiński" />
+    <script>
+        (function () {
+            const KEY = "MODE";
+            const LIGHT_MODE = 'light';
+            const DARK_MODE = 'dark';
+
+            const currentMode = () => {
+                const mode = localStorage.getItem(KEY);
+                if (mode) {
+                    return mode;
+                }
+                return LIGHT_MODE;
+            }
+
+            const setDarkMode = () => {
+                document.documentElement.classList.add(DARK_MODE);
+            };
+
+            const setLightMode = () => {
+                document.documentElement.classList.remove(DARK_MODE);
+            };
+
+            const mode = currentMode();
+            switch (mode) {
+                case LIGHT_MODE:
+                    setLightMode();
+                    break;
+                case DARK_MODE:
+                    setDarkMode();
+                    break;
+            }
+        })();
+    </script>
+</head>
+
+<body>
+    <nav class="top-nav">
+        <a href="#home" class="nav-item left-underline current">Home</a>
+        <a href="#about" class="nav-item left-underline">About</a>
+        <a href="#technologies" class="nav-item left-underline">Technologies</a>
+        <a href="#experience" class="nav-item left-underline">Experience</a>
+        <a href="#code" class="nav-item left-underline">Code</a>
+    </nav>
+    <div class="theme-mode"><img class="theme-mode-image"
+            src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" alt=""></div>
+    <!-- <div class="nav-mobile-menu nav-mobile-open">
+    <span>Menu</span>
+</div> -->
+    <canvas id="canvas"></canvas>
+    <script>
+        const URL_PROPERTY_REGEX = /url\((.*)\)/;
+
+        function extractedImageSrc(cssVar) {
+            return getComputedStyle(document.body)
+                .getPropertyValue(`--${cssVar}`)
+                .match(URL_PROPERTY_REGEX)[1]
+                .replace(/"/g, "")
+                .replace(/'/g, "");
+        }
+
+        function setupMode() {
+            const KEY = "MODE";
+            const LIGHT_MODE = 'light';
+            const DARK_MODE = 'dark';
+
+            const darkThemeIconSrc = extractedImageSrc('theme-dark-icon');
+            const lightThemeIconSrc = extractedImageSrc('theme-light-icon');
+
+            const themeModeImage = document.querySelector('.theme-mode-image');
+
+            const currentMode = () => {
+                const mode = localStorage.getItem(KEY);
+                if (mode) {
+                    return mode;
+                }
+                return LIGHT_MODE;
+            }
+
+            const setDarkMode = () => {
+                document.documentElement.classList.add(DARK_MODE);
+                localStorage.setItem(KEY, DARK_MODE)
+                setDarkImages();
+            };
+
+            const setDarkImages = () => {
+                themeModeImage.src = lightThemeIconSrc;
+            };
+
+            const setLightImages = () => {
+                themeModeImage.src = darkThemeIconSrc;
+            };
+
+            const setLightMode = () => {
+                document.documentElement.classList.remove(DARK_MODE);
+                localStorage.setItem(KEY, LIGHT_MODE)
+                setLightImages();
+            };
+
+            const mode = currentMode();
+            switch (mode) {
+                case LIGHT_MODE:
+                    setLightMode();
+                    break;
+                case DARK_MODE:
+                    setDarkMode();
+                    break;
+            }
+
+            themeModeImage.addEventListener('click', () => {
+                switch (currentMode()) {
+                    case LIGHT_MODE:
+                        setDarkMode();
+                        break;
+                    default:
+                        setLightMode();
+                        break;
+                }
+
+            });
+        }
+
+
+        setupMode();
+    </script>
+    <script type="module" src="/js/app.js">
+    </script>
+</body>
+
+</html>
