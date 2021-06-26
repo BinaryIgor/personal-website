@@ -17,11 +17,14 @@ html {
     --medium-text-size: 1rem;
     --medium-x-text-size: 1.2rem; 
     --border-size: 2px;
+    --footer-height: 80px;
     --transition-delay: 0.5s;
     --theme-dark-icon: url('/assets/dark-theme.svg');
     --theme-light-icon: url('/assets/light-theme.png');
     position: relative;
     background-color: var(--background-color);
+    width: 100%;
+    height: 100%;
 }
 
  html.dark {
@@ -182,8 +185,50 @@ canvas {
     cursor: pointer;
 }
 
+.footer-wrapper {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: var(--footer-height);
+    letter-spacing: 2px;
+    transition: var(--transition-delay);
+    border-top: var(--border-color) solid var(--border-size);
+}
+
+.footer {
+    margin: auto;
+    width: 90%;
+}
+
+.footer-list {
+    padding: 1rem 0;
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-list li {
+    margin: 0 1.4rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+
 /* ===media screens=== */
 @media only screen and (max-width: 960px) {
+    html {
+     font-size: 0.85rem;
+    }
+
+    .footer-list {
+        flex-direction: column;
+    }
+
+    .footer-list li {
+        padding: 1rem 0;
+    }
+
     .top-nav {
         width: 100%;
     }
