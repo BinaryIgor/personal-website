@@ -159,8 +159,9 @@
                         setLightMode();
                         break;
                 }
-
+                document.dispatchEvent(new Event("themeChange"));    
             });
+
             navMobileOpen.addEventListener('click', () => {
                 topNavMobile.classList.add('display');
                 document.body.classList.add("modal-open");
@@ -172,11 +173,6 @@
         }
 
         setupMode();
-
-        document.getElementById("nav-mobile-menu").onclick = () => {
-            console.log("Clicking on..")
-        };
-
     </script>
     <script type="module" src="/js/app.js">
     </script>

@@ -1,4 +1,7 @@
 export function Rain(userOptions) {
+    const CHAINS_KEY = "chains";
+    const WIDTH_KEY = "width";
+
     let options = new Options();
     if (userOptions) {
         options.setOptions(userOptions);
@@ -6,17 +9,24 @@ export function Rain(userOptions) {
     // ------------------------setup----------------------
     let chainY = (window.innerHeight * -1);
     let font = options.fontSize + 'px ' + options.fontFamily;
+
     let firstCharColor = lighten(options.fontColor);
-    let canvas = document.getElementById(options.canvasId);
-    canvas.style.zIndex=-1;
-    canvas.style.position='fixed';
-    canvas.style.top=0;
-    canvas.style.left=0;
-    let ctx = canvas.getContext('2d');
+
+    const canvas = document.getElementById(options.canvasId);
+
+    const ctx = canvas.getContext('2d');
+
+    clearCanvas();
+
+    canvas.style.zIndex = -1;
+    canvas.style.position = 'fixed';
+    canvas.style.top = 0;
+    canvas.style.left = 0;
+
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+
     let columnsNumber = Math.round(canvas.width / options.fontSize);
-    console.log("Canvas width..." + canvas.width);
     let matrix = new Matrix(canvas, ctx);
     let chains = createChainArray(columnsNumber);
     let drawer = new Drawer(matrix, chains);
@@ -25,22 +35,25 @@ export function Rain(userOptions) {
 
     document.body.addEventListener('keypress', toggleMatrix);
 
-    
-    
-
     this.start = function () {
         if (matrixState()) {
-            chains = JSON.parse(sessionStorage.getItem('chains'));
+            chains = JSON.parse(sessionStorage.getItem(CHAINS_KEY));
             drawer = new Drawer(matrix, chains);
             animation = setInterval(render, options.interval, drawer, matrix);
             return;
         }
         animation = setInterval(render, options.interval, drawer, matrix);
     }
+
+
+    function clearCanvas() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
     // ------------------------setup----------------------
     // ------------------------util-----------------------
     function matrixState() {
-        if (sessionStorage.getItem('chains')) {
+        if (sessionStorage.getItem(CHAINS_KEY)) {
             return true;
         }
         return false;
@@ -51,12 +64,21 @@ export function Rain(userOptions) {
             animation = setInterval(render, options.interval, drawer, matrix);
             pause = false;
         } else {
-            sessionStorage.clear();
-            sessionStorage.setItem('chains', JSON.stringify(chains));
+            sessionStorage.setItem(CHAINS_KEY, JSON.stringify(chains));
             clearInterval(animation);
             pause = true;
         }
     }
+
+    this.dispose = function (clearState = false) {
+        if (clearState) {
+            sessionStorage.removeItem(CHAINS_KEY);
+        } else {
+            sessionStorage.setItem(CHAINS_KEY, JSON.stringify(chains));
+        }
+        clearInterval(animation);
+        clearCanvas();
+    };
 
     function randomNumber(from, to) {
         return Math.ceil(Math.random() * (to - from) + from - 1);
@@ -221,7 +243,6 @@ export function Rain(userOptions) {
             }
         };
         this.randomizeCharacter = function (character) {
-
             if (parseInt((performance.now() % (options.chainChangeResistance + character.changeResistance))) == 0) {
                 character.value = randomCharacter().value;
                 return true;

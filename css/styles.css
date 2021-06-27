@@ -21,6 +21,8 @@ html {
     --transition-delay: 0.5s;
     --theme-dark-icon: url('/assets/dark-theme.svg');
     --theme-light-icon: url('/assets/light-theme.png');
+    --rain-color: hsla(0, 0%, 0%, 1);
+    --rain-font-size: 20;
     background-color: var(--background-color);
 }
 
@@ -28,6 +30,7 @@ html {
     --background-color: rgb(0,0,0);
     --text-color: rgb(255,255,255);
     --border-color: rgb(255, 255, 255);
+    --rain-color: hsla(0, 0%, 100%, 1);
     --mobile-menu-color: rgba(0,0,0, 0.85);
     
 }
