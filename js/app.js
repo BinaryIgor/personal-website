@@ -1,4 +1,6 @@
 
+import Router from "./router.js";
+
 console.log("Starting js app..")
 
 
@@ -24,3 +26,35 @@ console.log("Starting js app..")
 // });
 
 // rain.start();
+
+const router = new Router();
+
+router.addDefaultRoute(() => {
+    console.log("Init default route...");
+});
+
+const topNav = document.querySelector(".top-nav");
+const topMobileNav = document.querySelector(".top-nav-mobile");
+
+setupNavigation(topNav);
+setupNavigation(topMobileNav);
+
+function setupNavigation(nav) {
+    nav.querySelectorAll("a").forEach(a => {
+        console.log("link = " + a);
+    
+        const route = router.routeFromUrl(a.href);
+        router.addRoute(route, () => {
+            console.log("Going ro route..." + route);
+        });
+    
+        a.addEventListener("click", e => {
+            e.preventDefault();
+            console.log("Clicking..." + a.href);
+    
+            router.push(route);
+        })
+    });
+};
+
+router.init();
