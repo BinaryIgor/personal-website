@@ -1,5 +1,6 @@
 
 import Router from "./router.js";
+import {render as renderMainPage} from "./page/main.js";
 
 console.log("Starting js app..")
 
@@ -27,11 +28,25 @@ console.log("Starting js app..")
 
 // rain.start();
 
+const routes = {
+    "/home": renderMainPage,
+    "/about": function () {
+        import('./page/about.js').then(page => page.render());
+    },
+    "/technologies": function () {
+        import('./page/technologies.js').then(page => page.render());
+    },
+    "/experience": function() {
+        import('./page/experience.js').then(page=> page.render());
+    },
+    "/code": function() {
+        import('./page/code.js').then(page=> page.render());
+    }
+};
+
 const router = new Router();
 
-router.addDefaultRoute(() => {
-    console.log("Init default route...");
-});
+router.addDefaultRoute(renderMainPage);
 
 const topNav = document.querySelector(".top-nav");
 const topMobileNav = document.querySelector(".top-nav-mobile");
@@ -41,20 +56,19 @@ setupNavigation(topMobileNav);
 
 function setupNavigation(nav) {
     nav.querySelectorAll("a").forEach(a => {
-        console.log("link = " + a);
-    
         const route = router.routeFromUrl(a.href);
-        router.addRoute(route, () => {
-            console.log("Going ro route..." + route);
-        });
-    
+        const routeInit = routes[route];
+
+        router.addRoute(route, routeInit);
+
         a.addEventListener("click", e => {
             e.preventDefault();
-            console.log("Clicking..." + a.href);
-    
             router.push(route);
         })
     });
 };
 
 router.init();
+
+
+renderMainPage();
