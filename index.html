@@ -150,7 +150,7 @@
                     break;
             }
 
-            themeModeImage.addEventListener('click', () => {
+            themeModeImage.addEventListener('click', e => {
                 switch (currentMode()) {
                     case LIGHT_MODE:
                         setDarkMode();
@@ -162,10 +162,17 @@
                 document.dispatchEvent(new Event("themeChange"));    
             });
 
+            themeModeImage.addEventListener("touchstart", e => {
+                e.stopPropagation();
+            });
+
             navMobileOpen.addEventListener('click', () => {
                 topNavMobile.classList.add('display');
                 document.body.classList.add("modal-open");
             });
+
+            navMobileOpen.addEventListener("touchstart", e => e.stopPropagation());
+
             navMobileClose.addEventListener('click', function () {
                 topNavMobile.classList.remove('display');
                 document.body.classList.remove("modal-open");

@@ -15,8 +15,6 @@ export function Rain(userOptions) {
 
     const ctx = canvas.getContext('2d');
 
-    clearCanvas();
-
     canvas.style.zIndex = -1;
     canvas.style.position = 'fixed';
     canvas.style.top = 0;
@@ -64,6 +62,7 @@ export function Rain(userOptions) {
     }
 
     function toggleMatrix() {
+        console.log("Toggle");
         if (pause) {
             animation = setInterval(render, options.interval, drawer, matrix);
             pause = false;
@@ -212,42 +211,9 @@ export function Rain(userOptions) {
         this.columnsGap = 2;
         this.backgroundColor = 'hsla(0, 0%, 0%, 1)';
         this.firstCharLighterBy = 25;
+
         this.setOptions = function (options) {
-            if (!!options.characters) {
-                this.characters = options.characters;
-            } if (!!options.fontSize) {
-                this.fontSize = options.fontSize;
-            } if (!!options.delay) {
-                this.delay = options.delay;
-            } if (!!options.minimumSpeed) {
-                this.minimumSpeed = options.minimumSpeed;
-            } if (!!options.maximumSpeed) {
-                this.maximumSpeed = options.maximumSpeed;
-            } if (!!options.minimumChainLength) {
-                this.minimumChainLength = options.minimumChainLength;
-            } if (!!options.maximumChainLength) {
-                this.maximumChainLength = options.maximumChainLength;
-            } if (!!options.canvasId) {
-                this.canvasId = options.canvasId;
-            } if (!!options.interval) {
-                this.interval = options.interval;
-            } if (!!options.fontFamily) {
-                this.fontFamily = options.fontFamily;
-            } if (!!options.fontColor) {
-                this.fontColor = options.fontColor;
-            } if (!!options.fadeRange) {
-                this.fadeRange = options.fadeRange;
-            } if (!!options.chainChangeResistance) {
-                this.chainChangeResistance = options.chainChangeResistance;
-            } if (!!options.minimumCharChangeResistance) {
-                this.minimumCharChangeResistance = options.minimumCharChangeResistance;
-            } if (!!options.columnsGap) {
-                this.columnsGap = options.columnsGap;
-            } if (!!options.backgroundColor) {
-                this.backgroundColor = options.backgroundColor;
-            } if (!!options.firstCharLighterBy) {
-                this.firstCharLighterBy = options.firstCharLighterBy;
-            }
+            Object.assign(this, options);
             return this;
         }
         return this;

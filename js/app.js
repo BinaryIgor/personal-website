@@ -10,7 +10,7 @@ function extractedCssVar(cssVar) {
         .getPropertyValue(`--${cssVar}`);
 }
 
-function setupNavigation(nav) {
+function setupNavigation(nav, afterPushHook = null) {
     nav.querySelectorAll("a").forEach(a => {
         const route = router.routeFromUrl(a.href);
         const routeInit = routes[route];
@@ -20,6 +20,10 @@ function setupNavigation(nav) {
         a.addEventListener("click", e => {
             e.preventDefault();
             router.push(route);
+
+            if (afterPushHook) {
+                afterPushHook();
+            }
         })
     });
 };
@@ -30,7 +34,7 @@ function newRainOptions() {
 
     return {
         characters: `01010101?`,
-        fontSize: 22,
+        fontSize: 9,
         delay: -700,
         minimumSpeed: 1,
         maximumSpeed: 5,
@@ -84,8 +88,19 @@ const topNav = document.querySelector(".top-nav");
 const topMobileNav = document.querySelector(".top-nav-mobile");
 
 setupNavigation(topNav);
-setupNavigation(topMobileNav);
+setupNavigation(topMobileNav, () => {
+    topMobileNav.classList.remove('display');
+    document.body.classList.remove("modal-open");
+});
+topMobileNav.addEventListener("touchstart", e => e.stopPropagation());
 
 router.init();
 
-renderMainPage();
+const currentRoute = router.routeFromUrl(`${window.location}`);
+const routeInit = routes[currentRoute];
+
+if (routeInit) {
+    routeInit();
+} else {
+    renderMainPage();
+}
