@@ -60,11 +60,6 @@ document.addEventListener('themeChange', () => {
     rain.restart();
 });
 
-// window.addEventListener("resize", () => {
-//     console.log("Resize...");
-//     rain.restart(true);
-// });
-
 const routes = {
     "/home": renderMainPage,
     "/about": function () {

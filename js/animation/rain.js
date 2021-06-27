@@ -1,6 +1,5 @@
 export function Rain(userOptions) {
     const CHAINS_KEY = "chains";
-    const WIDTH_KEY = "width";
 
     let options = new Options();
     if (userOptions) {
@@ -26,28 +25,33 @@ export function Rain(userOptions) {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    let columnsNumber = Math.round(canvas.width / options.fontSize);
     let matrix = new Matrix(canvas, ctx);
-    let chains = createChainArray(columnsNumber);
+    let chains = createChainArray(columnsNumber());
     let drawer = new Drawer(matrix, chains);
     let animation;
     let pause = false;
 
     document.body.addEventListener('keypress', toggleMatrix);
+    document.body.addEventListener('touchstart', toggleMatrix);
 
-    this.start = function () {
+    this.start = function (paused = false) {
+        pause = paused;
         if (matrixState()) {
-            chains = JSON.parse(sessionStorage.getItem(CHAINS_KEY));
+            chains = recreateChainArray(JSON.parse(sessionStorage.getItem(CHAINS_KEY)), columnsNumber());
             drawer = new Drawer(matrix, chains);
             animation = setInterval(render, options.interval, drawer, matrix);
-            return;
+        } else {
+            animation = setInterval(render, options.interval, drawer, matrix);
         }
-        animation = setInterval(render, options.interval, drawer, matrix);
     }
 
 
     function clearCanvas() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    function columnsNumber() {
+        return Math.round(canvas.width / options.fontSize);
     }
 
     // ------------------------setup----------------------
@@ -64,21 +68,25 @@ export function Rain(userOptions) {
             animation = setInterval(render, options.interval, drawer, matrix);
             pause = false;
         } else {
-            sessionStorage.setItem(CHAINS_KEY, JSON.stringify(chains));
-            clearInterval(animation);
-            pause = true;
+            saveStateAndPause();
         }
     }
 
-    this.dispose = function (clearState = false) {
-        if (clearState) {
-            sessionStorage.removeItem(CHAINS_KEY);
-        } else {
-            sessionStorage.setItem(CHAINS_KEY, JSON.stringify(chains));
-        }
+    function saveStateAndPause() {
+        sessionStorage.setItem(CHAINS_KEY, JSON.stringify(chains));
+        clearInterval(animation);
+        pause = true;
+    }
+
+    this.dispose = function () {
+        sessionStorage.setItem(CHAINS_KEY, JSON.stringify(chains));
         clearInterval(animation);
         clearCanvas();
+        document.body.removeEventListener('keypress', toggleMatrix);
+        document.body.removeEventListener('touchstart', toggleMatrix);
     };
+
+    this.isPaused = () => pause;
 
     function randomNumber(from, to) {
         return Math.ceil(Math.random() * (to - from) + from - 1);
@@ -128,6 +136,32 @@ export function Rain(userOptions) {
         return chainArray;
     }
 
+    function recreateChainArray(savedChains, size) {
+        let chainArray = [];
+        let x = 0;
+        let idx = 0;
+
+        for (let i = 0; i < size; i++) {
+            if ((i % options.columnsGap) != 0) {
+                continue;
+            }
+
+            let chain;
+            if (idx < savedChains.length) {
+                chain = savedChains[idx];
+            } else {
+                x = (i + 1) * options.fontSize;
+                chain = new Chain(createCharacterArray(randomNumber(options.minimumChainLength, options.maximumChainLength)), x, options.delay, randomSpeed());
+                setCharactersOpacity(chain);
+            }
+
+            chainArray.push(chain);
+            idx++;
+        }
+
+        return chainArray;
+    }
+
     function setCharactersOpacity(chain) {
         let opacityFraction = options.fadeRange / chain.characters.length;
         let characterOpacity = 1;
@@ -153,6 +187,10 @@ export function Rain(userOptions) {
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         matrix.ctx.font = font;
         drawer.drawChains();
+
+        if (pause) {
+            saveStateAndPause();
+        }
     }
     // ----------------------classes----------------------
     function Options() {

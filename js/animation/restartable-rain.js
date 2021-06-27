@@ -5,11 +5,29 @@ export function RestartableRain(userOptionsProvider) {
 
     let rain = rainFactory();
 
-    this.start = () => rain.start();
-
-    this.restart = (clearState = false) => {
-        rain.dispose(clearState);
-        rain = rainFactory();
+    this.start = () => {
         rain.start();
+
+        window.addEventListener("resize", debounce(() => {
+            this.restart();
+        }));
+    }
+
+    this.restart = () => {
+        rain.dispose();
+        const paused = rain.isPaused();
+        rain = rainFactory();
+        rain.start(paused);
     };
+
+
+    function debounce(func) {
+        let previousCall = null;
+        return function (event) {
+            if (previousCall) {
+                clearTimeout(previousCall);
+            }
+            previousCall = setTimeout(func, 100, event);
+        }
+    }
 }
