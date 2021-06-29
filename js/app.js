@@ -19,6 +19,8 @@ function setupNavigation(nav, afterPushHook = null) {
 
         a.addEventListener("click", e => {
             e.preventDefault();
+            e.stopPropagation();
+            
             router.push(route);
 
             if (afterPushHook) {
@@ -33,7 +35,7 @@ function newRainOptions() {
     const raintFontSize = parseInt(extractedCssVar('rain-font-size'));
 
     return {
-        characters: `01010101?`,
+        characters: `0101010101?`,
         fontSize: 9,
         delay: -700,
         minimumSpeed: 1,
@@ -92,7 +94,7 @@ setupNavigation(topMobileNav, () => {
     topMobileNav.classList.remove('display');
     document.body.classList.remove("modal-open");
 });
-topMobileNav.addEventListener("touchstart", e => e.stopPropagation());
+topMobileNav.addEventListener("click", e => e.stopPropagation());
 
 router.init();
 

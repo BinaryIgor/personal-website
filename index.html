@@ -162,7 +162,7 @@
                 document.dispatchEvent(new Event("themeChange"));    
             });
 
-            themeModeImage.addEventListener("touchstart", e => {
+            themeModeImage.addEventListener("click", e => {
                 e.stopPropagation();
             });
 
@@ -171,7 +171,7 @@
                 document.body.classList.add("modal-open");
             });
 
-            navMobileOpen.addEventListener("touchstart", e => e.stopPropagation());
+            navMobileOpen.addEventListener("click", e => e.stopPropagation());
 
             navMobileClose.addEventListener('click', function () {
                 topNavMobile.classList.remove('display');

@@ -30,7 +30,7 @@ export function Rain(userOptions) {
     let pause = false;
 
     document.body.addEventListener('keypress', toggleMatrix);
-    document.body.addEventListener('touchstart', toggleMatrix);
+    document.body.addEventListener('click', toggleMatrix);
 
     this.start = function (paused = false) {
         pause = paused;
@@ -82,7 +82,7 @@ export function Rain(userOptions) {
         clearInterval(animation);
         clearCanvas();
         document.body.removeEventListener('keypress', toggleMatrix);
-        document.body.removeEventListener('touchstart', toggleMatrix);
+        document.body.removeEventListener('click', toggleMatrix);
     };
 
     this.isPaused = () => pause;
