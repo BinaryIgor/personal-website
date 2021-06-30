@@ -4,18 +4,20 @@
     box-sizing: border-box;
     word-break: break-word;
     color: var(--text-color);
+    font-family: "Courier New", Courier, monospace;
 }
 
 html {
     --z-index: 1;
     --background-color: rgb(255,255,255);
-    --text-color: hsla(205, 100%, 20%, 0.7);
+    --menu-color: rgba(255,255,255, 0.85);
+    --text-color: hsla(205, 100%, 15%, 0.8);
     --title-color: hsla(215, 100%, 40%, 0.7);
     --border-color: hsla(205, 100%, 30%, 1);
     --typing-border-color: rgb(0,0,0);
-    --mobile-menu-color: rgba(255,255,255, 0.8);
     --padding-small: 8px;
     --padding-medium: 16px;
+    --padding-next-paragraph: 24px;
     --medium-text-size: 1rem;
     --medium-x-text-size: 1.75rem; 
     --border-size: 2px;
@@ -25,18 +27,25 @@ html {
     --theme-light-icon: url('/assets/light-theme.png');
     --rain-color: hsla(205, 100%, 70%, 1);
     --rain-font-size: 20;
+    --name-size: 3.5rem;
+    --to-name-width: 37rem;
+    --name-cursor-height: 4rem;
+    --name-cursor-width: 1.5rem;
+    --interact-size: 1.75rem;
+    --to-interact-width: 16.75rem;
+    --interact-cursor-height: 2rem;
+    --interact-cursor-width: 1rem;
     background-color: var(--background-color);
 }
 
  html.dark {
     --background-color: rgb(0,0,0);
-    --text-color: hsla(205, 100%, 90%, 0.9);
+    --menu-color: rgba(0,0,0, 0.85);
+    --text-color: hsla(205, 100%, 95%, 0.9);
     --title-color: hsla(190, 100%, 80%, 0.8);
     --border-color: hsla(205, 100%, 100%, 1);
     --typing-border-color: rgb(255,255,255);
-    --rain-color: hsla(205, 100%, 50%, 1);
-    --mobile-menu-color: rgba(0,0,0, 0.8);
-    
+    --rain-color: hsla(205, 100%, 50%, 1);    
 }
 
 body.modal-open {
@@ -47,18 +56,20 @@ a, a:link, a:visited, a:active {
     text-decoration: none;
 }
 
+.hidden {
+    display: none !important;
+}
+
 .top-nav {
+    background-color: var(--menu-color);
     z-index: 99;
     display: flex;
     position: sticky;
-    opacity: 0.85;
     top: 0;
     width: 100%;
-    /* margin: auto; */
-    /* margin-bottom: var(--nav-bottom-margin); */
     justify-content: center;
     align-items: center;
-    padding: var(--padding-medium);
+    padding: var(--padding-small);
 }
 
 .nav-item {
@@ -122,7 +133,7 @@ a, a:link, a:visited, a:active {
 
 .top-nav-mobile {
     z-index: 999;
-    background-color: var(--mobile-menu-color);
+    background-color: var(--menu-color);
     position: fixed;
     top: -200vh;
     width: 100vw;
@@ -134,6 +145,9 @@ a, a:link, a:visited, a:active {
     text-align: center;
     font-size: var(--medium-x-text-size);
     text-transform: uppercase;
+    width: 100%;
+    display: none;
+    cursor: pointer;
 }
 
 .top-nav-mobile.display {
@@ -164,12 +178,6 @@ a, a:link, a:visited, a:active {
     padding: 1rem;
 }
 
-.nav-mobile-menu {
-    display: none;
-    position: absolute;
-    top: var(--padding-medium);
-}
-
 .nav-mobile-menu:hover {
     cursor: pointer;
 }
@@ -185,6 +193,9 @@ a, a:link, a:visited, a:active {
 }
 
 .home-container {
+    position: absolute;
+    top: 0;
+    left: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -196,9 +207,9 @@ a, a:link, a:visited, a:active {
     text-align: center;
     white-space: nowrap;
     overflow: hidden;
-    font-size: 3.5rem;
+    font-size: var(--name-size);
     color: var(--title-color);
-    border-right: 1.25rem solid var(--border-color);
+    border-right: var(--name-cursor-width) solid var(--border-color);
     animation: typeWriter 2s steps(16) 1s 1 normal both,
         blinkTextCursor 2s steps(1) 2s infinite normal;
 }
@@ -209,41 +220,89 @@ a, a:link, a:visited, a:active {
     white-space: nowrap;
     bottom: var(--padding-medium);
     right: var(--padding-medium);
-    font-size: 1.5rem;
-    border-right: 0.75rem solid var(--border-color);
+    font-size: var(--interact-size);
+    border-right: var(--interact-cursor-width) solid var(--border-color);
     animation: 
         blinkOnceTextCursor 1s steps(1) 4s 1 normal both,
-        pressWriter 2s steps(19) 5s 1 normal both,
+        interactWriter 2s steps(19) 5s 1 normal both,
         blinkTextCursor 2s steps(1) 6s infinite normal;
 }
 
 #component {
-    position: absolute;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+}
+
+.fade-in, .fade-in-first-delay, .fade-in-second-delay, .fade-in-third-delay, .fade-in-forth-delay, .fade-in-fifth-delay {
+    opacity: 0;
+    animation: fadeIn 3s ease 0s 1 forwards;
+}
+
+.fade-in-first-delay {
+    animation-delay: 0.5s;
+}
+
+.fade-in-second-delay {
+    animation-delay: 1s;
+}
+
+.fade-in-third-delay {
+    animation-delay: 1.5s;
+}
+
+.fade-in-forth-delay {
+    animation-delay: 2s;
+}
+
+.fade-in-fifth-delay {
+    animation-delay: 2.5s;
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: column;
+    margin: var(--padding-medium);
+}
+
+.content > * {
+    width: 50%;
+}
+
+.content h1, h2, h3 {
+    text-transform: uppercase;
+    margin: var(--padding-medium) 0;
+}
+
+p {
+  text-indent: var(--padding-medium);
+  margin-bottom: var(--padding-next-paragraph);   
+}
+
+.links {
+    padding: 0 var(--padding-medium);
 }
 
 /*==animations==*/
 @keyframes typeWriter {
     from {
-        height: 4rem;
+        height: var(--name-cursor-height);
         width: 0;
     }
     to {
-        height: 4rem;
-        width: 26rem;
+        height: var(--name-cursor-height);
+        width: var(--to-name-width);
     }
 }
 
-@keyframes pressWriter {
+@keyframes interactWriter {
     from {
-        height: 2rem;
-        width: 0;
+        height: var(--interact-cursor-height);
+        width:  0;
     }
     to {
-        height: 2rem;
-        width: 12.3rem;
+        height:  var(--interact-cursor-height);
+        width:  var(--to-interact-width);
     }
 }
 
@@ -265,6 +324,15 @@ a, a:link, a:visited, a:active {
     }
 }
 
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 /* ===media screens=== */
 @media only screen and (max-width: 960px) {
     html {
@@ -279,7 +347,30 @@ a, a:link, a:visited, a:active {
         display: none;
     }
 
-    .nav-mobile-menu {
+    #nav-mobile-menu {
         display: block;
+    }
+
+    .content > * {
+        width: 75%;
+    }
+}
+
+
+@media only screen and (max-width: 550px) {
+    .content > * {
+        width: 90%;
+    }
+
+    html {
+        --name-size: 2.25rem;
+        --to-name-width: 24rem;
+        --name-cursor-height: 2.5rem;
+        --name-cursor-width: 1rem;
+
+        --interact-size: 1.25rem;
+        --to-interact-width: 15rem;
+        --interact-cursor-height: 1.5rem;
+        --interact-cursor-width: 0.75rem;
     }
 }

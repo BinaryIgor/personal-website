@@ -19,7 +19,7 @@
                 if (mode) {
                     return mode;
                 }
-                return LIGHT_MODE;
+                return DARK_MODE;
             }
 
             const setDarkMode = () => {
@@ -44,7 +44,7 @@
 </head>
 
 <body>
-    <nav class="top-nav">
+    <nav class="top-nav fade-in hidden">
         <a href="home" class="nav-item left-underline current">Home</a>
         <a href="about" class="nav-item left-underline">About</a>
         <a href="technologies" class="nav-item left-underline">Technologies</a>
@@ -53,12 +53,10 @@
 
         <div class="theme-mode"><img class="theme-mode-image"
                 src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" alt=""></div>
-        <div class="nav-mobile-menu nav-mobile-open">
-            <div id="nav-mobile-menu">Menu</div>
-        </div>
+        <div id="nav-mobile-menu">Menu</div>
     </nav>
 
-    <nav class="top-nav-mobile">
+    <nav class="top-nav-mobile fade-in hidden">
         <span class="nav-mobile-close">
             &#x2715;
         </span>
@@ -86,7 +84,7 @@
 
     <canvas id="canvas"></canvas>
 
-    <div id="component"></div>
+    <div id="component" class="fade-in hidden"></div>
 
     <script>
         const URL_PROPERTY_REGEX = /url\((.*)\)/;
@@ -107,9 +105,10 @@
             const darkThemeIconSrc = extractedImageSrc('theme-dark-icon');
             const lightThemeIconSrc = extractedImageSrc('theme-light-icon');
 
+            const topNav = document.querySelector(".top-nav");
             const themeModeImage = document.querySelector('.theme-mode-image');
             const topNavMobile = document.querySelector('.top-nav-mobile');
-            const navMobileOpen = document.querySelector('.nav-mobile-open');
+            const navMobile = document.getElementById('nav-mobile-menu');
             const navMobileClose = document.querySelector('.nav-mobile-close');
 
             const currentMode = () => {
@@ -117,7 +116,7 @@
                 if (mode) {
                     return mode;
                 }
-                return LIGHT_MODE;
+                return DARK_MODE;
             }
 
             const setDarkMode = () => {
@@ -162,16 +161,12 @@
                 document.dispatchEvent(new Event("themeChange"));    
             });
 
-            themeModeImage.addEventListener("click", e => {
-                e.stopPropagation();
-            });
-
-            navMobileOpen.addEventListener('click', () => {
+            navMobile.addEventListener('click', () => {
                 topNavMobile.classList.add('display');
                 document.body.classList.add("modal-open");
             });
 
-            navMobileOpen.addEventListener("click", e => e.stopPropagation());
+            topNav.addEventListener("click", e => e.stopPropagation());
 
             navMobileClose.addEventListener('click', function () {
                 topNavMobile.classList.remove('display');

@@ -1,7 +1,7 @@
 
 import Router from "./router.js";
 import { RestartableRain } from "./animation/restartable-rain.js";
-import { render as renderMainPage } from "./page/main.js";
+import { render as renderHomePage } from "./page/home.js";
 
 console.log("Starting js app..")
 
@@ -20,7 +20,7 @@ function setupNavigation(nav, afterPushHook = null) {
         a.addEventListener("click", e => {
             e.preventDefault();
             e.stopPropagation();
-            
+
             router.push(route);
 
             if (afterPushHook) {
@@ -37,7 +37,7 @@ function newRainOptions() {
     return {
         characters: `0101010101?`,
         fontSize: 9,
-        delay: -700,
+        delay: -500,
         minimumSpeed: 1,
         maximumSpeed: 5,
         minimumChainLength: 10,
@@ -61,30 +61,19 @@ const rain = new RestartableRain(newRainOptions);
 
 rain.start();
 
-document.addEventListener('themeChange', () => {
-    console.log("Theme changed!");
-    rain.restart();
-});
+document.addEventListener('themeChange', () => rain.restart());
 
 const routes = {
-    "/home": renderMainPage,
-    "/about": function () {
-        import('./page/about.js').then(page => page.render());
-    },
-    "/technologies": function () {
-        import('./page/technologies.js').then(page => page.render());
-    },
-    "/experience": function () {
-        import('./page/experience.js').then(page => page.render());
-    },
-    "/code": function () {
-        import('./page/code.js').then(page => page.render());
-    }
+    "/home": renderHomePage,
+    "/about": () => import('./page/about.js').then(page => page.render()),
+    "/technologies": () => import('./page/technologies.js').then(page => page.render()),
+    "/experience": () => import('./page/experience.js').then(page => page.render()),
+    "/code": () => import('./page/code.js').then(page => page.render())
 };
 
 const router = new Router();
 
-router.addDefaultRoute(renderMainPage);
+router.addDefaultRoute(renderHomePage);
 
 const topNav = document.querySelector(".top-nav");
 const topMobileNav = document.querySelector(".top-nav-mobile");
@@ -101,8 +90,17 @@ router.init();
 const currentRoute = router.routeFromUrl(`${window.location}`);
 const routeInit = routes[currentRoute];
 
-if (routeInit) {
-    routeInit();
-} else {
-    renderMainPage();
-}
+
+setTimeout(() => {
+    console.log("Rendering something...");
+
+    document.querySelectorAll(".hidden").forEach(h => {
+        h.classList.remove("hidden");
+    });
+
+    if (routeInit) {
+        routeInit();
+    } else {
+        renderHomePage();
+    }
+}, 1000);
