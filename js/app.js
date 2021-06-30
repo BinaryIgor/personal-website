@@ -1,17 +1,6 @@
 
-import Router from "./router.js";
+import * as Routes from "./routes.js";
 import { RestartableRain } from "./animation/restartable-rain.js";
-import { render as renderHomePage } from "./page/home.js";
-
-console.log("Starting js app..")
-
-const CURRENT_ROUTE_CLASS = "current";
-
-const router = new Router();
-
-router.addDefaultRoute(renderHomePage);
-
-const currentRoute = router.routeFromUrl(`${window.location}`);
 
 function extractedCssVar(cssVar) {
     return getComputedStyle(document.body)
@@ -20,16 +9,11 @@ function extractedCssVar(cssVar) {
 
 function setupNavigation(nav, afterPushHook = null) {
     nav.querySelectorAll("a").forEach(a => {
-        const route = router.routeFromUrl(a.href);
-        const routeInit = routes[route];
-
-        router.addRoute(route, routeInit);
-
         a.addEventListener("click", e => {
             e.preventDefault();
             e.stopPropagation();
 
-            router.push(route);
+            Routes.push(a.href);
 
             if (afterPushHook) {
                 afterPushHook();
@@ -71,14 +55,6 @@ rain.start();
 
 document.addEventListener('themeChange', () => rain.restart());
 
-const routes = {
-    "/home": renderHomePage,
-    "/about": () => import('./page/about.js').then(page => page.render()),
-    "/technologies": () => import('./page/technologies.js').then(page => page.render()),
-    "/experience": () => import('./page/experience.js').then(page => page.render()),
-    "/code": () => import('./page/code.js').then(page => page.render())
-};
-
 const topNav = document.querySelector(".top-nav");
 const topMobileNav = document.querySelector(".top-nav-mobile");
 
@@ -89,10 +65,6 @@ setupNavigation(topMobileNav, () => {
 });
 topMobileNav.addEventListener("click", e => e.stopPropagation());
 
-router.init();
-
-const initRoute = routes[currentRoute];
-
 setTimeout(() => {
     console.log("Rendering something...");
 
@@ -100,9 +72,5 @@ setTimeout(() => {
         h.classList.remove("hidden");
     });
 
-    if (initRoute) {
-        initRoute();
-    } else {
-        renderHomePage();
-    }
+    Routes.resolveCurrent();
 }, 1000);

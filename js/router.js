@@ -14,22 +14,24 @@ class Router {
 
     push(route) {
         window.history.pushState(null, null, route);
-        this._resolve(route);
+        return this._resolve(route);
     }
 
     _resolve(route) {
         route = this._routeWithoutLeadingSlash(route);
 
         for (const r of this._routes) {
-            if (this._routeWithoutLeadingSlash(r.path) == route) {
+            if (r.path == route) {
                 r.init();
-                return;
+                return route;
             }
         }
 
         if (this._defaultRoute) {
             this._defaultRoute();
         }
+
+        return null;
     }
 
     _routeWithoutLeadingSlash(route) {
@@ -45,7 +47,7 @@ class Router {
     }
 
     routeFromUrl(url = `${window.location}`) {
-        return url.replace(window.location.origin, "");
+        return this._routeWithoutLeadingSlash(url.replace(window.location.origin, ""));
     }
 }
 
