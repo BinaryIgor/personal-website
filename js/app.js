@@ -5,6 +5,14 @@ import { render as renderHomePage } from "./page/home.js";
 
 console.log("Starting js app..")
 
+const CURRENT_ROUTE_CLASS = "current";
+
+const router = new Router();
+
+router.addDefaultRoute(renderHomePage);
+
+const currentRoute = router.routeFromUrl(`${window.location}`);
+
 function extractedCssVar(cssVar) {
     return getComputedStyle(document.body)
         .getPropertyValue(`--${cssVar}`);
@@ -71,10 +79,6 @@ const routes = {
     "/code": () => import('./page/code.js').then(page => page.render())
 };
 
-const router = new Router();
-
-router.addDefaultRoute(renderHomePage);
-
 const topNav = document.querySelector(".top-nav");
 const topMobileNav = document.querySelector(".top-nav-mobile");
 
@@ -87,9 +91,7 @@ topMobileNav.addEventListener("click", e => e.stopPropagation());
 
 router.init();
 
-const currentRoute = router.routeFromUrl(`${window.location}`);
-const routeInit = routes[currentRoute];
-
+const initRoute = routes[currentRoute];
 
 setTimeout(() => {
     console.log("Rendering something...");
@@ -98,8 +100,8 @@ setTimeout(() => {
         h.classList.remove("hidden");
     });
 
-    if (routeInit) {
-        routeInit();
+    if (initRoute) {
+        initRoute();
     } else {
         renderHomePage();
     }
