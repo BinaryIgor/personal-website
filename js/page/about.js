@@ -7,6 +7,9 @@ export function render(rootId="component") {
             <div class="content fade-in">
                 <h2>I am Igor Roztropiński,</h2>
                 <p class="indented">born in 1994, Konin, Poland.</p>
+                <div class="image-container">
+                    <img class="profile-image" src="/assets/igor.jpg"></img>
+                </div>
                 <p>My road to become a programmer was a long one. Having wide range
                     of interests, I studied psychology, food technology and electronics, not finishing any of them, searching
                     for the craft to which I will want to commit for the long haul.
