@@ -4,7 +4,7 @@ export function render(rootId="component") {
 
     root.innerHTML = `
         <div class="content-container">
-            <div class="content fade-in">
+            <section class="content fade-in">
                 <h2>I am Igor Roztropiński,</h2>
                 <p class="indented">born in 1994, Konin, Poland.</p>
                 <div class="image-container">
@@ -58,7 +58,7 @@ export function render(rootId="component") {
                     <li><a href="https://github.com/Iprogrammerr">Github</a></li>
                     <li><a href="https://www.linkedin.com/in/igor-roztropi%C5%84ski-621825192/">LinkedIn</a></li>
                 </ul>
-            </div>
+            </section>
         </div>
     `;
 };

@@ -19,7 +19,9 @@ html {
     --typing-border-color: rgb(0,0,0);
     --padding-small: 8px;
     --padding-medium: 16px;
-    --padding-next-paragraph: 24px;
+    --padding-large: 24px;
+    --padding-next-paragraph: 32px;
+    --padding-next-section: 64px;
     --medium-text-size: 1rem;
     --medium-x-text-size: 1.75rem; 
     --border-size: 2px;
@@ -36,6 +38,7 @@ html {
     --to-interact-width: 16.75rem;
     --interact-cursor-height: 2rem;
     --interact-cursor-width: 1rem;
+    --expand-size: 1.5rem;
     background-color: var(--background-color);
 }
 
@@ -277,6 +280,23 @@ a, a:link, a:visited, a:active {
     color: var(--main-text-color);
 }
 
+.content h1 {
+    margin-bottom: var(--padding-large);
+}
+
+.content a {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+section {
+    margin-bottom: var(--padding-next-section);
+}
+
+section > h1 {
+    font-size: 2rem;
+}
+
 p {
   text-indent: var(--padding-medium);
   margin-bottom: var(--padding-next-paragraph);   
@@ -296,6 +316,10 @@ p {
     max-height: 500px;
     text-align: center;
     opacity: 0.85;
+}
+
+.collapsible  {
+    cursor: pointer;
 }
 
 /*==animations==*/
