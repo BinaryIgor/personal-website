@@ -6,7 +6,7 @@ export function render(rootId="component") {
         <div class="content-container">
             <section class="content fade-in">
                 <h2>I am Igor Roztropiński,</h2>
-                <p class="indented">born in 1994, Konin, Poland.</p>
+                <p class="indented">born in 1994, Konin, Poland. Problem solver, mainly.</p>
                 <div class="image-container">
                     <img class="profile-image" src="/assets/igor.jpg"></img>
                 </div>

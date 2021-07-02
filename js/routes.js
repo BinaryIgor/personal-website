@@ -17,32 +17,33 @@ const routes = {
     "code": () => import('./page/code.js').then(page => page.render())
 };
 
-for (const [k, v] of Object.entries(routes)) {
-    router.addRoute(k, v);
-}
-
 const navLinks = document.querySelectorAll("a");
 navLinks.forEach(l => l.classList.remove(CURRENT_ROUTE_CLASS));
+
+for (const [route, render] of Object.entries(routes)) {
+    router.addRoute(route, () => {
+        window.scrollTo({
+            top: 0,
+            left: 0
+        });
+
+        navLinks.forEach(l => {
+            if (l.href.includes(route)) {
+                l.classList.add(CURRENT_ROUTE_CLASS);
+            } else {
+                l.classList.remove(CURRENT_ROUTE_CLASS);
+            }
+        });
+
+        render();
+    });
+}
 
 router.init();
 
 export function push(url = `${window.location}`) {
     const route = router.routeFromUrl(url);
-    const resolved = router.push(route);
-
-    navLinks.forEach(l => {
-        if (resolved == null) {
-            if (l.href.includes(DEFAULT_ROUTE)) {
-                l.classList.add(CURRENT_ROUTE_CLASS);
-            } else {
-                l.classList.remove(CURRENT_ROUTE_CLASS);
-            }
-        } else if (l.href.includes(route)) {
-            l.classList.add(CURRENT_ROUTE_CLASS);
-        } else {
-            l.classList.remove(CURRENT_ROUTE_CLASS);
-        }
-    });
+    router.push(route);
 }
 
 export function resolveCurrent() {

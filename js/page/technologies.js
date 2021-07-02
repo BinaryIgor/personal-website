@@ -36,8 +36,6 @@ const OTHER_CONTENT = {
 
 export function render(rootId = "component") {
 
-    const root = document.getElementById(rootId);
-
     function sectionHtml(subsections) {
         const html = [];
         for (const [title, text] of Object.entries(subsections)) {
@@ -47,16 +45,14 @@ export function render(rootId = "component") {
         return html.join("\n");
     }
 
-    const languagesSection = Components.collapsible("Languages", sectionHtml(LANGUAGES_CONTENT));
-    const environmentsSection = Components.collapsible("Environments", sectionHtml(ENVIRONMENTS_CONTENT));
-    const technologiesSection = Components.collapsible("Technologies", sectionHtml(TECHNOLOGIES_CONTENT));
-    const otherSection = Components.collapsible("Other", sectionHtml(OTHER_CONTENT));
+    const root = document.getElementById(rootId);
 
     root.innerHTML = Components.content(`
-                ${languagesSection}
-                ${environmentsSection}
-                ${technologiesSection}
-                ${otherSection}`);
+        ${Components.collapsible("Languages", sectionHtml(LANGUAGES_CONTENT))}
+        ${Components.collapsible("Environments", sectionHtml(ENVIRONMENTS_CONTENT))}
+        ${Components.collapsible("Technologies", sectionHtml(TECHNOLOGIES_CONTENT))}
+        ${Components.collapsible("Other", sectionHtml(OTHER_CONTENT))}
+    `);
 
     Components.initAllCollapsibles();
 };

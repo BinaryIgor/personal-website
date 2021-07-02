@@ -66,8 +66,6 @@ setupNavigation(topMobileNav, () => {
 topMobileNav.addEventListener("click", e => e.stopPropagation());
 
 setTimeout(() => {
-    console.log("Rendering something...");
-
     document.querySelectorAll(".hidden").forEach(h => {
         h.classList.remove("hidden");
     });
