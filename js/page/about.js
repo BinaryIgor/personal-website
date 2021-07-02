@@ -1,3 +1,5 @@
+import Images from "../images.js";
+
 export function render(rootId="component") {
 
     const root = document.getElementById(rootId);
@@ -8,7 +10,7 @@ export function render(rootId="component") {
                 <h2>I am Igor Roztropiński,</h2>
                 <p class="indented">born in 1994, Konin, Poland. Problem solver, mainly.</p>
                 <div class="image-container">
-                    <img class="profile-image" src="/assets/igor.jpg"></img>
+                    <img class="profile-image" src="${Images.profileUrl}"></img>
                 </div>
                 <p>My road to become a programmer was a long one. Having wide range
                     of interests, I studied psychology, food technology and electronics, not finishing any of them, searching
