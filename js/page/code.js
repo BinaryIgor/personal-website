@@ -1,5 +1,5 @@
 import * as Components from "../component/components.js";
-import Images from "../links/images.js";
+import { Images } from "../links/images.js";
 import { Repositories, Instances, Stores } from "../links/codes.js";
 
 const VIRTUOCRACY_CONTENT = {
@@ -15,7 +15,7 @@ const VIRTUOCRACY_CONTENT = {
 const FOOD_CONTROLLER_CONTENT = {
     goal: "Easy to use mobile application for controlling food intake.",
     description: `This was my first application written in Kotlin. It's entirely self-contained and is shipped with SQLite database containing most frequently eaten food products. It allows adding new ones, seting daily goals for food intake and keeping track of its history. All of which make it easy to control dieting habits.`,
-    images: [],
+    gallery: Images.foodController,
     links: {
         "Code": Repositories.foodController
     }
@@ -26,7 +26,7 @@ const SMART_QUERY_CONTENT = {
     description: `Finding many problems with ORMs and Hibernate especially, I looked for alternative approach. Being fan of SQL, I have trouble with justifing hiding it behind ORM magic. 
         At the same time, writing repeative, simple SQL statements is very error-prone. <a href='https://www.jooq.org/'>JOOQ</a> is very nice, but I find it too complex. 
         Being fanatic of simplicity and curious of how things work drives me to create this library. Related to this, I also created <a href='${Repositories.smartQueryMeta}'>database representation generator</a>.`,
-    images: [],
+    gallery: Images.smartQuery,
     links: {
         "Code": Repositories.smartQuery
     }
@@ -94,6 +94,17 @@ export function render(rootId = "component") {
         html.push(`<p>${section.goal}</p>`);
         html.push(`<h2>Description</h2>`);
         html.push(`<p>${section.description}</p>`);
+
+
+        if (section.gallery) {
+            html.push("<h2>Gallery</h2>");
+
+            html.push(`<div class="gallery">`)
+            for (const i of section.gallery) {
+                html.push(`<div style="background-image: url('${i}')"></div>`);
+            }
+            html.push("</div>")
+        }
 
         if (section.links && Object.keys(section.links).length > 0) {
             html.push("<h2>Links</h2>");

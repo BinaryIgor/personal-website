@@ -1,6 +1,6 @@
-import Images from "../links/images.js";
+import { Images } from "../links/images.js";
 
-export function render(rootId="component") {
+export function render(rootId = "component") {
 
     const root = document.getElementById(rootId);
 

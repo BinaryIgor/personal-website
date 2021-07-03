@@ -22,6 +22,7 @@ html {
     --padding-medium: 16px;
     --padding-large: 24px;
     --padding-next-paragraph: 32px;
+    --padding-gallery: 64px;
     --padding-next-section: 64px;
     --medium-text-size: 1rem;
     --medium-x-text-size: 1.75rem; 
@@ -40,6 +41,12 @@ html {
     --interact-cursor-height: 2rem;
     --interact-cursor-width: 1rem;
     --expand-size: 1.5rem;
+    --gallery-width-two: 33vw;
+    --gallery-height-two: 45vw;
+    --gallery-width-three: 18vw;
+    --gallery-height-three: 24vw;
+    --gallery-width-four: 10vw;
+    --gallery-height-four: 13.5vw;
     background-color: var(--background-color);
 }
 
@@ -353,6 +360,26 @@ p {
     font-weight: bold;
 }
 
+.gallery {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+    grid-gap: var(--padding-medium);
+    margin-bottom: var(--padding-gallery);
+}
+
+.gallery > div {
+    background-size: auto 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: var(--gallery-width-four);
+    height: var(--gallery-height-four);
+    opacity: 0.5;
+}
+
 /*==animations==*/
 @keyframes typeWriter {
     from {
@@ -404,6 +431,18 @@ p {
 }
 
 /* ===media screens=== */
+
+@media only screen and (max-width: 1200px) {
+    .gallery  {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .gallery > div {
+        width: var(--gallery-width-three);
+        height: var(--gallery-height-three);
+    }
+}
+
 @media only screen and (max-width: 960px) {
     html {
      font-size: 0.85rem;
@@ -423,6 +462,17 @@ p {
 
     .content {
         width: 75%;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .gallery  {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .gallery > div {
+        width: var(--gallery-width-two);
+        height: var(--gallery-height-two);
     }
 }
 
