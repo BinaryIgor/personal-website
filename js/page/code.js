@@ -97,6 +97,10 @@ const IMAGE_URL_ATTRIBUTE = "data-image";
 const ARROW_LEFT_CLASS = "arrow-left";
 const ARROW_RIGHT_CLASS = "arrow-right";
 
+const MIN_ZOOM = 0;
+const MAX_ZOOM = 4;
+const ZOOM_STEP = 0.25;
+
 export function render(rootId = "component") {
 
     function sectionHtml(section) {
@@ -148,7 +152,7 @@ export function render(rootId = "component") {
                 <div>&#10095</div>
             </div>
             <div class="image-container">
-                <div></div>
+                <img></img>
             </div>
             <div class="focused-image-container-background"></div>
         </div>
@@ -168,13 +172,91 @@ export function render(rootId = "component") {
     const focusedImageContainer = document.getElementById(FOCUSED_IMAGE_CONTAINER_ID);
     const previousImage = document.querySelector(`.${ARROW_LEFT_CLASS} > div`);
     const nextImage = document.querySelector(`.${ARROW_RIGHT_CLASS} > div`);
-    const focusedImage = document.querySelector(`.${IMAGE_CONTAINER_CLASS} > div`);
+    const focusedImage = focusedImageContainer.querySelector(`.${IMAGE_CONTAINER_CLASS} > img`);
     const closeFocusedImage = document.getElementById("close-gallery");
+
+    let widthStep = -1;
+    let heightStep = -1;
+    let initialWidth = "";
+    let initialMaxWidth = ""
+    let initialHeight = "";
+    let initialMaxHeight = ""
+    let currentZoom = 0;
 
     closeFocusedImage.onclick = e => {
         e.stopPropagation();
         focusedImageContainer.className = FOCUSED_IMAGE_CONTAINER_HIDDEN_CLASS;
         document.body.classList.toggle(HIDDEN_SCROLL_CLASS);
+        resetZoomIf();
+    };
+
+    document.querySelector(".gallery-menu").onclick = e => e.stopPropagation();
+
+    document.getElementById("zoom-out").onclick = e => {
+        console.log("To zoom in" + currentZoom);
+        if (currentZoom <= MIN_ZOOM) {
+            return;
+        }
+
+        initZoomStepsIf();
+
+        const newWidth = focusedImage.offsetWidth - widthStep;
+        const newHeight = focusedImage.offsetHeight - heightStep;
+
+        currentZoom--;
+
+        console.log(newWidth + " x " + newHeight);
+
+        focusedImage.style.width = `${newWidth}px`;
+        focusedImage.style.height = `${newHeight}px`;
+    };
+
+    function initZoomStepsIf() {
+        if (widthStep < 0 || heightStep < 0) {
+            initialWidth = focusedImage.style.width;
+            initialMaxWidth = focusedImage.style.maxWidth;
+            initialHeight = focusedImage.style.height;
+            initialMaxHeight = focusedImage.style.maxHeight;
+
+            innerHeight = focusedImage.style.height;
+            widthStep = focusedImage.offsetWidth * ZOOM_STEP;
+            heightStep = focusedImage.offsetHeight * ZOOM_STEP;
+        }
+    }
+
+    function resetZoomIf() {
+        if (widthStep > 0 && heightStep > 0) {
+            focusedImage.style.width = initialWidth;
+            focusedImage.style.maxWidth = initialMaxWidth;
+            focusedImage.style.height = initialHeight;
+            focusedImage.style.maxHeight = initialMaxHeight;
+
+            widthStep = -1;
+            heightStep = -1;
+
+            currentZoom = 0;
+        }
+    }
+
+    document.getElementById("zoom-in").onclick = e => {
+        console.log("To zoom in" + currentZoom);
+        if (currentZoom >= MAX_ZOOM) {
+            return;
+        }
+
+        initZoomStepsIf();
+
+        const newWidth = focusedImage.offsetWidth + widthStep;
+        const newHeight = focusedImage.offsetHeight + heightStep;
+
+        currentZoom++;
+
+        console.log(newWidth + " x " + newHeight);
+
+        focusedImage.style.maxWidth = `${newWidth}px`;
+        focusedImage.style.width = `${newWidth}px`;
+        focusedImage.style.maxHeight = `${newHeight}px`;
+        focusedImage.style.height = `${newHeight}px`;
     };
 
     for (const gallery of document.querySelectorAll(`.${GALLERY_CLASS}`)) {
@@ -211,6 +293,7 @@ export function render(rootId = "component") {
                         if (focusedIdx < 0) {
                             focusedIdx = images.length - 1;
                         }
+                        resetZoomIf();
                         setImageUrl(focusedImage, images[focusedIdx]);
                     };
                     nextImage.onclick = e => {
@@ -219,6 +302,7 @@ export function render(rootId = "component") {
                         if (focusedIdx >= images.length) {
                             focusedIdx = 0;
                         }
+                        resetZoomIf();
                         setImageUrl(focusedImage, images[focusedIdx]);
                     };
                 }
@@ -228,6 +312,6 @@ export function render(rootId = "component") {
 
     function setImageUrl(focusedImage, image) {
         const url = image.getAttribute(IMAGE_URL_ATTRIBUTE);
-        focusedImage.style.backgroundImage = `url(${url})`;
+        focusedImage.src = url;
     }
 };
