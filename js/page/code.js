@@ -99,7 +99,9 @@ const ARROW_RIGHT_CLASS = "arrow-right";
 
 const MIN_ZOOM = 0;
 const MAX_ZOOM = 4;
-const ZOOM_STEP = 0.25;
+const ZOOM_STEP = 50;
+
+const INITIAL_SIZE = 100;
 
 export function render(rootId = "component") {
 
@@ -172,15 +174,10 @@ export function render(rootId = "component") {
     const focusedImageContainer = document.getElementById(FOCUSED_IMAGE_CONTAINER_ID);
     const previousImage = document.querySelector(`.${ARROW_LEFT_CLASS} > div`);
     const nextImage = document.querySelector(`.${ARROW_RIGHT_CLASS} > div`);
+    const imageContainer =  focusedImageContainer.querySelector(`.${IMAGE_CONTAINER_CLASS}`);
     const focusedImage = focusedImageContainer.querySelector(`.${IMAGE_CONTAINER_CLASS} > img`);
     const closeFocusedImage = document.getElementById("close-gallery");
 
-    let widthStep = -1;
-    let heightStep = -1;
-    let initialWidth = "";
-    let initialMaxWidth = ""
-    let initialHeight = "";
-    let initialMaxHeight = ""
     let currentZoom = 0;
 
     closeFocusedImage.onclick = e => {
@@ -198,65 +195,33 @@ export function render(rootId = "component") {
             return;
         }
 
-        initZoomStepsIf();
-
-        const newWidth = focusedImage.offsetWidth - widthStep;
-        const newHeight = focusedImage.offsetHeight - heightStep;
-
         currentZoom--;
-
-        console.log(newWidth + " x " + newHeight);
-
-        focusedImage.style.width = `${newWidth}px`;
-        focusedImage.style.height = `${newHeight}px`;
+        setNewImageSize();
     };
 
-    function initZoomStepsIf() {
-        if (widthStep < 0 || heightStep < 0) {
-            initialWidth = focusedImage.style.width;
-            initialMaxWidth = focusedImage.style.maxWidth;
-            initialHeight = focusedImage.style.height;
-            initialMaxHeight = focusedImage.style.maxHeight;
+    function setNewImageSize() {
+        const newSize = currentZoom > 0 ? (INITIAL_SIZE + (currentZoom * ZOOM_STEP)) : INITIAL_SIZE
 
-            innerHeight = focusedImage.style.height;
-            widthStep = focusedImage.offsetWidth * ZOOM_STEP;
-            heightStep = focusedImage.offsetHeight * ZOOM_STEP;
-        }
+        focusedImage.style.width = `${newSize}%`;
+        focusedImage.style.height = `${newSize}%`;
     }
 
+
     function resetZoomIf() {
-        if (widthStep > 0 && heightStep > 0) {
-            focusedImage.style.width = initialWidth;
-            focusedImage.style.maxWidth = initialMaxWidth;
-            focusedImage.style.height = initialHeight;
-            focusedImage.style.maxHeight = initialMaxHeight;
-
-            widthStep = -1;
-            heightStep = -1;
-
+        if (currentZoom > 0) {
+            focusedImage.style.width = `${INITIAL_SIZE}%`
+            focusedImage.style.height = `${INITIAL_SIZE}%`;
             currentZoom = 0;
         }
     }
 
     document.getElementById("zoom-in").onclick = e => {
-        console.log("To zoom in" + currentZoom);
         if (currentZoom >= MAX_ZOOM) {
             return;
         }
 
-        initZoomStepsIf();
-
-        const newWidth = focusedImage.offsetWidth + widthStep;
-        const newHeight = focusedImage.offsetHeight + heightStep;
-
         currentZoom++;
-
-        console.log(newWidth + " x " + newHeight);
-
-        focusedImage.style.maxWidth = `${newWidth}px`;
-        focusedImage.style.width = `${newWidth}px`;
-        focusedImage.style.maxHeight = `${newHeight}px`;
-        focusedImage.style.height = `${newHeight}px`;
+        setNewImageSize();
     };
 
     for (const gallery of document.querySelectorAll(`.${GALLERY_CLASS}`)) {
