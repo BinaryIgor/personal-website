@@ -135,9 +135,12 @@ export function render(rootId = "component") {
 
     root.innerHTML = `
         <div id="${FOCUSED_IMAGE_CONTAINER_ID}" class="${FOCUSED_IMAGE_CONTAINER_HIDDEN_CLASS}">
-            <span id="close-gallery" class="close-modal">
-                &#x2715;
-            </span>
+            <div class="gallery-menu">
+                <span id="zoom-out">-</span>
+                <span id="zoom-in">+</span>
+                <span class="blank"></span>
+                <span id="close-gallery">&#x2715;</span>
+            </div>
             <div class="${ARROW_LEFT_CLASS}">
                 <div>&#10094</div>
             </div>

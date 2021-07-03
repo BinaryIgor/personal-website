@@ -17,6 +17,7 @@ html {
     --border-color: hsla(205, 100%, 30%, 1);
     --rain-color: hsla(205, 100%, 50%, 1);
     --typing-border-color: rgb(0,0,0);
+    --padding-little: 4px;
     --padding-small: 8px;
     --padding-medium: 16px;
     --padding-large: 24px;
@@ -48,6 +49,7 @@ html {
     --gallery-height-four: 13.5vw;
     --arrow-size: 2.5rem;
     --close-icon-size: 3rem;
+    --gallery-icons-size: 3rem;
     background-color: var(--background-color);
 }
 
@@ -385,6 +387,29 @@ p {
     opacity: 0.6;
 }
 
+.gallery-menu {
+    background-color: var(--menu-color);
+    z-index: 1;
+    display: flex;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    border-bottom: solid var(--border-size) var(--text-color);
+}
+
+.gallery-menu > span {
+    font-size: var(--gallery-icons-size);
+    padding: var(--padding-little) var(--padding-small);
+    cursor: pointer;
+}
+
+.blank {
+    margin: auto;
+}
+
 .focused-image-container, .focused-image-container-hidden {
     width: 100vw;
     height: 100vh;
@@ -416,7 +441,7 @@ p {
     display: flex;
     justify-content: center;
     align-content: center;
-    padding: 5% 10%;
+    padding: 10% 12.5% 2.5% 10%;
 }
 
 .focused-image-container .image-container > div {
