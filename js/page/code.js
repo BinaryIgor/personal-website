@@ -133,8 +133,8 @@ export function render(rootId = "component") {
 
     const root = document.getElementById(rootId);
 
-    root.innerHTML = Components.content(`
-            <div id="${FOCUSED_IMAGE_CONTAINER_ID}" class="${FOCUSED_IMAGE_CONTAINER_HIDDEN_CLASS}">
+    root.innerHTML = `
+        <div id="${FOCUSED_IMAGE_CONTAINER_ID}" class="${FOCUSED_IMAGE_CONTAINER_HIDDEN_CLASS}">
             <div class="${ARROW_LEFT_CLASS}">
                 <div>&#10094</div>
             </div>
@@ -146,14 +146,15 @@ export function render(rootId = "component") {
             </div>
             <div class="focused-image-container-background"></div>
         </div>
-        ${Components.collapsible("Wirtuokracja", sectionHtml(VIRTUOCRACY_CONTENT))}
-        ${Components.collapsible("Food Controller", sectionHtml(FOOD_CONTROLLER_CONTENT))}
-        ${Components.collapsible("Smart Query", sectionHtml(SMART_QUERY_CONTENT))}
-        ${Components.collapsible("Daily Wisdom", sectionHtml(DAILY_WISDOM_CONTENT))}
-        ${Components.collapsible("Bright Server", sectionHtml(BRIGHT_SERVER_CONTENT))}
-        ${Components.collapsible("Gentle Request", sectionHtml(GENTLE_REQUEST_CONTENT))}
-        ${Components.collapsible("Algorithms and Data Structures", sectionHtml(ALGORITHMS_AND_DATA_STRUCTURES_CONTENT))}
-    `);
+        ${Components.content(`
+            ${Components.collapsible("Wirtuokracja", sectionHtml(VIRTUOCRACY_CONTENT))}
+            ${Components.collapsible("Food Controller", sectionHtml(FOOD_CONTROLLER_CONTENT))}
+            ${Components.collapsible("Smart Query", sectionHtml(SMART_QUERY_CONTENT))}
+            ${Components.collapsible("Daily Wisdom", sectionHtml(DAILY_WISDOM_CONTENT))}
+            ${Components.collapsible("Bright Server", sectionHtml(BRIGHT_SERVER_CONTENT))}
+            ${Components.collapsible("Gentle Request", sectionHtml(GENTLE_REQUEST_CONTENT))}
+            ${Components.collapsible("Algorithms and Data Structures", sectionHtml(ALGORITHMS_AND_DATA_STRUCTURES_CONTENT))}
+    `)}`;
 
     Components.initAllCollapsibles();
 
