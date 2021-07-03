@@ -6,5 +6,5 @@ function fullUrl(url) {
 }
 
 export default {
-    profileUrl: fullUrl(profileUrl)
+    profile: fullUrl(profileUrl)
 };

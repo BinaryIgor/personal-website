@@ -54,8 +54,8 @@ html {
     --rain-color: hsla(205, 100%, 60%, 1);    
 }
 
-body.modal-open {
-    overflow: hidden;
+li {
+    list-style-type: square;
 }
 
 a, a:link, a:visited, a:active {
@@ -295,7 +295,7 @@ a, a:link, a:visited, a:active {
     margin-bottom: var(--padding-next-paragraph);
 }
 
-section .expanded {
+section.expanded {
     margin-bottom: var(--padding-next-section);
 }
 
@@ -310,6 +310,10 @@ p {
 
 .links {
     padding: 0 var(--padding-medium);
+}
+
+.links > li:not(:last-child) {
+    margin-bottom: var(--padding-small);
 }
 
 .image-container {
@@ -340,6 +344,7 @@ p {
 .collapsible-container > h1 {
     font-size: 2rem;
     margin: 0;
+    max-width: 85%;
 }
 
 .collapsible-container > span {

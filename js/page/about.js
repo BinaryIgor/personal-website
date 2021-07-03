@@ -1,4 +1,4 @@
-import Images from "../images.js";
+import Images from "../links/images.js";
 
 export function render(rootId="component") {
 
@@ -8,9 +8,9 @@ export function render(rootId="component") {
         <div class="content-container">
             <section class="content fade-in">
                 <h2>I am Igor Roztropiński,</h2>
-                <p class="indented">born in 1994, Konin, Poland. Problem solver, mainly.</p>
+                <p class="indented">born in 1994, Konin, Poland. Programmer, mainly.</p>
                 <div class="image-container">
-                    <img class="profile-image" src="${Images.profileUrl}"></img>
+                    <img class="profile-image" src="${Images.profile}"></img>
                 </div>
                 <p>My road to become a programmer was a long one. Having wide range
                     of interests, I studied psychology, food technology and electronics, not finishing any of them, searching
