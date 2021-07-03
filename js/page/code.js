@@ -89,7 +89,7 @@ const ALGORITHMS_AND_DATA_STRUCTURES_CONTENT = {
 const FOCUSED_IMAGE_CONTAINER_ID = "focused-image-container";
 const FOCUSED_IMAGE_CONTAINER_CLASS = "focused-image-container";
 const FOCUSED_IMAGE_CONTAINER_HIDDEN_CLASS = `${FOCUSED_IMAGE_CONTAINER_CLASS}-hidden`;
-const HIDDEN_SCROLL_CLASS = "hidden";
+const HIDDEN_SCROLL_CLASS = "hidden-scroll";
 const IMAGE_CONTAINER_CLASS = "image-container";
 const GALLERY_CLASS = "gallery";
 const HIDDEN_CLASS = "hidden";
@@ -135,6 +135,9 @@ export function render(rootId = "component") {
 
     root.innerHTML = `
         <div id="${FOCUSED_IMAGE_CONTAINER_ID}" class="${FOCUSED_IMAGE_CONTAINER_HIDDEN_CLASS}">
+            <span id="close-gallery" class="close-modal">
+                &#x2715;
+            </span>
             <div class="${ARROW_LEFT_CLASS}">
                 <div>&#10094</div>
             </div>
@@ -163,20 +166,19 @@ export function render(rootId = "component") {
     const previousImage = document.querySelector(`.${ARROW_LEFT_CLASS} > div`);
     const nextImage = document.querySelector(`.${ARROW_RIGHT_CLASS} > div`);
     const focusedImage = document.querySelector(`.${IMAGE_CONTAINER_CLASS} > div`);
+    const closeFocusedImage = document.getElementById("close-gallery");
 
+    closeFocusedImage.onclick = e => {
+        e.stopPropagation();
+        focusedImageContainer.className = FOCUSED_IMAGE_CONTAINER_HIDDEN_CLASS;
+        document.body.classList.toggle(HIDDEN_SCROLL_CLASS);
+    };
 
     for (const gallery of document.querySelectorAll(`.${GALLERY_CLASS}`)) {
         setupGallery(gallery);
     }
 
     function setupGallery(gallery) {
-        const rootScroll = document.documentElement.style.overflow;
-        focusedImageContainer.onclick = e => {
-            e.stopPropagation();
-            focusedImageContainer.className = FOCUSED_IMAGE_CONTAINER_HIDDEN_CLASS;
-            document.documentElement.style.overflow = rootScroll;
-        };
-
         const images = gallery.parentElement.querySelectorAll(`.${GALLERY_CLASS} > div`);
         let focusedIdx = -1;
 
@@ -186,8 +188,8 @@ export function render(rootId = "component") {
             image.onclick = e => {
                 e.stopPropagation();
 
-                document.documentElement.style.overflow = HIDDEN_SCROLL_CLASS;
-                
+                document.body.classList.toggle(HIDDEN_SCROLL_CLASS);
+
                 setImageUrl(focusedImage, image);
 
                 if (focusedImageContainer.className == FOCUSED_IMAGE_CONTAINER_HIDDEN_CLASS) {

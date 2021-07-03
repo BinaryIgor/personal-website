@@ -57,7 +57,7 @@
     </nav>
 
     <nav class="top-nav-mobile fade-in hidden">
-        <span class="nav-mobile-close">
+        <span id="nav-mobile-close" class="close-modal">
             &#x2715;
         </span>
 
@@ -110,7 +110,7 @@
             const themeModeImage = document.querySelector('.theme-mode-image');
             const topNavMobile = document.querySelector('.top-nav-mobile');
             const navMobile = document.getElementById('nav-mobile-menu');
-            const navMobileClose = document.querySelector('.nav-mobile-close');
+            const navMobileClose = document.querySelector('#nav-mobile-close');
 
             const currentMode = () => {
                 const mode = localStorage.getItem(KEY);
