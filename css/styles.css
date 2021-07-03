@@ -47,6 +47,7 @@ html {
     --gallery-height-three: 24vw;
     --gallery-width-four: 10vw;
     --gallery-height-four: 13.5vw;
+    --arrow-size: 2.5rem;
     background-color: var(--background-color);
 }
 
@@ -145,7 +146,7 @@ a, a:link, a:visited, a:active {
 }
 
 .top-nav-mobile {
-    z-index: 999;
+    z-index: 100;
     background-color: var(--menu-color);
     position: fixed;
     top: -200vh;
@@ -157,7 +158,6 @@ a, a:link, a:visited, a:active {
 #nav-mobile-menu {
     text-align: center;
     font-size: var(--medium-x-text-size);
-    text-transform: uppercase;
     width: 100%;
     display: none;
     cursor: pointer;
@@ -360,6 +360,7 @@ p {
     font-weight: bold;
 }
 
+/*=== gallery ===*/
 .gallery {
     height: 100%;
     width: 100%;
@@ -377,10 +378,73 @@ p {
     background-repeat: no-repeat;
     width: var(--gallery-width-four);
     height: var(--gallery-height-four);
-    opacity: 0.5;
+    opacity: 0.6;
 }
 
-/*==animations==*/
+.focused-image-container, .focused-image-container-hidden {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    text-align: center;
+    top: 0;
+    right: 0;
+    z-index: 999;
+}
+
+.focused-image-container-background {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    z-index: -1;
+    position: absolute;
+    background-color: var(--menu-color);
+}
+
+.focused-image-container-hidden {
+    display: none;
+}
+
+.focused-image-container .image-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.focused-image-container .image-container > div {
+    width: 85vw;
+    height: 90vh;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.arrow-left, .arrow-right {
+    width: 10%;
+    height: 100vh;
+    display: flex;
+    position: fixed;
+    top: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.arrow-left > *, .arrow-right > * {
+    font-size: var(--arrow-size);
+    cursor: pointer;
+}
+
+.arrow-left {
+    left: 0;
+}
+
+.arrow-right {
+    right: 0;
+}
+
+/*=== animations ===*/
 @keyframes typeWriter {
     from {
         height: var(--name-cursor-height);

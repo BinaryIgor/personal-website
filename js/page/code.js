@@ -2,6 +2,7 @@ import * as Components from "../component/components.js";
 import { Images } from "../links/images.js";
 import { Repositories, Instances, Stores } from "../links/codes.js";
 
+
 const VIRTUOCRACY_CONTENT = {
     goal: "TODO",
     description: "TODO",
@@ -85,6 +86,17 @@ const ALGORITHMS_AND_DATA_STRUCTURES_CONTENT = {
     }
 };
 
+const FOCUSED_IMAGE_CONTAINER_ID = "focused-image-container";
+const FOCUSED_IMAGE_CONTAINER_CLASS = "focused-image-container";
+const FOCUSED_IMAGE_CONTAINER_HIDDEN_CLASS = `${FOCUSED_IMAGE_CONTAINER_CLASS}-hidden`;
+const HIDDEN_SCROLL_CLASS = "hidden";
+const IMAGE_CONTAINER_CLASS = "image-container";
+const GALLERY_CLASS = "gallery";
+const HIDDEN_CLASS = "hidden";
+const IMAGE_URL_ATTRIBUTE = "data-image";
+const ARROW_LEFT_CLASS = "arrow-left";
+const ARROW_RIGHT_CLASS = "arrow-right";
+
 export function render(rootId = "component") {
 
     function sectionHtml(section) {
@@ -101,7 +113,7 @@ export function render(rootId = "component") {
 
             html.push(`<div class="gallery">`)
             for (const i of section.gallery) {
-                html.push(`<div style="background-image: url('${i}')"></div>`);
+                html.push(`<div data-image="${i}" style="background-image: url('${i}')"></div>`);
             }
             html.push("</div>")
         }
@@ -122,6 +134,18 @@ export function render(rootId = "component") {
     const root = document.getElementById(rootId);
 
     root.innerHTML = Components.content(`
+            <div id="${FOCUSED_IMAGE_CONTAINER_ID}" class="${FOCUSED_IMAGE_CONTAINER_HIDDEN_CLASS}">
+            <div class="${ARROW_LEFT_CLASS}">
+                <div>&#10094</div>
+            </div>
+            <div class="${ARROW_RIGHT_CLASS}">
+                <div>&#10095</div>
+            </div>
+            <div class="image-container">
+                <div></div>
+            </div>
+            <div class="focused-image-container-background"></div>
+        </div>
         ${Components.collapsible("Wirtuokracja", sectionHtml(VIRTUOCRACY_CONTENT))}
         ${Components.collapsible("Food Controller", sectionHtml(FOOD_CONTROLLER_CONTENT))}
         ${Components.collapsible("Smart Query", sectionHtml(SMART_QUERY_CONTENT))}
@@ -132,4 +156,72 @@ export function render(rootId = "component") {
     `);
 
     Components.initAllCollapsibles();
+
+
+    const focusedImageContainer = document.getElementById(FOCUSED_IMAGE_CONTAINER_ID);
+    const previousImage = document.querySelector(`.${ARROW_LEFT_CLASS} > div`);
+    const nextImage = document.querySelector(`.${ARROW_RIGHT_CLASS} > div`);
+    const focusedImage = document.querySelector(`.${IMAGE_CONTAINER_CLASS} > div`);
+
+
+    for (const gallery of document.querySelectorAll(`.${GALLERY_CLASS}`)) {
+        setupGallery(gallery);
+    }
+
+    function setupGallery(gallery) {
+        const rootScroll = document.documentElement.style.overflow;
+        focusedImageContainer.onclick = e => {
+            e.stopPropagation();
+            focusedImageContainer.className = FOCUSED_IMAGE_CONTAINER_HIDDEN_CLASS;
+            document.documentElement.style.overflow = rootScroll;
+        };
+
+        const images = gallery.parentElement.querySelectorAll(`.${GALLERY_CLASS} > div`);
+        let focusedIdx = -1;
+
+        for (let i = 0; i < images.length; i++) {
+            const image = images[i];
+
+            image.onclick = e => {
+                e.stopPropagation();
+
+                document.documentElement.style.overflow = HIDDEN_SCROLL_CLASS;
+                
+                setImageUrl(focusedImage, image);
+
+                if (focusedImageContainer.className == FOCUSED_IMAGE_CONTAINER_HIDDEN_CLASS) {
+                    focusedImageContainer.className = FOCUSED_IMAGE_CONTAINER_CLASS;
+                }
+
+                focusedIdx = i;
+
+                if (images.length <= 1) {
+                    previousImage.classList.add(HIDDEN_CLASS);
+                    nextImage.classList.add(HIDDEN_CLASS);
+                } else {
+                    previousImage.onclick = e => {
+                        e.stopPropagation();
+                        focusedIdx--;
+                        if (focusedIdx < 0) {
+                            focusedIdx = images.length - 1;
+                        }
+                        setImageUrl(focusedImage, images[focusedIdx]);
+                    };
+                    nextImage.onclick = e => {
+                        e.stopPropagation();
+                        focusedIdx++;
+                        if (focusedIdx >= images.length) {
+                            focusedIdx = 0;
+                        }
+                        setImageUrl(focusedImage, images[focusedIdx]);
+                    };
+                }
+            };
+        }
+    }
+
+    function setImageUrl(focusedImage, image) {
+        const url = image.getAttribute(IMAGE_URL_ATTRIBUTE);
+        focusedImage.style.backgroundImage = `url(${url})`;
+    }
 };
