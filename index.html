@@ -51,8 +51,9 @@
         <a href="experience" class="nav-item left-underline">Experience</a>
         <a href="code" class="nav-item left-underline">Code</a>
 
-        <div class="theme-mode"><img class="theme-mode-image"
-                src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" alt=""></div>
+        <div class="theme-mode">
+            0
+        </div>
         <div id="nav-mobile-menu">Menu</div>
     </nav>
 
@@ -99,14 +100,19 @@
 
         function setupMode() {
             const KEY = "MODE";
+
             const LIGHT_MODE = 'light';
             const DARK_MODE = 'dark';
+            const DARK_MODE_ICON = "0";
+            const LIGHT_MODE_ICON = "1";
+
+            const DISPLAY_MOBILE_NAV_CLASS = "display";
 
             const darkThemeIconSrc = extractedImageSrc('theme-dark-icon');
             const lightThemeIconSrc = extractedImageSrc('theme-light-icon');
 
             const topNav = document.querySelector(".top-nav");
-            const themeModeImage = document.querySelector('.theme-mode-image');
+            const themeMode = document.querySelector('.theme-mode');
             const topNavMobile = document.querySelector('.top-nav-mobile');
             const navMobile = document.getElementById('nav-mobile-menu');
             const navMobileClose = document.querySelector('#nav-mobile-close');
@@ -122,21 +128,13 @@
             const setDarkMode = () => {
                 document.documentElement.classList.add(DARK_MODE);
                 localStorage.setItem(KEY, DARK_MODE)
-                setDarkImages();
-            };
-
-            const setDarkImages = () => {
-                themeModeImage.src = lightThemeIconSrc;
-            };
-
-            const setLightImages = () => {
-                themeModeImage.src = darkThemeIconSrc;
+                themeMode.textContent = DARK_MODE_ICON;
             };
 
             const setLightMode = () => {
                 document.documentElement.classList.remove(DARK_MODE);
                 localStorage.setItem(KEY, LIGHT_MODE)
-                setLightImages();
+                themeMode.textContent = LIGHT_MODE_ICON;
             };
 
             const mode = currentMode();
@@ -149,7 +147,7 @@
                     break;
             }
 
-            themeModeImage.addEventListener('click', e => {
+            themeMode.addEventListener('click', e => {
                 switch (currentMode()) {
                     case LIGHT_MODE:
                         setDarkMode();
@@ -158,18 +156,15 @@
                         setLightMode();
                         break;
                 }
-                document.dispatchEvent(new Event("themeChange"));    
+                document.dispatchEvent(new Event("themeChange"));
             });
 
-            navMobile.addEventListener('click', () => {
-                topNavMobile.classList.add('display');
-                // document.body.classList.add("modal-open");
-            });
+            navMobile.addEventListener('click', () => topNavMobile.classList.add(DISPLAY_MOBILE_NAV_CLASS));
 
             topNav.addEventListener("click", e => e.stopPropagation());
 
-            navMobileClose.addEventListener('click', function () {
-                topNavMobile.classList.remove('display');
+            navMobileClose.addEventListener('click', () => {
+                topNavMobile.classList.remove(DISPLAY_MOBILE_NAV_CLASS);
                 document.body.classList.remove("modal-open");
             });
         }
