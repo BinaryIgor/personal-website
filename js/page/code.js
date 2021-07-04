@@ -142,10 +142,10 @@ export function render(rootId = "component") {
     root.innerHTML = `
         <div id="${FOCUSED_IMAGE_CONTAINER_ID}" class="${FOCUSED_IMAGE_CONTAINER_HIDDEN_CLASS}">
             <div class="gallery-menu">
-                <span id="zoom-out">-</span>
-                <span id="zoom-in">+</span>
+                <button class="no-button" id="zoom-out" disabled>-</button>
+                <button class="no-button" id="zoom-in">+</button>
                 <span class="blank"></span>
-                <span id="close-gallery">&#x2715;</span>
+                <button class="no-button" id="close-gallery">&#x2715;</button>
             </div>
             <div class="${ARROW_LEFT_CLASS}">
                 <div>&#10094</div>
@@ -153,7 +153,7 @@ export function render(rootId = "component") {
             <div class="${ARROW_RIGHT_CLASS}">
                 <div>&#10095</div>
             </div>
-            <div class="image-container">
+            <div class="${IMAGE_CONTAINER_CLASS}">
                 <img></img>
             </div>
             <div class="focused-image-container-background"></div>
@@ -174,22 +174,22 @@ export function render(rootId = "component") {
     const focusedImageContainer = document.getElementById(FOCUSED_IMAGE_CONTAINER_ID);
     const previousImage = document.querySelector(`.${ARROW_LEFT_CLASS} > div`);
     const nextImage = document.querySelector(`.${ARROW_RIGHT_CLASS} > div`);
-    const imageContainer = focusedImageContainer.querySelector(`.${IMAGE_CONTAINER_CLASS}`);
+    const currentImageContainer = focusedImageContainer.querySelector(`.${IMAGE_CONTAINER_CLASS}`);
     const focusedImage = focusedImageContainer.querySelector(`.${IMAGE_CONTAINER_CLASS} > img`);
-    const closeFocusedImage = document.getElementById("close-gallery");
+    const zoomOutImage = document.getElementById("zoom-out");
+    const zoomInImage = document.getElementById("zoom-in");
+    const closeGallery = document.getElementById("close-gallery");
 
     let currentZoom = 0;
 
-    closeFocusedImage.onclick = e => {
+    closeGallery.onclick = e => {
         e.stopPropagation();
         focusedImageContainer.className = FOCUSED_IMAGE_CONTAINER_HIDDEN_CLASS;
         document.body.classList.toggle(HIDDEN_SCROLL_CLASS);
         resetZoomIf();
     };
 
-    document.querySelector(".gallery-menu").onclick = e => e.stopPropagation();
-
-    document.getElementById("zoom-out").onclick = () => {
+    zoomOutImage.onclick = () => {
         if (currentZoom <= MIN_ZOOM) {
             return;
         }
@@ -198,12 +198,10 @@ export function render(rootId = "component") {
         const beforeHeight = focusedImage.offsetHeight;
 
         currentZoom--;
+
         setNewImageSize();
-
-        const scrollX = (focusedImage.offsetWidth - beforeWidth) / 2;
-        const scrollY = (focusedImage.offsetHeight - beforeHeight) / 2;
-
-        imageContainer.scrollBy(scrollX, scrollY);
+        setScroll(beforeWidth, beforeHeight);
+        setupZoomButtonsState();
     };
 
     function setNewImageSize() {
@@ -213,6 +211,17 @@ export function render(rootId = "component") {
         focusedImage.style.height = `${newSize}%`;
     }
 
+    function setScroll(beforeWidth, beforeHeight) {
+        const scrollX = (focusedImage.offsetWidth - beforeWidth) / 2;
+        const scrollY = (focusedImage.offsetHeight - beforeHeight) / 2;
+
+        currentImageContainer.scrollBy(scrollX, scrollY);
+    }
+
+    function setupZoomButtonsState() {
+        zoomOutImage.disabled = currentZoom == MIN_ZOOM;
+        zoomInImage.disabled = currentZoom == MAX_ZOOM;
+    }
 
     function resetZoomIf() {
         if (currentZoom > 0) {
@@ -220,9 +229,10 @@ export function render(rootId = "component") {
             focusedImage.style.height = `${INITIAL_SIZE}%`;
             currentZoom = 0;
         }
+        setupZoomButtonsState();
     }
 
-    document.getElementById("zoom-in").onclick = e => {
+    zoomInImage.onclick = () => {
         if (currentZoom >= MAX_ZOOM) {
             return;
         }
@@ -231,12 +241,10 @@ export function render(rootId = "component") {
         const beforeHeight = focusedImage.offsetHeight;
 
         currentZoom++;
+
         setNewImageSize();
-
-        const scrollX = (focusedImage.offsetWidth - beforeWidth) / 2;
-        const scrollY = (focusedImage.offsetHeight - beforeHeight) / 2;
-
-        imageContainer.scrollBy(scrollX, scrollY);
+        setScroll(beforeWidth, beforeHeight);
+        setupZoomButtonsState();
     };
 
     for (const gallery of document.querySelectorAll(`.${GALLERY_CLASS}`)) {
