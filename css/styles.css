@@ -89,7 +89,7 @@ a, a:link, a:visited, a:active {
     width: 100%;
     justify-content: center;
     align-items: center;
-    padding: var(--padding-small);
+    padding: var(--padding-medium);
 }
 
 .nav-item {
@@ -395,7 +395,9 @@ p {
 .gallery-menu {
     background-color: var(--menu-color);
     z-index: 1;
-    display: flex;
+    display: grid;
+    gap: 0;
+    grid-template-columns: 2.5% 2.5% 90% 5%;
     position: fixed;
     top: 0;
     width: 100%;
@@ -405,9 +407,14 @@ p {
     border-bottom: solid var(--border-size) var(--text-color);
 }
 
-.gallery-menu > button {
+.gallery-menu button {
     font-size: var(--gallery-icons-size);
     padding: var(--padding-little) var(--padding-small);
+    cursor: pointer;
+}
+
+#close-gallery {
+    justify-self: end;
 }
 
 .blank {
@@ -550,6 +557,10 @@ button.no-button[disabled] {
 /* ===media screens=== */
 
 @media only screen and (max-width: 1200px) {
+    .gallery-menu {
+        grid-template-columns: 3.75% 3.75% 85% 7.5%;
+    }
+
     .gallery  {
         grid-template-columns: 1fr 1fr 1fr;
     }
@@ -560,7 +571,7 @@ button.no-button[disabled] {
     }
 }
 
-@media only screen and (max-width: 960px) {
+@media only screen and (max-width: 960px) { 
     html {
      font-size: 0.85rem;
     }
@@ -582,6 +593,12 @@ button.no-button[disabled] {
     }
 }
 
+@media only screen and (max-width: 750px) {
+    .gallery-menu {
+        grid-template-columns: 6.75% 6.75% 75% 12.5%;
+    }
+}
+
 @media only screen and (max-width: 650px) {
     .gallery  {
         grid-template-columns: 1fr 1fr;
@@ -595,6 +612,10 @@ button.no-button[disabled] {
 
 
 @media only screen and (max-width: 550px) {
+    .gallery-menu {
+        grid-template-columns: 8.75% 8.75% 65% 17.5%;
+    }
+
     .content {
         width: 90%;
     }

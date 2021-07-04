@@ -144,7 +144,7 @@ export function render(rootId = "component") {
             <div class="gallery-menu">
                 <button class="no-button" id="zoom-out" disabled>-</button>
                 <button class="no-button" id="zoom-in">+</button>
-                <span class="blank"></span>
+                <h1 id="images-counter"></h1>
                 <button class="no-button" id="close-gallery">&#x2715;</button>
             </div>
             <div class="${ARROW_LEFT_CLASS}">
@@ -178,6 +178,7 @@ export function render(rootId = "component") {
     const focusedImage = focusedImageContainer.querySelector(`.${IMAGE_CONTAINER_CLASS} > img`);
     const zoomOutImage = document.getElementById("zoom-out");
     const zoomInImage = document.getElementById("zoom-in");
+    const imagesCounter = document.getElementById("images-counter");
     const closeGallery = document.getElementById("close-gallery");
 
     let currentZoom = 0;
@@ -270,6 +271,7 @@ export function render(rootId = "component") {
                 }
 
                 focusedIdx = i;
+                setImagesCounter(focusedIdx, images);
 
                 if (images.length <= 1) {
                     previousImage.classList.add(HIDDEN_CLASS);
@@ -283,6 +285,7 @@ export function render(rootId = "component") {
                         }
                         resetZoomIf();
                         setImageUrl(focusedImage, images[focusedIdx]);
+                        setImagesCounter(focusedIdx, images);
                     };
                     nextImage.onclick = e => {
                         e.stopPropagation();
@@ -292,10 +295,15 @@ export function render(rootId = "component") {
                         }
                         resetZoomIf();
                         setImageUrl(focusedImage, images[focusedIdx]);
+                        setImagesCounter(focusedIdx, images);
                     };
                 }
             };
         }
+    }
+
+    function setImagesCounter(idx, images) {
+        imagesCounter.textContent = `${idx + 1}/${images.length}`;
     }
 
     function setImageUrl(focusedImage, image) {
