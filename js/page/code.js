@@ -174,7 +174,7 @@ export function render(rootId = "component") {
     const focusedImageContainer = document.getElementById(FOCUSED_IMAGE_CONTAINER_ID);
     const previousImage = document.querySelector(`.${ARROW_LEFT_CLASS} > div`);
     const nextImage = document.querySelector(`.${ARROW_RIGHT_CLASS} > div`);
-    const imageContainer =  focusedImageContainer.querySelector(`.${IMAGE_CONTAINER_CLASS}`);
+    const imageContainer = focusedImageContainer.querySelector(`.${IMAGE_CONTAINER_CLASS}`);
     const focusedImage = focusedImageContainer.querySelector(`.${IMAGE_CONTAINER_CLASS} > img`);
     const closeFocusedImage = document.getElementById("close-gallery");
 
@@ -189,14 +189,21 @@ export function render(rootId = "component") {
 
     document.querySelector(".gallery-menu").onclick = e => e.stopPropagation();
 
-    document.getElementById("zoom-out").onclick = e => {
-        console.log("To zoom in" + currentZoom);
+    document.getElementById("zoom-out").onclick = () => {
         if (currentZoom <= MIN_ZOOM) {
             return;
         }
 
+        const beforeWidth = focusedImage.offsetWidth;
+        const beforeHeight = focusedImage.offsetHeight;
+
         currentZoom--;
         setNewImageSize();
+
+        const scrollX = (focusedImage.offsetWidth - beforeWidth) / 2;
+        const scrollY = (focusedImage.offsetHeight - beforeHeight) / 2;
+
+        imageContainer.scrollBy(scrollX, scrollY);
     };
 
     function setNewImageSize() {
@@ -220,8 +227,16 @@ export function render(rootId = "component") {
             return;
         }
 
+        const beforeWidth = focusedImage.offsetWidth;
+        const beforeHeight = focusedImage.offsetHeight;
+
         currentZoom++;
         setNewImageSize();
+
+        const scrollX = (focusedImage.offsetWidth - beforeWidth) / 2;
+        const scrollY = (focusedImage.offsetHeight - beforeHeight) / 2;
+
+        imageContainer.scrollBy(scrollX, scrollY);
     };
 
     for (const gallery of document.querySelectorAll(`.${GALLERY_CLASS}`)) {

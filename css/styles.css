@@ -151,6 +151,10 @@ a, a:link, a:visited, a:active {
     height: 28px;
 }
 
+nav {
+    user-select: none; 
+}
+
 .top-nav-mobile {
     z-index: 100;
     background-color: var(--menu-color);
@@ -364,6 +368,7 @@ p {
     font-size: 2rem;
     margin: 0 0 auto auto;
     font-weight: bold;
+    user-select: none; 
 }
 
 /*=== gallery ===*/
@@ -418,6 +423,7 @@ p {
     top: 0;
     right: 0;
     z-index: 999;
+    user-select: none;
 }
 
 .focused-image-container-background {
