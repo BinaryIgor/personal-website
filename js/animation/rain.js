@@ -62,7 +62,6 @@ export function Rain(userOptions) {
     }
 
     function toggleMatrix() {
-        console.log("Toggle");
         if (pause) {
             animation = setInterval(render, options.interval, drawer, matrix);
             pause = false;

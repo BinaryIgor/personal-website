@@ -34,11 +34,9 @@ html {
     --theme-light-icon: url('/assets/light-theme.png');
     --rain-font-size: 20;
     --name-size: 3.5rem;
-    --to-name-width: 37rem;
     --name-cursor-height: 4rem;
-    --name-cursor-width: 1.5rem;
+    --name-cursor-width: 2rem;
     --interact-size: 1.75rem;
-    --to-interact-width: 16.75rem;
     --interact-cursor-height: 2rem;
     --interact-cursor-width: 1rem;
     --expand-size: 1.5rem;
@@ -63,6 +61,10 @@ html {
     --border-color: hsla(205, 100%, 100%, 1);
     --typing-border-color: rgb(255,255,255);
     --rain-color: hsla(205, 100%, 60%, 1);    
+}
+
+.no-select {
+    user-select: none;
 }
 
 li {
@@ -226,27 +228,33 @@ nav {
 }
 
 .home-container-name {
-    text-align: center;
     white-space: nowrap;
     overflow: hidden;
     font-size: var(--name-size);
     border-right: var(--name-cursor-width) solid var(--border-color);
-    animation: typeWriter 2s steps(16) 1s 1 normal both,
-        blinkTextCursor 2s steps(1) 2s infinite normal;
+    opacity: 0;
+    animation-delay: 3s;
 }
 
 .interaction-hint {
     position: absolute;
     overflow: hidden;
     white-space: nowrap;
-    bottom: var(--padding-medium);
-    right: var(--padding-medium);
+    bottom: 0;
+    right: 0;
+    margin: var(--padding-medium);
     font-size: var(--interact-size);
     border-right: var(--interact-cursor-width) solid var(--border-color);
-    animation: 
-        blinkOnceTextCursor 1s steps(1) 4s 1 normal both,
-        interactWriter 2s steps(19) 5s 1 normal both,
-        blinkTextCursor 2s steps(1) 6s infinite normal;
+    opacity: 0;
+    animation-delay: 6s;
+}
+
+.blink-cursor-animation {
+    animation-name: blinkTextCursor;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: steps(1);
+    animation-direction: normal;
 }
 
 #component {
@@ -497,29 +505,6 @@ button.no-button[disabled] {
     opacity: 0.33;
 }
 
-/*=== animations ===*/
-@keyframes typeWriter {
-    from {
-        height: var(--name-cursor-height);
-        width: 0;
-    }
-    to {
-        height: var(--name-cursor-height);
-        width: var(--to-name-width);
-    }
-}
-
-@keyframes interactWriter {
-    from {
-        height: var(--interact-cursor-height);
-        width:  0;
-    }
-    to {
-        height:  var(--interact-cursor-height);
-        width:  var(--to-interact-width);
-    }
-}
-
 @keyframes blinkTextCursor {
     0% {
         border-right-color: var(--border-color);
@@ -566,7 +551,7 @@ button.no-button[disabled] {
 
 @media only screen and (max-width: 960px) { 
     html {
-     font-size: 0.85rem;
+        font-size: 0.85rem;
     }
 
     .top-nav {
@@ -601,6 +586,16 @@ button.no-button[disabled] {
         width: var(--gallery-width-two);
         height: var(--gallery-height-two);
     }
+
+    html {
+        --name-size: 2.5rem;
+        --name-cursor-height: 2.75rem;
+        --name-cursor-width: 1.375rem;
+
+        --interact-size: 1.5rem;
+        --interact-cursor-height: 1.75rem;
+        --interact-cursor-width: 0.875rem;
+    }
 }
 
 
@@ -612,15 +607,15 @@ button.no-button[disabled] {
     .content {
         width: 90%;
     }
+}
 
+@media only screen and (max-width: 450px) {
     html {
-        --name-size: 2.25rem;
-        --to-name-width: 24rem;
-        --name-cursor-height: 2.5rem;
-        --name-cursor-width: 1rem;
+        --name-size: 2rem;
+        --name-cursor-height: 2.25rem;
+        --name-cursor-width: 1.125rem;
 
         --interact-size: 1.25rem;
-        --to-interact-width: 15rem;
         --interact-cursor-height: 1.5rem;
         --interact-cursor-width: 0.75rem;
     }
