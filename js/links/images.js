@@ -1,11 +1,13 @@
-const _profileUrl = "igor.jpg";
+const _darkProfileUrl = "profile-dark.png";
+const _lightProfileUrl = "profile-light.png";
 
 function fullUrl(url) {
     return `/assets/${url}`;
 }
 
 export const Images = {
-    profile: fullUrl(_profileUrl),
+    profileDark: fullUrl(_darkProfileUrl),
+    profileLight: fullUrl(_lightProfileUrl),
     virtuocracy: [],
     foodController: [
         fullUrl("food-controller/a.png"),
