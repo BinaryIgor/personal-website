@@ -42,7 +42,7 @@ const DAILY_WISDOM_CONTENT = {
          It's a native Android application written in Java. Its primary objective is to allow reading quotes in the most comfortable and encouraging way possible. 
          Data comes from the backend, is fetched at the moment of installation and saved locally to a SQLite database. 
          From that time it's synchronized on a weekly basis. Thanks to this approach internet connection isn't needed most of the time.`,
-    images: [],
+    gallery: Images.dailyWisdom,
     links: {
         "Code": Repositories.dailyWisdomBackend,
         "Mobile app": Stores.dailyWisdom
@@ -53,7 +53,7 @@ const BRIGHT_SERVER_CONTENT = {
     goal: "Lightweight, standalone easy to use http server and java web framework.",
     description: `Soon after I began to search for less complex and opinionated alternatives to Spring I started to use Jetty in embedded mode. That was pretty good, but I think that idea of embedded servers can be further simplified.
         My goal is to provide most of the conveniences that Spring gives when developing web applications, but at the same time create something a lot simpler and lightweight. It doesn't have any dependencies and its API is so simple that any seasoned Java developer could become familiar with it under an hour.`,
-    images: [],
+    gallery: Images.brightServer,
     links: {
         "Code": Repositories.brightServer
     }
@@ -64,7 +64,7 @@ const GENTLE_REQUEST_CONTENT = {
     description: `When writing heavily reliant on http protocol Android applications I was never happy with libraries available on the market. Furthermore, as I have already written my own <a href="${Repositories.brightServer}">http server</a>
         I took the opportunity to test it from the client side and deepen my knowledge about http protocol. It has simple, yet powerful api, which allows sending and receiving bytes, text, json and files. 
         Multipart requests and asynchronicity are also supported.`,
-    images: [],
+    gallery: Images.gentleRequest,
     links: {
         "Code": Repositories.gentleRequest
     }
@@ -80,7 +80,7 @@ const ALGORITHMS_AND_DATA_STRUCTURES_CONTENT = {
         <a href="${Repositories.algorithmsAndDataStructures}/tree/master/src/main/java/com/iprogrammerr/algorithms_data_structures/hashtable">hash tables</a> and <a href="${Repositories.algorithmsAndDataStructures}/tree/master/src/main/java/com/iprogrammerr/algorithms_data_structures/queue">queues</a>. 
         Lastly, I grappled with a few <a href="${Repositories.algorithmsAndDataStructures}/tree/master/src/main/java/com/iprogrammerr/algorithms_data_structures/heuristics/meta">herustic algorithms</a>.
     `,
-    images: [],
+    gallery: Images.algorithmsAndDataStructures,
     links: {
         "Code": Repositories.algorithmsAndDataStructures
     }
@@ -181,6 +181,8 @@ export function render(rootId = "component") {
     const closeGallery = document.getElementById("close-gallery");
 
     let currentZoom = 0;
+
+    focusedImageContainer.onclick = e => e.stopPropagation();
 
     closeGallery.onclick = e => {
         e.stopPropagation();

@@ -395,7 +395,7 @@ p {
     background-repeat: no-repeat;
     width: var(--gallery-width-four);
     height: var(--gallery-height-four);
-    opacity: 0.6;
+    opacity: 0.5;
 }
 
 .gallery-menu {
