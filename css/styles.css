@@ -10,13 +10,12 @@
 
 html {
     --background-color: rgb(255,255,255);
-    --content-background-color: rgba(255, 255, 255, 0.4);
+    --content-background-color: rgba(255, 255, 255, 0.6);
     --menu-color: rgba(255,255,255, 0.8);
-    --text-color: hsla(205, 100%, 20%, 0.9);
-    --main-text-color: hsla(215, 100%, 15%, 0.9);
-    --border-color: hsla(205, 100%, 30%, 1);
-    --rain-color: hsla(205, 100%, 50%, 1);
-    --typing-border-color: rgb(0,0,0);
+    --text-color: hsla(200, 80%, 20%, 0.9);
+    --main-text-color:  hsla(200, 80%, 10%, 0.9);
+    --border-color: hsla(200, 80%, 20%, 1);
+    --rain-color: hsla(200, 80%, 50%, 1);
     --padding-little: 4px;
     --padding-small: 8px;
     --padding-medium: 16px;
@@ -54,13 +53,12 @@ html {
 
  html.dark {
     --background-color: rgb(0,0,0);
-    --content-background-color: rgba(0, 0, 0, 0.4);
+    --content-background-color: rgba(0, 0, 0, 0.7);
     --menu-color: rgba(0,0,0, 0.8);
-    --text-color: hsla(205, 100%, 95%, 0.9);
-    --main-text-color: hsla(215, 100%, 100%, 0.9);
-    --border-color: hsla(205, 100%, 100%, 1);
-    --typing-border-color: rgb(255,255,255);
-    --rain-color: hsla(205, 100%, 60%, 1);    
+    --text-color: hsla(180, 100%, 93%, 0.9);
+    --main-text-color: hsla(180, 100%, 99%, 0.9);
+    --border-color: hsla(180, 100%, 93%, 1);
+    --rain-color: hsla(180, 100%, 50%, 1);  
 }
 
 .no-select {
@@ -372,6 +370,7 @@ p {
 
 .collapsible-container > span {
     font-size: 2rem;
+    color: var(--main-text-color);
     margin: 0 0 auto auto;
     font-weight: bold;
     user-select: none; 
@@ -395,7 +394,7 @@ p {
     background-repeat: no-repeat;
     width: var(--gallery-width-four);
     height: var(--gallery-height-four);
-    opacity: 0.5;
+    opacity: 0.6;
 }
 
 .gallery-menu {
