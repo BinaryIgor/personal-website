@@ -9,7 +9,7 @@ export function render(rootId = "component") {
             <section class="content fade-in">
                 <h2>I am Igor Roztropiński,</h2>
                 <p class="indented">born in 1994, Konin, Poland. Programmer, mainly.</p>
-                    <img class="profile-image" src="${profileImageUrl()}"></img>
+                    <img class="profile-image" src="${Images.profile}"></img>
                 <p>My road to become a programmer was a long one. Having wide range
                     of interests, I studied psychology, food technology and electronics, not finishing any of them, searching
                     for the craft to which I will want to commit for the long haul.
@@ -61,25 +61,4 @@ export function render(rootId = "component") {
             </section>
         </div>
     `;
-
-
-    const profileImage = document.querySelector(".profile-image");
-
-    let listenerAdded = false;
-
-    if (!listenerAdded) {
-        document.addEventListener("themeChange", () => {
-            const url = profileImageUrl();
-            profileImage.src = url;
-        });
-        listenerAdded = true;
-    }
-
-    function profileImageUrl() {
-        const mode = localStorage.getItem("MODE");
-        if (mode && mode == 'light') {
-            return Images.profileLight;
-        }
-        return Images.profileDark;
-    }
 };
