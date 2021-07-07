@@ -46,8 +46,8 @@ html {
     --gallery-width-four: 10vw;
     --gallery-height-four: 13.5vw;
     --arrow-size: 2.5rem;
-    --close-icon-size: 3rem;
     --gallery-icons-size: 3rem;
+    --close-icon-size: 3.5rem;
     background-color: var(--background-color);
 }
 
@@ -326,7 +326,8 @@ section > h1 {
 
 p {
   text-indent: var(--padding-medium);
-  margin-bottom: var(--padding-next-paragraph);   
+  margin-bottom: var(--padding-next-paragraph);
+  font-size: 1.1rem;
 }
 
 .links {
@@ -421,6 +422,7 @@ p {
 }
 
 #close-gallery {
+    font-size: var(--close-icon-size);
     justify-self: end;
 }
 
@@ -550,7 +552,7 @@ button.no-button[disabled] {
 
 @media only screen and (max-width: 960px) { 
     html {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
     }
 
     .top-nav {

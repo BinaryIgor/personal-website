@@ -145,7 +145,7 @@ export function render(rootId = "component") {
                 <button class="no-button" id="zoom-out" disabled>-</button>
                 <button class="no-button" id="zoom-in">+</button>
                 <h1 id="images-counter"></h1>
-                <button class="no-button" id="close-gallery">&#x2715;</button>
+                <button class="no-button" id="close-gallery">x</button>
             </div>
             <div class="${ARROW_LEFT_CLASS}">
                 <div>&#10094</div>
