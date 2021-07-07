@@ -8,14 +8,14 @@ export function render(rootId = "component") {
         <div class="content-container">
             <section class="content fade-in">
                 <h2>I am Igor Roztropiński,</h2>
-                <p class="indented">born in 1994, Konin, Poland. Programmer, mainly.</p>
+                <p class="indented">born in 1994, Konin, Poland. Programmer, among other things.</p>
                     <img class="profile-image" src="${Images.profile}"></img>
-                <p>My road to become a programmer was a long one. Having wide range
+                <p>My road to become one was fairly long. Having wide range
                     of interests, I studied psychology, food technology and electronics, not finishing any of them, searching
                     for the craft to which I will want to commit for the long haul.
                     In the meantime, I held various odd jobs. Among them were work in a construction,
                     paper carton production, electronics production, on a peony plantation, as a postman, bodyguard and a
-                    warehouseman. Being interested in subjects as different as philosophy, history, politics, weightlifting,
+                    warehouseman. Being interested in subjects as different as philosophy, history, economny, geopolitics, weightlifting,
                     dietetics, engineering and hard sciences I had to try
                     various
                     things to
@@ -52,7 +52,7 @@ export function render(rootId = "component") {
                     will be happy to
                     work in
                     every domain related to programming applying the most suitable technology.</p>
-                <h2>You can find me here</h2>
+                <h2>Where am I?</h2>
                 <ul class="links">
                     <li><a href="mailto: iroztropinski@gmail.com">iroztropinski@gmail.com</a></li>
                     <li><a href="https://github.com/Iprogrammerr">Github</a></li>

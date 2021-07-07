@@ -16,6 +16,14 @@ const routes = {
     "code": () => import('./page/code.js').then(page => page.render())
 };
 
+const routesTitles = {
+    "home": "Igor Roztropiński",
+    "about": "About",
+    "skills": "Skills",
+    "experience": "Experience",
+    "code": "Code"
+};
+
 const navLinks = document.querySelectorAll("a");
 navLinks.forEach(l => l.classList.remove(CURRENT_ROUTE_CLASS));
 
@@ -43,6 +51,9 @@ router.init();
 export function push(url = `${window.location}`) {
     const route = router.routeFromUrl(url);
     router.push(route);
+
+    const title = routesTitles[route];
+    document.title = title;
 }
 
 export function resolveCurrent() {
