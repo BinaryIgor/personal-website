@@ -3,6 +3,7 @@ import { render as renderHomePage } from "./page/home.js";
 import Router from "./router.js";
 
 const CURRENT_ROUTE_CLASS = "current";
+const DEFAULT_ROUTE_TITLE = "Igor Roztropiński";
 
 const router = new Router();
 
@@ -17,7 +18,7 @@ const routes = {
 };
 
 const routesTitles = {
-    "home": "Igor Roztropiński",
+    "home": DEFAULT_ROUTE_TITLE,
     "about": "About",
     "skills": "Skills",
     "experience": "Experience",
@@ -53,7 +54,7 @@ export function push(url = `${window.location}`) {
     router.push(route);
 
     const title = routesTitles[route];
-    document.title = title;
+    document.title = title ? title : DEFAULT_ROUTE_TITLE;
 }
 
 export function resolveCurrent() {
