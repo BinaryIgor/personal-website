@@ -5,10 +5,6 @@ import sys
 
 
 def execute(assets_dir):
-    if len(sys.argv) <= 1:
-        print("Missing assets dir params")
-        sys.exit(1)
-
     ASSETS_VERSION = os.environ.get('ASSETS_VERSION', str(int(time.time())))
     IMAGES_EXTENSIONS = ['jpg', 'jpeg', 'png', 'svg']
     EXCLUDE_PATHS = ['assets/preview']
@@ -86,9 +82,13 @@ def execute(assets_dir):
     def create_new_content(lines, names_map):
         new_lines = []
         from_key = "from"
+        dynamic_import_key = "import("
         changed = False
         for c in lines:
-            from_idx = c.find(from_key)
+            to_replace_from_idx = c.find(from_key)
+            if to_replace_from_idx < 0:
+                to_replace_from_idx = c.find(dynamic_import_key)
+                
             name_idx = 1
             old_name = ''
             new_name = ''
@@ -98,7 +98,7 @@ def execute(assets_dir):
                     old_name = n
                     new_name = names_map[n]
                     break
-            if from_idx > 0 and name_idx > 0:
+            if to_replace_from_idx > 0 and name_idx > 0:
                 new_import = f'{c[0: name_idx]}{new_name}{c[name_idx + len(old_name):]}'
                 new_lines.append(new_import)
                 changed = True
@@ -231,7 +231,7 @@ def execute(assets_dir):
 
 if __name__ == "__main__":
     if len(sys.argv) <= 1:
-        print("Missing assets dir params")
+        print("Missing assets dir param")
         sys.exit(1)
 
     execute(sys.argv[1])

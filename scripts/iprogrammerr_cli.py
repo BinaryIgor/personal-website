@@ -15,6 +15,8 @@ ROOT_DIR = path.split(os.getcwd())[0]
 DEPLOY_ROOT_DIR = ROOT_DIR
 DEPLOY_LOCAL_ROOT_DIR = path.join(ROOT_DIR, "_deploy")
 SITE_DIR = path.join(ROOT_DIR, "site")
+DOCKER_DIR = path.join(ROOT_DIR, "nginx")
+
 
 def rendered_menu():
     return '\n'.join([f'{e} - {OPTIONS[e][OPTION_NAME]}' for e in OPTIONS])
@@ -31,6 +33,20 @@ def build():
     LOG.info("Renaming assets...")
     assets_renamer.execute(DEPLOY_LOCAL_ROOT_DIR)
 
+
+def build_and_run_locally():
+    LOG.info("Building site...")
+    build()
+
+    LOG.info("Building and running docker")
+    execute_script(f"""
+        cd {DOCKER_DIR}
+        export SITE_DIR={DEPLOY_LOCAL_ROOT_DIR}
+        chmod 755 run.sh
+        ./run.sh
+    """)
+
+
 def execute_script(script):
     code = subprocess.call(f"""
         set -e
@@ -46,6 +62,10 @@ OPTIONS = {
     '1': {
         OPTION_NAME: 'build',
         OPTION_FUNCTION: build
+    },
+    '2': {
+        OPTION_NAME: "build and run locally",
+        OPTION_FUNCTION: build_and_run_locally
     }
 }
 
@@ -53,7 +73,8 @@ try:
     print(f"Welcome {OWNER}!")
     print("We are operating on...")
     print(f'ROOT_DIR: {ROOT_DIR}, DEPLOY_ROOT_DIR: {DEPLOY_ROOT_DIR}')
-    print(f'Deploy package will be created in {DEPLOY_LOCAL_ROOT_DIR} directory')
+    print(
+        f'Deploy package will be created in {DEPLOY_LOCAL_ROOT_DIR} directory')
     print()
     print("There are a couple of options...")
     print(rendered_menu())
