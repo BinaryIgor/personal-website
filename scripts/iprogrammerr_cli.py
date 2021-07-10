@@ -6,6 +6,7 @@ import sys
 import shutil
 import assets_renamer
 import re
+from PIL import Image
 
 logging.basicConfig(level=logging.INFO)
 
@@ -17,11 +18,17 @@ DEPLOY_ROOT_DIR = ROOT_DIR
 DEPLOY_LOCAL_ROOT_DIR = path.join(ROOT_DIR, "_deploy")
 SITE_DIR = path.join(ROOT_DIR, "site")
 JS_DIR = path.join(SITE_DIR, "js")
+ASSETS_DIR = path.join(SITE_DIR, "assets")
 DOCKER_DIR = path.join(ROOT_DIR, "nginx")
 
 IMAGES_LINKS_JS_FILE_NAME = "images"
+IMAGE_NAME_OR_PATH_PATTERN = re.compile("(.*)\\.(png|jpeg|jpg)")
 
-TO_EXCLUDE_FROM_ASSETS_RENAMING_PATTERS = []
+TO_EXCLUDE_FROM_ASSETS_RENAMING_PATTERNS = []
+
+MAX_IMAGE_WIDTH = 500
+MAX_IMAGE_HEIGHT = 500
+RESIZED_IMAGE_PREFIX = "thumb"
 
 
 def rendered_menu():
@@ -39,7 +46,7 @@ def build():
     print()
     print("Renaming assets...")
     old_new_images = assets_renamer.execute(
-        DEPLOY_LOCAL_ROOT_DIR, TO_EXCLUDE_FROM_ASSETS_RENAMING_PATTERS)
+        DEPLOY_LOCAL_ROOT_DIR, TO_EXCLUDE_FROM_ASSETS_RENAMING_PATTERNS)
 
     js_images_links_file = images_links_file_path(JS_DIR)
     if js_images_links_file:
@@ -68,6 +75,17 @@ def first_file_in_dir_containing(root_dir, string):
     return None
 
 
+def to_resize_images_paths(dir):
+    images = []
+
+    for subdir, _, files in os.walk(dir):
+        for f in files:
+            if re.match(IMAGE_NAME_OR_PATH_PATTERN, f):
+                images.append(path.join(subdir, f))
+
+    return images
+
+
 def replace_images_links_in_js_file(js_file_path, old_new_images_paths):
     old_new_images_names = {}
     for k, v in old_new_images_paths.items():
@@ -87,11 +105,10 @@ def replace_images_links_in_js_file(js_file_path, old_new_images_paths):
 def new_js_file_lines(js_file_path, old_new_images_names):
     new_lines = []
     changed = False
-    image_pattern = re.compile("(.*)\\.(png|jpeg|jpg)")
 
     with open(js_file_path) as f:
         for l in f.readlines():
-            match = re.search(image_pattern, l)
+            match = re.search(IMAGE_NAME_OR_PATH_PATTERN, l)
             if not match:
                 new_lines.append(l)
                 continue
@@ -150,6 +167,60 @@ def all_in_quotes(string):
     return in_quotes
 
 
+def resize_images():
+    print(f"Searching for images in {ASSETS_DIR} dir...")
+    images_paths = to_resize_images_paths(ASSETS_DIR)
+
+    print()
+    print(f"Creating resized versions for {len(images_paths)} images...")
+    for p in images_paths:
+        resize_image(p)
+
+    print()
+    print("Images resized")
+
+
+def resize_image(image_path):
+    img = Image.open(image_path)
+
+    if img.width <= MAX_IMAGE_WIDTH and img.height <= MAX_IMAGE_HEIGHT:
+        scale = 1
+    elif img.width > img.height:
+        scale = MAX_IMAGE_WIDTH / img.width
+    else:
+        scale = MAX_IMAGE_HEIGHT / img.height
+
+    if scale == 1:
+        return
+
+    _, image_name = path.split(image_path)
+    output_image_path = image_path.replace(
+        image_name, f"{RESIZED_IMAGE_PREFIX}_{image_name}")
+
+    print(f"For {image_path} saving as {output_image_path}")
+    print(
+        f"Applying scale: {scale} to get max_width: {MAX_IMAGE_WIDTH} and max_height: {MAX_IMAGE_HEIGHT}")
+
+    new_width = int(scale * img.width)
+    new_height = int(scale * img.height)
+
+    img = img.resize((new_width, new_height), Image.ANTIALIAS)
+    img.save(output_image_path)
+
+
+def remove_resized_images():
+    print(f"Searching for images thumbs in {ASSETS_DIR} dir...")
+    images_paths = to_resize_images_paths(ASSETS_DIR)
+    removed = 0
+    for ip in images_paths:
+        _, name = path.split(ip)
+        if RESIZED_IMAGE_PREFIX in name:
+            os.remove(ip)
+            removed += 1
+
+    print(f"Removed {removed} resized images")
+
+
 def build_and_run_locally():
     print("Building site...")
     build()
@@ -183,6 +254,14 @@ OPTIONS = {
     '2': {
         OPTION_NAME: "build and run locally",
         OPTION_FUNCTION: build_and_run_locally
+    },
+    '3': {
+        OPTION_NAME: "resize images",
+        OPTION_FUNCTION: resize_images
+    },
+    "4": {
+        OPTION_NAME: "remove resized images",
+        OPTION_FUNCTION: remove_resized_images
     }
 }
 

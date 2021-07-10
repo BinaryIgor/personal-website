@@ -119,7 +119,7 @@ export function render(rootId = "component") {
 
             html.push(`<div class="gallery">`)
             for (const i of section.gallery) {
-                html.push(`<div data-image="${i}" style="background-image: url('${i}')"></div>`);
+                html.push(`<div data-image="${i}" style="background-image: url('${thumbImageUrl(i)}')"></div>`);
             }
             html.push("</div>")
         }
@@ -135,6 +135,14 @@ export function render(rootId = "component") {
         }
 
         return html.join("\n");
+    }
+
+    function thumbImageUrl(imageUrl) {
+        const parts = imageUrl.split("/");
+        const name = parts[parts.length - 1]
+        console.log(imageUrl)
+        console.log(name)
+        return imageUrl.replace(name, `thumb_${name}`);
     }
 
     const root = document.getElementById(rootId);
