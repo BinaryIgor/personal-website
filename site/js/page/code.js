@@ -3,6 +3,7 @@ import { Images } from "../links/images.js";
 import { Repositories, Instances, Stores } from "../links/codes.js";
 
 
+//TODO: add virtuocracy content
 const VIRTUOCRACY_CONTENT = {
     goal: "TODO",
     description: "TODO",
@@ -140,8 +141,6 @@ export function render(rootId = "component") {
     function thumbImageUrl(imageUrl) {
         const parts = imageUrl.split("/");
         const name = parts[parts.length - 1]
-        console.log(imageUrl)
-        console.log(name)
         return imageUrl.replace(name, `thumb_${name}`);
     }
 
@@ -167,7 +166,6 @@ export function render(rootId = "component") {
             <div class="focused-image-container-background"></div>
         </div>
         ${Components.content(`
-            ${Components.collapsible("Wirtuokracja", sectionHtml(VIRTUOCRACY_CONTENT))}
             ${Components.collapsible("Food Controller", sectionHtml(FOOD_CONTROLLER_CONTENT))}
             ${Components.collapsible("Smart Query", sectionHtml(SMART_QUERY_CONTENT))}
             ${Components.collapsible("Daily Wisdom", sectionHtml(DAILY_WISDOM_CONTENT))}
@@ -273,6 +271,7 @@ export function render(rootId = "component") {
 
                 document.body.classList.toggle(HIDDEN_SCROLL_CLASS);
 
+                focusedImage.src = "";
                 setImageUrl(focusedImage, image);
 
                 if (focusedImageContainer.className == FOCUSED_IMAGE_CONTAINER_HIDDEN_CLASS) {

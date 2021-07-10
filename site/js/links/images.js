@@ -17,5 +17,5 @@ export const Images = {
     brightServer: fullUrls("bright-server", ["a.jpg", "b.jpg", "c.jpg", "d.jpg"]),
     gentleRequest: fullUrls("gentle-request", ["a.jpg", "b.jpg", "c.jpg", "d.jpg"]),
     algorithmsAndDataStructures: fullUrls("algorithms-data-structures",
-        ["a.jpg", "b.jpg", "c.jpg", "d.jpg", "e.jpg", "f.jpg", "g.jpg", "h.jpg", "i.jpg", "j.jpg", "k.jpg", "l.jpg"])
+        ["a.jpg", "b.jpg", "c.jpg", "d.jpg", "e.jpg", "f.jpg", "g.jpg", "h.jpg", "i.jpg", "j.jpg", "k.jpg"])
 };
