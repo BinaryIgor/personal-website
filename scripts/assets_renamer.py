@@ -4,18 +4,15 @@ import time
 import sys
 
 
-def execute(assets_dir):
+def execute(assets_dir, to_exclude_patterns=None):
     ASSETS_VERSION = os.environ.get('ASSETS_VERSION', str(int(time.time())))
     IMAGES_EXTENSIONS = ['jpg', 'jpeg', 'png', 'svg']
-    EXCLUDE_PATHS = ['assets/preview']
 
     LINK_TAG = "link"
     HREF_ATTR = "href"
     SCRIPT_TAG = "script"
     SRC_ATTR = "src"
     IMG_TAG = "img"
-    BACKGROUND_PROPERTY = "background"
-    URL_PROPERTY = 'url'
     CSS_URL_REGEX = re.compile("(.*)url\\((.*)\\)")
 
     JS_KEY = "js"
@@ -31,9 +28,8 @@ def execute(assets_dir):
         for f in os.listdir(root_dir):
             f_path = os.path.join(root_dir, f)
             if os.path.isdir(f_path):
-                if should_process(f_path):
-                    walk_dir_recursively(f_path, files_data=files_data)
-            else:
+                walk_dir_recursively(f_path, files_data=files_data)
+            elif should_process(f_path):
                 if f.endswith(".js"):
                     set_files_data_tuple(
                         files_data, JS_KEY, JS_KEY, root_dir, f_path, f)
@@ -54,9 +50,13 @@ def execute(assets_dir):
         return files_data
 
     def should_process(path):
-        for ep in EXCLUDE_PATHS:
-            if ep in path:
+        if not to_exclude_patterns:
+            return True
+
+        for ep in to_exclude_patterns:
+            if re.match(ep, path):
                 return False
+
         return True
 
     def set_files_data_tuple(files_data, key, extension, root_dir, file_path, file_name):
@@ -88,7 +88,7 @@ def execute(assets_dir):
             to_replace_from_idx = c.find(from_key)
             if to_replace_from_idx < 0:
                 to_replace_from_idx = c.find(dynamic_import_key)
-                
+
             name_idx = 1
             old_name = ''
             new_name = ''
@@ -208,6 +208,7 @@ def execute(assets_dir):
     js_names_map, js_paths_map = files_data[JS_KEY]
     css_names_map, css_paths_map = files_data[CSS_KEY]
     images_names_map, images_paths_map = files_data[IMG_KEY]
+
     html_paths = files_data[HTML_KEY]
 
     print('Renaming assets...')
@@ -228,10 +229,14 @@ def execute(assets_dir):
 
     print('Done!')
 
+    return images_paths_map
+
 
 if __name__ == "__main__":
     if len(sys.argv) <= 1:
         print("Missing assets dir param")
         sys.exit(1)
 
-    execute(sys.argv[1])
+    to_exclude_patterns = sys.argv[2].split(",") if len(sys.argv) > 2 else None
+
+    execute(sys.argv[1], to_exclude_patterns)
