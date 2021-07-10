@@ -190,14 +190,17 @@ def resize_image(image_path):
     else:
         scale = MAX_IMAGE_HEIGHT / img.height
 
-    if scale == 1:
-        return
-
     _, image_name = path.split(image_path)
     output_image_path = image_path.replace(
         image_name, f"{RESIZED_IMAGE_PREFIX}_{image_name}")
 
     print(f"For {image_path} saving as {output_image_path}")
+
+    if scale == 1:
+        print("Image is in the limits already, not need to resize")
+        img.save(output_image_path)
+        return
+
     print(
         f"Applying scale: {scale} to get max_width: {MAX_IMAGE_WIDTH} and max_height: {MAX_IMAGE_HEIGHT}")
 
