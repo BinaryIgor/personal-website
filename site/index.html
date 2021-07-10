@@ -86,14 +86,6 @@
     <script>
         const URL_PROPERTY_REGEX = /url\((.*)\)/;
 
-        function extractedImageSrc(cssVar) {
-            return getComputedStyle(document.body)
-                .getPropertyValue(`--${cssVar}`)
-                .match(URL_PROPERTY_REGEX)[1]
-                .replace(/"/g, "")
-                .replace(/'/g, "");
-        }
-
         function setupMode() {
             const KEY = "MODE";
 
@@ -103,9 +95,6 @@
             const LIGHT_MODE_ICON = "1";
 
             const DISPLAY_MOBILE_NAV_CLASS = "display";
-
-            const darkThemeIconSrc = extractedImageSrc('theme-dark-icon');
-            const lightThemeIconSrc = extractedImageSrc('theme-light-icon');
 
             const topNav = document.querySelector(".top-nav");
             const themeMode = document.querySelector('.theme-mode');

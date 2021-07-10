@@ -7,7 +7,7 @@ export function render(rootId = "component") {
     root.innerHTML = `
         <div class="content-container">
             <section class="content fade-in">
-                <h2>I am Igor Roztropiński,</h2>
+                <h2>Igor Roztropiński</h2>
                 <p class="indented">born in 1994, Konin, Poland. Programmer, among other things.</p>
                     <img class="profile-image" src="${Images.profile}"></img>
                 <p>My road to become one was fairly long. Having wide range

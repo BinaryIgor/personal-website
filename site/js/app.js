@@ -28,7 +28,6 @@ function newRainOptions() {
 
     return {
         characters: `0101010101?`,
-        fontSize: 9,
         delay: -500,
         minimumSpeed: 1,
         maximumSpeed: 8,

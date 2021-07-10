@@ -99,8 +99,8 @@ const ARROW_LEFT_CLASS = "arrow-left";
 const ARROW_RIGHT_CLASS = "arrow-right";
 
 const MIN_ZOOM = 0;
-const MAX_ZOOM = 4;
-const ZOOM_STEP = 50;
+const MAX_ZOOM = 6;
+const ZOOM_STEP = 30;
 
 const INITIAL_SIZE = 100;
 
