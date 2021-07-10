@@ -31,27 +31,30 @@ export function render(rootId = "component") {
                     Inovatica in Lodz.
                     At the very begining developing native Android applications was my only responsibility. Not long after
                     that I was using Spring and Hibernate to create
-                    backend
-                    applications. There was a period in which I was working on very customized and
+                    various backend
+                    services. There was a period in which I was working on very customized and
                     domain specific Java applications that interact with <a href="http://www.ros.org">ROS</a>.
                     Then again I worked on mobile apps, using Kotlin this time. At the end of my journey with Inovatica I was
                     back in the autonomous
-                    forklift project, which is being done almost entirely in Java.</p>
+                    forklift project, which was/is being done almost entirely in Java.</p>
                 <p>Currently, I am working for <a href="https://www.hycom.pl">Hycom</a>.
                     Being involved in building data lake, I deal with collecting and analyzing large amounts of data and
                     building infrastructure that makes it possible.
                     My responsibilities range from writing custom Java and Python applications to managing CI/CD pipelines or
-                    performing data analysis.</p>
+                    performing data analysis. Not long after that, I got involved in working on Java based miroservices system. 
+                    Seeing the whole picture of complex systems, being able to understand, design and implement their various parts is something that gives me tremendous ammount of joy.
+                </p>
                 <p>Programming is my greatest passion, so I am
-                    always learning and working on various <a href="/#projects">projects</a>.
-                    I consider myself a programmer, not only web, desktop or mobile one. Most of my experience is related to
-                    mobile
-                    and web development <a href="/skills">using</a> Java and JavaScript related technologies.
+                    always learning and working on various <a href="/code">projects</a>.
+                    I consider myself a programmer, not only web, desktop or mobile one. 
+                    Most of my experience is related to
+                    web development <a href="/skills">using</a> Java and JavaScript related technologies.
                     Due to my current work for Hycom, I also have become proficient in Python.
-                    Nevertheless I am constantly <a href="https://www.udemy.com/user/igor-101/">expanding</a> my expertise and
-                    will be happy to
-                    work in
-                    every domain related to programming applying the most suitable technology.</p>
+                    Nevertheless I am constantly expanding my expertise, always seeking for new knowledge and skills. 
+                    Thinking about better ways of solving various problems is deeply ingrained in my nature. 
+                    Being on this way for so long,
+                    I can't and don't want to stop improving myself, in every possible way.
+                </p>
                 <h2>Where am I?</h2>
                 <ul class="links">
                     <li><a href="mailto: iroztropinski@gmail.com">iroztropinski@gmail.com</a></li>
