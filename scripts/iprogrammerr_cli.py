@@ -26,8 +26,8 @@ IMAGE_NAME_OR_PATH_PATTERN = re.compile("(.*)\\.(png|jpeg|jpg)")
 
 TO_EXCLUDE_FROM_ASSETS_RENAMING_PATTERNS = []
 
-MAX_IMAGE_WIDTH = 500
-MAX_IMAGE_HEIGHT = 500
+MAX_IMAGE_WIDTH = 400
+MAX_IMAGE_HEIGHT = 400
 RESIZED_IMAGE_PREFIX = "thumb"
 
 
@@ -172,12 +172,24 @@ def resize_images():
     images_paths = to_resize_images_paths(ASSETS_DIR)
 
     print()
-    print(f"Creating resized versions for {len(images_paths)} images...")
+    print("Removing previous, resized versions...")
     for p in images_paths:
-        resize_image(p)
+        if is_image_thumb(p):
+            os.remove(p)
+
+    print()
+    print(f"Creating resized versions for {len(images_paths)} images")
+    for p in images_paths:
+        if not is_image_thumb(p):
+            resize_image(p)
 
     print()
     print("Images resized")
+
+
+def is_image_thumb(image_path):
+    _, name = path.split(image_path)
+    return name.startswith(RESIZED_IMAGE_PREFIX)
 
 
 def resize_image(image_path):
@@ -209,19 +221,6 @@ def resize_image(image_path):
 
     img = img.resize((new_width, new_height), Image.ANTIALIAS)
     img.save(output_image_path)
-
-
-def remove_resized_images():
-    print(f"Searching for images thumbs in {ASSETS_DIR} dir...")
-    images_paths = to_resize_images_paths(ASSETS_DIR)
-    removed = 0
-    for ip in images_paths:
-        _, name = path.split(ip)
-        if RESIZED_IMAGE_PREFIX in name:
-            os.remove(ip)
-            removed += 1
-
-    print(f"Removed {removed} resized images")
 
 
 def build_and_run_locally():
@@ -261,10 +260,6 @@ OPTIONS = {
     '3': {
         OPTION_NAME: "resize images",
         OPTION_FUNCTION: resize_images
-    },
-    "4": {
-        OPTION_NAME: "remove resized images",
-        OPTION_FUNCTION: remove_resized_images
     }
 }
 
