@@ -45,14 +45,14 @@ export function render(rootId = "component") {
                     Seeing the whole picture of complex systems, being able to understand, design and implement their various parts is something that gives me tremendous ammount of joy.
                 </p>
                 <p>Programming is my greatest passion, so I am
-                    always learning and working on various <a href="/code">projects</a>.
+                    always learning and working on various <a href="code">projects</a>.
                     I consider myself a programmer, not only web, desktop or mobile one. 
                     Most of my experience is related to
-                    web development <a href="/skills">using</a> Java and JavaScript related technologies.
+                    web development <a href="skills">using</a> Java and JavaScript related technologies.
                     Due to my current work for Hycom, I also have become proficient in Python.
                     Nevertheless I am constantly expanding my expertise, always seeking for new knowledge and skills. 
                     Thinking about better ways of solving various problems is deeply ingrained in my nature. 
-                    Being on this way for so long,
+                    Being on this way for so long, 
                     I can't and don't want to stop improving myself, in every possible way.
                 </p>
                 <h2>Where am I?</h2>

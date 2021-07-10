@@ -19,7 +19,7 @@ export function collapsible(title, body) {
                     <h1>${title}</h1> 
                     <span>${EXPAND}</span>
                 </div>
-                <div class="hidden">
+                <div class="${HIDDEN_CLASS}">
                     ${body}
                 </div>
             </section>`;

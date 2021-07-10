@@ -149,8 +149,10 @@ export function render(rootId = "component") {
     root.innerHTML = `
         <div id="${FOCUSED_IMAGE_CONTAINER_ID}" class="${FOCUSED_IMAGE_CONTAINER_HIDDEN_CLASS}">
             <div class="gallery-menu">
-                <button class="no-button" id="zoom-out" disabled>-</button>
-                <button class="no-button" id="zoom-in">+</button>
+                <div>
+                    <button class="no-button" id="zoom-out" disabled>-</button>
+                    <button class="no-button" id="zoom-in">+</button>
+                </div>
                 <h1 id="images-counter"></h1>
                 <button class="no-button" id="close-gallery">x</button>
             </div>

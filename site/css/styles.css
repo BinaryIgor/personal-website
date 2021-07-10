@@ -92,7 +92,7 @@ a, a:link, a:visited, a:active {
     padding: var(--padding-medium);
 }
 
-.nav-item {
+.top-nav > * {
     text-align: center;
     font-size: var(--nav-font-size);
     text-transform: uppercase;
@@ -310,9 +310,12 @@ section > h1 {
 }
 
 p {
-  text-indent: var(--padding-medium);
-  margin-bottom: var(--padding-next-paragraph);
-  font-size: 1.1rem;
+    text-indent: var(--padding-medium);
+    font-size: 1.1rem;
+}
+
+p:not(:last-child) {
+    margin-bottom: var(--padding-next-paragraph);
 }
 
 .links {
@@ -383,7 +386,7 @@ p {
     z-index: 100;
     display: grid;
     gap: 0;
-    grid-template-columns: 2.5% 2.5% 90% 5%;
+    grid-template-columns: 1fr 2fr 1fr;
     width: 100%;
     justify-content: center;
     align-items: center;
@@ -391,9 +394,13 @@ p {
     border-bottom: solid var(--border-size) var(--text-color);
 }
 
+.gallery-zoom-menu-container {
+    display: flex;
+}
+
 .gallery-menu button {
     font-size: var(--gallery-icons-size);
-    padding: var(--padding-little) var(--padding-small);
+    padding: var(--padding-small) var(--padding-little);
     cursor: pointer;
 }
 
@@ -482,6 +489,7 @@ p {
 }
 
 button.no-button {
+    display: inline;
     outline: none;
     border: none;
     background-color: rgba(0, 0, 0, 0);
@@ -519,12 +527,7 @@ button.no-button[disabled] {
 }
 
 /* ===media screens=== */
-
 @media only screen and (max-width: 1200px) {
-    .gallery-menu {
-        grid-template-columns: 3.75% 3.75% 85% 7.5%;
-    }
-
     .gallery  {
         grid-template-columns: 1fr 1fr 1fr;
     }
@@ -545,7 +548,7 @@ button.no-button[disabled] {
         width: 100%;
     }
 
-    .nav-item {
+    .top-nav > a {
         display: none;
     }
 
@@ -555,12 +558,6 @@ button.no-button[disabled] {
 
     .content {
         width: 75%;
-    }
-}
-
-@media only screen and (max-width: 750px) {
-    .gallery-menu {
-        grid-template-columns: 6.75% 6.75% 75% 12.5%;
     }
 }
 
@@ -588,7 +585,7 @@ button.no-button[disabled] {
 
 @media only screen and (max-width: 550px) {
     .gallery-menu {
-        grid-template-columns: 8.75% 8.75% 65% 17.5%;
+        grid-template-columns: 1fr 1fr 1fr;
     }
 
     .content {
