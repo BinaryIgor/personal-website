@@ -490,15 +490,6 @@ button.no-button[disabled] {
     }
 }
 
-@keyframes blinkOnceTextCursor {
-    0% {
-        border-right-color: rgba(0, 0, 0, 0);
-    }
-    100% {
-        border-right-color: var(--border-color);
-    }
-}
-
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -520,7 +511,7 @@ button.no-button[disabled] {
     }
 }
 
-@media only screen and (max-width: 960px) { 
+@media only screen and (max-width: 950px) { 
     html {
         font-size: 0.9rem;
         --nav-font-size: 2rem;
@@ -557,13 +548,11 @@ button.no-button[disabled] {
         --name-size: 2.75rem;
         --name-cursor-height: 3rem;
         --name-cursor-width: 1.5rem;
-
         --interact-size: 1.5rem;
         --interact-cursor-height: 1.75rem;
         --interact-cursor-width: 0.875rem;
     }
 }
-
 
 @media only screen and (max-width: 550px) {
     .gallery-menu {
@@ -580,7 +569,6 @@ button.no-button[disabled] {
         --name-size: 2rem;
         --name-cursor-height: 2.25rem;
         --name-cursor-width: 1.125rem;
-
         --interact-size: 1.25rem;
         --interact-cursor-height: 1.5rem;
         --interact-cursor-width: 0.75rem;
