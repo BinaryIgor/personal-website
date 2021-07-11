@@ -100,7 +100,7 @@ const ARROW_RIGHT_CLASS = "arrow-right";
 
 const MIN_ZOOM = 0;
 const MAX_ZOOM = 6;
-const ZOOM_STEP = 30;
+const ZOOM_STEP = 33;
 
 const INITIAL_SIZE = 100;
 

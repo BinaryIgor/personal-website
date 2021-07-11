@@ -26,8 +26,8 @@ html {
     --nav-font-size: 1.75rem; 
     --mobile-menu-font-size: 1.75rem;
     --border-size: 2px;
-    --rain-font-size: 25;
-    --theme-icon-size: 2rem;
+    --rain-font-size: 20;
+    --theme-icon-size: 1.75rem;
     --name-size: 3.5rem;
     --name-cursor-height: 4rem;
     --name-cursor-width: 2rem;
@@ -70,7 +70,7 @@ a, a:link, a:visited, a:active {
 }
 
 .hidden {
-    display: none !important;
+    display: none;
 }
 
 .hidden-scroll {
@@ -395,8 +395,11 @@ p:not(:last-child) {
 
 .gallery-menu button {
     font-size: var(--gallery-icons-size);
-    padding: var(--padding-small) var(--padding-little);
     cursor: pointer;
+}
+
+.gallery-menu > * {
+    padding: var(--padding-small) var(--padding-small);
 }
 
 #images-counter {

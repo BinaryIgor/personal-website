@@ -1,15 +1,23 @@
 import { Rain } from "./rain.js";
 
+const MIN_WIDTH_DIFF = 10;
+
 export function RestartableRain(userOptionsProvider) {
     const rainFactory = () => new Rain(userOptionsProvider());
 
     let rain = rainFactory();
 
     this.start = () => {
+        let previousWidth = window.innerWidth;
+
         rain.start();
 
         window.addEventListener("resize", debounce(() => {
-            this.restart();
+            const widthDiff = Math.abs(window.innerWidth - previousWidth);
+            if (widthDiff >= MIN_WIDTH_DIFF) {
+                this.restart();
+                previousWidth = window.innerWidth;
+            }
         }));
     }
 
@@ -19,7 +27,6 @@ export function RestartableRain(userOptionsProvider) {
         rain = rainFactory();
         rain.start(paused);
     };
-
 
     function debounce(func) {
         let previousCall = null;
