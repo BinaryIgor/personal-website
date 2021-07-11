@@ -92,6 +92,10 @@ const FOCUSED_IMAGE_CONTAINER_CLASS = "focused-image-container";
 const DISPLAY_CLASS = "display";
 const HIDDEN_SCROLL_CLASS = "hidden-scroll";
 const IMAGE_CONTAINER_CLASS = "image-container";
+const IMAGES_COUNTER_ID = "images-counter";
+const CLOSE_GALLERY_ID = "close-gallery";
+const ZOOM_OUT_ID = "zoom-out";
+const ZOOM_IN_ID = "zoom-in";
 const GALLERY_CLASS = "gallery";
 const HIDDEN_CLASS = "hidden";
 const IMAGE_URL_ATTRIBUTE = "data-image";
@@ -113,7 +117,6 @@ export function render(rootId = "component") {
         html.push(`<p>${section.goal}</p>`);
         html.push(`<h2>Description</h2>`);
         html.push(`<p>${section.description}</p>`);
-
 
         if (section.gallery) {
             html.push("<h2>Gallery</h2>");
@@ -150,11 +153,11 @@ export function render(rootId = "component") {
         <div id="${FOCUSED_IMAGE_CONTAINER_ID}" class="${FOCUSED_IMAGE_CONTAINER_CLASS}">
             <div class="gallery-menu">
                 <div>
-                    <button class="no-button clickable" id="zoom-out" disabled>-</button>
-                    <button class="no-button clickable" id="zoom-in">+</button>
+                    <button class="no-button clickable" id="${ZOOM_OUT_ID}" disabled>-</button>
+                    <button class="no-button clickable" id="${ZOOM_IN_ID}">+</button>
                 </div>
-                <h1 id="images-counter"></h1>
-                <button class="no-button clickable" id="close-gallery">x</button>
+                <h1 id="${IMAGES_COUNTER_ID}"></h1>
+                <button class="no-button clickable" id="${CLOSE_GALLERY_ID}">x</button>
             </div>
             <div class="${ARROW_LEFT_CLASS} clickable ${HIDDEN_CLASS}">
                 <div>&#10094</div>
@@ -187,12 +190,16 @@ export function render(rootId = "component") {
 
     const currentImageContainer = focusedImageContainer.querySelector(`.${IMAGE_CONTAINER_CLASS}`);
     const focusedImage = focusedImageContainer.querySelector(`.${IMAGE_CONTAINER_CLASS} > img`);
-    const zoomOut = document.getElementById("zoom-out");
-    const zoomIn = document.getElementById("zoom-in");
-    const imagesCounter = document.getElementById("images-counter");
-    const closeGallery = document.getElementById("close-gallery");
+    const zoomOut = document.getElementById(ZOOM_OUT_ID);
+    const zoomIn = document.getElementById(ZOOM_IN_ID);
+    const imagesCounter = document.getElementById(IMAGES_COUNTER_ID);
+    const closeGallery = document.getElementById(CLOSE_GALLERY_ID);
 
     let currentZoom = 0;
+
+    for (const gallery of document.querySelectorAll(`.${GALLERY_CLASS}`)) {
+        setupGallery(gallery);
+    }
 
     focusedImageContainer.onclick = e => e.stopPropagation();
 
@@ -262,10 +269,6 @@ export function render(rootId = "component") {
         setScroll(beforeWidth, beforeHeight);
         setupZoomButtonsState();
     };
-
-    for (const gallery of document.querySelectorAll(`.${GALLERY_CLASS}`)) {
-        setupGallery(gallery);
-    }
 
     function setupGallery(gallery) {
         const images = gallery.querySelectorAll('div');

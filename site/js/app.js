@@ -27,7 +27,7 @@ function newRainOptions() {
     const raintFontSize = parseInt(extractedCssVar('rain-font-size'));
 
     return {
-        characters: `0101010101?`,
+        characters: `010101?`,
         delay: -500,
         minimumSpeed: 1,
         maximumSpeed: 8,
@@ -52,7 +52,7 @@ const rain = new RestartableRain(newRainOptions);
 
 rain.start();
 
-document.addEventListener('themeChange', () => rain.restart());
+document.addEventListener('themeChange', rain.restart);
 
 const topNav = document.querySelector(".top-nav");
 const topMobileNav = document.querySelector(".top-nav-mobile");
@@ -64,10 +64,10 @@ setupNavigation(topMobileNav, () => {
 });
 topMobileNav.addEventListener("click", e => e.stopPropagation());
 
-const delay = Routes.isMain() ? 4000 : 1000;
+const delay = Routes.isMain() ? 3000 : 1000;
 
 setTimeout(() => {
     document.querySelectorAll(".hidden").forEach(h => h.classList.remove("hidden"));
-
+    
     Routes.push();
 }, delay);

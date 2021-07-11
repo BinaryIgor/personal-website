@@ -232,7 +232,7 @@ export function Rain(userOptions) {
     }
 
     function Character(value, changeResistance) {
-        this.value = value;;
+        this.value = value;
         this.opacity;
         this.changeResistance = changeResistance;
     }
