@@ -16,10 +16,15 @@ ROOT_DIR = path.split(os.getcwd())[0]
 # TODO: proper directory
 DEPLOY_ROOT_DIR = ROOT_DIR
 DEPLOY_LOCAL_ROOT_DIR = path.join(ROOT_DIR, "_deploy")
+DEPLOY_LOCAL_ROOT_CONTENT_DIR = path.join(DEPLOY_LOCAL_ROOT_DIR, "site")
+OUTPUT_JS_DIR = path.join(DEPLOY_LOCAL_ROOT_CONTENT_DIR, "js")
+
 SITE_DIR = path.join(ROOT_DIR, "site")
 JS_DIR = path.join(SITE_DIR, "js")
 ASSETS_DIR = path.join(SITE_DIR, "assets")
 DOCKER_DIR = path.join(ROOT_DIR, "nginx")
+NGINX_CONF_FILE = "nginx.conf"
+NGINX_CONF_PATH = path.join(ROOT_DIR, "nginx", NGINX_CONF_FILE)
 
 IMAGES_LINKS_JS_FILE_NAME = "images"
 IMAGE_NAME_OR_PATH_PATTERN = re.compile("(.*)\\.(png|jpeg|jpg)")
@@ -40,8 +45,9 @@ def build():
     if path.exists(DEPLOY_LOCAL_ROOT_DIR):
         shutil.rmtree(DEPLOY_LOCAL_ROOT_DIR)
 
+    print()
     print("Copying static content...")
-    shutil.copytree(SITE_DIR, DEPLOY_LOCAL_ROOT_DIR)
+    shutil.copytree(SITE_DIR, DEPLOY_LOCAL_ROOT_CONTENT_DIR)
 
     print()
     print("Renaming assets...")
@@ -56,6 +62,13 @@ def build():
     else:
         raise Exception(
             f"{IMAGES_LINKS_JS_FILE_NAME} file can't be found in {JS_DIR} directory")
+
+    create_js_bundles()
+
+    print()
+    print("Copying nginx config...")
+    shutil.copyfile(NGINX_CONF_PATH, path.join(
+        DEPLOY_LOCAL_ROOT_DIR, NGINX_CONF_FILE))
 
 
 def images_links_file_path(dir):
@@ -139,8 +152,7 @@ def line_with_replaced_images(line, current_names_or_paths, old_new_images_names
 
 
 def override_js_links_file(new_lines):
-    js_file_path = images_links_file_path(
-        path.join(DEPLOY_LOCAL_ROOT_DIR, "js"))
+    js_file_path = images_links_file_path(OUTPUT_JS_DIR)
 
     print(f"Overriding links in {js_file_path} file")
 
@@ -165,6 +177,31 @@ def all_in_quotes(string):
             chars.append(c)
 
     return in_quotes
+
+
+def create_js_bundles():
+    print("Creating js bundles..")
+
+    root, last = path.split(OUTPUT_JS_DIR)
+    tmp_path = path.join(root, f'_{last}')
+
+    os.rename(OUTPUT_JS_DIR, tmp_path)
+
+    for f in os.listdir(tmp_path):
+        if "app" in f:
+            print(f"Creating bundle starting in {f}...")
+            scattered_path = path.join(tmp_path, f)
+            bundle_path = path.join(OUTPUT_JS_DIR, f)
+            execute_script(
+                f"rollup {scattered_path} --format iife --file {bundle_path}")
+            print(f"File bundled to {bundle_path}")
+
+            print()
+            print("About to minify...")
+            execute_script(f"terser {bundle_path} --mangle --compress --output {bundle_path}")
+            print("Bundle minified")
+
+    shutil.rmtree(tmp_path)
 
 
 def resize_images():
@@ -231,7 +268,7 @@ def build_and_run_locally():
     print("Building and running docker")
     execute_script(f"""
         cd {DOCKER_DIR}
-        export SITE_DIR={DEPLOY_LOCAL_ROOT_DIR}
+        export SITE_DIR={DEPLOY_LOCAL_ROOT_CONTENT_DIR}
         chmod 755 run.sh
         ./run.sh
     """)

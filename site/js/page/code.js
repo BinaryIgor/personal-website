@@ -101,6 +101,7 @@ const HIDDEN_CLASS = "hidden";
 const IMAGE_URL_ATTRIBUTE = "data-image";
 const ARROW_LEFT_CLASS = "arrow-left";
 const ARROW_RIGHT_CLASS = "arrow-right";
+const FADE_IN_CLASS = "fade-in-1";
 
 const MIN_ZOOM = 0;
 const MAX_ZOOM = 6;
@@ -197,6 +198,8 @@ export function render(rootId = "component") {
 
     let currentZoom = 0;
 
+    focusedImage.addEventListener("load", () => focusedImage.classList.add(FADE_IN_CLASS));
+
     for (const gallery of document.querySelectorAll(`.${GALLERY_CLASS}`)) {
         setupGallery(gallery);
     }
@@ -282,7 +285,6 @@ export function render(rootId = "component") {
 
                 document.body.classList.toggle(HIDDEN_SCROLL_CLASS);
 
-                focusedImage.src = "";
                 setImageUrl(focusedImage, image);
 
                 focusedImageContainer.classList.toggle(DISPLAY_CLASS);
@@ -308,6 +310,8 @@ export function render(rootId = "component") {
 
     function setImageUrl(focusedImage, image) {
         const url = image.getAttribute(IMAGE_URL_ATTRIBUTE);
+        focusedImage.classList.remove(FADE_IN_CLASS);
+        focusedImage.style.opacity = "0";
         focusedImage.src = url;
     }
 
