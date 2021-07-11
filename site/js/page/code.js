@@ -89,7 +89,7 @@ const ALGORITHMS_AND_DATA_STRUCTURES_CONTENT = {
 
 const FOCUSED_IMAGE_CONTAINER_ID = "focused-image-container";
 const FOCUSED_IMAGE_CONTAINER_CLASS = "focused-image-container";
-const FOCUSED_IMAGE_CONTAINER_HIDDEN_CLASS = `${FOCUSED_IMAGE_CONTAINER_CLASS}-hidden`;
+const DISPLAY_CLASS = "display";
 const HIDDEN_SCROLL_CLASS = "hidden-scroll";
 const IMAGE_CONTAINER_CLASS = "image-container";
 const GALLERY_CLASS = "gallery";
@@ -147,7 +147,7 @@ export function render(rootId = "component") {
     const root = document.getElementById(rootId);
 
     root.innerHTML = `
-        <div id="${FOCUSED_IMAGE_CONTAINER_ID}" class="${FOCUSED_IMAGE_CONTAINER_HIDDEN_CLASS}">
+        <div id="${FOCUSED_IMAGE_CONTAINER_ID}" class="${FOCUSED_IMAGE_CONTAINER_CLASS}">
             <div class="gallery-menu">
                 <div>
                     <button class="no-button clickable" id="zoom-out" disabled>-</button>
@@ -156,10 +156,10 @@ export function render(rootId = "component") {
                 <h1 id="images-counter"></h1>
                 <button class="no-button clickable" id="close-gallery">x</button>
             </div>
-            <div class="${ARROW_LEFT_CLASS} clickable">
+            <div class="${ARROW_LEFT_CLASS} clickable ${HIDDEN_CLASS}">
                 <div>&#10094</div>
             </div>
-            <div class="${ARROW_RIGHT_CLASS} clickable">
+            <div class="${ARROW_RIGHT_CLASS} clickable ${HIDDEN_CLASS}">
                 <div>&#10095</div>
             </div>
             <div class="${IMAGE_CONTAINER_CLASS}">
@@ -179,8 +179,12 @@ export function render(rootId = "component") {
     Components.initAllCollapsibles();
 
     const focusedImageContainer = document.getElementById(FOCUSED_IMAGE_CONTAINER_ID);
-    const previousImage = document.querySelector(`.${ARROW_LEFT_CLASS} > div`);
-    const nextImage = document.querySelector(`.${ARROW_RIGHT_CLASS} > div`);
+
+    const previousImageContainer = document.querySelector(`.${ARROW_LEFT_CLASS}`);
+    const previousImage = previousImageContainer.querySelector('div');
+    const nextImageContainer = document.querySelector(`.${ARROW_RIGHT_CLASS}`);
+    const nextImage = nextImageContainer.querySelector(`div`);
+
     const currentImageContainer = focusedImageContainer.querySelector(`.${IMAGE_CONTAINER_CLASS}`);
     const focusedImage = focusedImageContainer.querySelector(`.${IMAGE_CONTAINER_CLASS} > img`);
     const zoomOut = document.getElementById("zoom-out");
@@ -194,8 +198,10 @@ export function render(rootId = "component") {
 
     closeGallery.onclick = e => {
         e.stopPropagation();
-        focusedImageContainer.className = FOCUSED_IMAGE_CONTAINER_HIDDEN_CLASS;
+
+        focusedImageContainer.classList.toggle(DISPLAY_CLASS);
         document.body.classList.toggle(HIDDEN_SCROLL_CLASS);
+
         resetZoomIf();
     };
 
@@ -276,18 +282,18 @@ export function render(rootId = "component") {
                 focusedImage.src = "";
                 setImageUrl(focusedImage, image);
 
-                if (focusedImageContainer.className == FOCUSED_IMAGE_CONTAINER_HIDDEN_CLASS) {
-                    focusedImageContainer.className = FOCUSED_IMAGE_CONTAINER_CLASS;
-                }
+                focusedImageContainer.classList.toggle(DISPLAY_CLASS);
 
                 focusedIdx = i;
                 setImagesCounter(focusedIdx, images);
 
-                if (images.length <= 1) {
-                    previousImage.classList.add(HIDDEN_CLASS);
-                    nextImage.classList.add(HIDDEN_CLASS);
-                } else {
+                if (images.length > 1) {
+                    previousImageContainer.classList.remove(HIDDEN_CLASS);
+                    nextImageContainer.classList.remove(HIDDEN_CLASS);
                     setPreviousNextImageButtons(focusedIdx, images);
+                } else {
+                    previousImageContainer.classList.add(HIDDEN_CLASS);
+                    nextImageContainer.classList.add(HIDDEN_CLASS);
                 }
             }
         }

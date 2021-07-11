@@ -151,7 +151,7 @@ nav {
     z-index: 100;
     background-color: var(--menu-color);
     position: fixed;
-    top: -200vh;
+    top: -100vh;
     width: 100%;
     height: 100%;
     transition: all 0.5s ease-in-out;
@@ -392,16 +392,18 @@ p:not(:last-child) {
     margin: auto;
 }
 
-.focused-image-container, .focused-image-container-hidden {
+.focused-image-container {
     width: 100vw;
     height: 100vh;
     position: fixed;
     display: flex;
     flex-direction: column;
     top: 0;
-    right: 0;
+    opacity: 0;
+    left: -100vh;
     z-index: 1;
     user-select: none;
+    transition: all 0.75s ease-out;
 }
 
 .focused-image-container-background {
@@ -414,8 +416,9 @@ p:not(:last-child) {
     background-color: var(--menu-color);
 }
 
-.focused-image-container-hidden {
-    display: none;
+.focused-image-container.display {
+    opacity: 1;
+    left: 0;
 }
 
 .image-container {
