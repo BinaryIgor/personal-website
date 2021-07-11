@@ -1,4 +1,8 @@
-import { render as renderHomePage } from "./page/home.js";
+import { render as renderHomePage } from "../page/home.js";
+import { render as renderAbout } from "../page/about.js";
+import { render as renderSkills } from "../page/skills.js";
+import { render as renderExperience } from "../page/experience.js";
+import { render as renderCode } from "../page/code.js";
 
 import Router from "./router.js";
 
@@ -11,10 +15,10 @@ router.addDefaultRoute(renderHomePage);
 
 const routes = {
     "home": renderHomePage,
-    "about": () => import('./page/about.js').then(page => page.render()),
-    "skills": () => import('./page/skills.js').then(page => page.render()),
-    "experience": () => import('./page/experience.js').then(page => page.render()),
-    "code": () => import('./page/code.js').then(page => page.render())
+    "about": renderAbout,
+    "skills": renderSkills,
+    "experience": renderExperience,
+    "code": renderCode
 };
 
 const routesTitles = {
