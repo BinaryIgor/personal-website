@@ -21,7 +21,7 @@ html {
     --padding-medium: 16px;
     --padding-large: 24px;
     --padding-next-paragraph: 32px;
-    --padding-gallery: 64px;
+    --padding-gallery: 48px;
     --padding-next-section: 64px;
     --nav-font-size: 1.75rem; 
     --mobile-menu-font-size: 1.75rem;
@@ -44,6 +44,7 @@ html {
     --arrow-size: 2.5rem;
     --gallery-icons-size: 3.5rem;
     --close-icon-size: 3rem;
+    --underline-offset: -4px;
     background-color: var(--background-color);
 }
 
@@ -70,7 +71,7 @@ a, a:link, a:visited, a:active {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 .hidden-scroll {
@@ -105,10 +106,10 @@ a, a:link, a:visited, a:active {
     position: absolute;
     width: 0;
     height: var(--border-size);
-    bottom: -5px;
+    bottom: var(--underline-offset);
     left: 0;
     background-color: var(--border-color);
-    transition: all 0.3s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
 
 .left-underline:hover:before {
@@ -121,7 +122,7 @@ a, a:link, a:visited, a:active {
     position: absolute;
     width: 100%;
     height: var(--border-size);
-    bottom: -5px;
+    bottom: var(--underline-offset);
     left: 0;
     visibility: visible;
     background-color: var(--border-color);
@@ -179,10 +180,6 @@ nav {
     top: 0;
 }
 
-.nav-mobile-menu:hover {
-    cursor: pointer;
-}
-
 #nav-mobile-close {
     position: absolute;
     font-size: var(--close-icon-size);
@@ -211,7 +208,7 @@ nav {
     font-size: var(--name-size);
     border-right: var(--name-cursor-width) solid var(--border-color);
     opacity: 0;
-    animation-delay: 3s;
+    animation-delay: 4s;
 }
 
 .interaction-hint {
@@ -239,28 +236,8 @@ nav {
     width: 100%;
 }
 
-.fade-in, .fade-in-first-delay, .fade-in-second-delay, .fade-in-third-delay, .fade-in-forth-delay, .fade-in-fifth-delay {
+.fade-in {
     animation: fadeIn 3s ease 0s 1 forwards;
-}
-
-.fade-in-first-delay {
-    animation-delay: 0.5s;
-}
-
-.fade-in-second-delay {
-    animation-delay: 1s;
-}
-
-.fade-in-third-delay {
-    animation-delay: 1.5s;
-}
-
-.fade-in-forth-delay {
-    animation-delay: 2s;
-}
-
-.fade-in-fifth-delay {
-    animation-delay: 2.5s;
 }
 
 .content-container {
@@ -470,6 +447,10 @@ p:not(:last-child) {
     top: 0;
     justify-content: center;
     align-items: center;
+}
+
+.clickable:active {
+    opacity: 0.5;
 }
 
 .arrow-left > *, .arrow-right > * {

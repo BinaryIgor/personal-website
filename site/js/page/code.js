@@ -150,16 +150,16 @@ export function render(rootId = "component") {
         <div id="${FOCUSED_IMAGE_CONTAINER_ID}" class="${FOCUSED_IMAGE_CONTAINER_HIDDEN_CLASS}">
             <div class="gallery-menu">
                 <div>
-                    <button class="no-button" id="zoom-out" disabled>-</button>
-                    <button class="no-button" id="zoom-in">+</button>
+                    <button class="no-button clickable" id="zoom-out" disabled>-</button>
+                    <button class="no-button clickable" id="zoom-in">+</button>
                 </div>
                 <h1 id="images-counter"></h1>
-                <button class="no-button" id="close-gallery">x</button>
+                <button class="no-button clickable" id="close-gallery">x</button>
             </div>
-            <div class="${ARROW_LEFT_CLASS}">
+            <div class="${ARROW_LEFT_CLASS} clickable">
                 <div>&#10094</div>
             </div>
-            <div class="${ARROW_RIGHT_CLASS}">
+            <div class="${ARROW_RIGHT_CLASS} clickable">
                 <div>&#10095</div>
             </div>
             <div class="${IMAGE_CONTAINER_CLASS}">

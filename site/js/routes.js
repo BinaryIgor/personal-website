@@ -57,6 +57,10 @@ export function push(url = `${window.location}`) {
     document.title = title ? title : DEFAULT_ROUTE_TITLE;
 }
 
-export function resolveCurrent() {
-    push();
+export function isMain(url = `${window.location}`) {
+    const route = router.routeFromUrl(url);
+    const title = routesTitles[route];
+    return !title || title == DEFAULT_ROUTE_TITLE;
 }
+
+

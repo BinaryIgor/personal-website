@@ -64,10 +64,10 @@ setupNavigation(topMobileNav, () => {
 });
 topMobileNav.addEventListener("click", e => e.stopPropagation());
 
-setTimeout(() => {
-    document.querySelectorAll(".hidden").forEach(h => {
-        h.classList.remove("hidden");
-    });
+const delay = Routes.isMain() ? 4000 : 1000;
 
-    Routes.resolveCurrent();
-}, 1000);
+setTimeout(() => {
+    document.querySelectorAll(".hidden").forEach(h => h.classList.remove("hidden"));
+
+    Routes.push();
+}, delay);
