@@ -1,2 +1,3 @@
 **/_deploy/
 **/__pycache__/
+**/certs/
