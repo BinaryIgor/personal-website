@@ -117,7 +117,7 @@ export function Rain(userOptions) {
     }
 
     function randomSpeed() {
-        return randomFloat((options.minimumSpeed) + options.fontSize, (options.maximumSpeed) + options.fontSize);
+        return randomFloat(options.minimumSpeed, options.maximumSpeed);
     }
     // ------------------------util-----------------------
     function createChainArray(size) {

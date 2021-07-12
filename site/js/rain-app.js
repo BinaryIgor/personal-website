@@ -50,13 +50,13 @@ function newRainOptions() {
 
     return {
         characters: `010101?`,
-        delay: -500,
-        minimumSpeed: 1,
-        maximumSpeed: 8,
+        delay: -600,
+        minimumSpeed: 21,
+        maximumSpeed: 25,
         minimumChainLength: 10,
-        maximumChainLength: 22,
+        maximumChainLength: 30,
         canvasId: 'canvas',
-        interval: 50,
+        interval: 30,
         fontFamily: 'monospace',
         fontColor: rainColor,
         fontSize: raintFontSize,
