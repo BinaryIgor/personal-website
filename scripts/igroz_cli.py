@@ -26,6 +26,13 @@ DOCKER_DIR = path.join(ROOT_DIR, "nginx")
 NGINX_CONF_FILE = "nginx.conf"
 NGINX_CONF_PATH = path.join(ROOT_DIR, "nginx", NGINX_CONF_FILE)
 
+DEPLOY_LOCAL_NGINX_CONF_PATH = path.join(DEPLOY_LOCAL_ROOT_DIR, NGINX_CONF_FILE)
+
+DEPLOY_HOST = "igor@igor.roztropinski.com"
+DEPLOY_HOST_SSH_PORT = "44"
+DEPLOY_REMOTE_NGINX_CONF_PATH = "/etc/nginx/conf.d/default.conf"
+DEPLOY_REMOTE_SITE_DIR = "/usr/share/nginx/site"
+
 IMAGES_LINKS_JS_FILE_NAME = "images"
 IMAGE_NAME_OR_PATH_PATTERN = re.compile("(.*)\\.(png|jpeg|jpg)")
 
@@ -198,7 +205,8 @@ def create_js_bundles():
 
             print()
             print("About to minify...")
-            execute_script(f"terser {bundle_path} --mangle --compress --output {bundle_path}")
+            execute_script(
+                f"terser {bundle_path} --mangle --compress --output {bundle_path}")
             print("Bundle minified")
 
     shutil.rmtree(tmp_path)
@@ -274,6 +282,34 @@ def build_and_run_locally():
     """)
 
 
+def build_and_deploy():
+    print("Building site...")
+    build()
+
+    print()
+    print("Site built, copying content and nginx conf...")
+
+    execute_script(f"""
+        echo "Removing previous directory, if exists"
+        ssh {DEPLOY_HOST} -p {DEPLOY_HOST_SSH_PORT} 'rm -f -r {DEPLOY_REMOTE_SITE_DIR}'
+
+        echo
+        echo "Copying content..."
+        scp -P {DEPLOY_HOST_SSH_PORT} -r {DEPLOY_LOCAL_ROOT_CONTENT_DIR} {DEPLOY_HOST}:{DEPLOY_REMOTE_SITE_DIR}
+
+        echo
+        echo "Copying nginx config..."
+        scp -P {DEPLOY_HOST_SSH_PORT} -r {DEPLOY_LOCAL_NGINX_CONF_PATH} {DEPLOY_HOST}:{DEPLOY_REMOTE_NGINX_CONF_PATH}
+
+        echo
+        echo "Restarting nginx"
+        ssh {DEPLOY_HOST} -p {DEPLOY_HOST_SSH_PORT} 'sudo systemctl restart nginx'
+
+        echo
+        echo "Deploy finished, head on to https://igor.roztropinski.com!"
+    """)
+
+
 def execute_script(script):
     code = subprocess.call(f"""
         set -e
@@ -295,6 +331,10 @@ OPTIONS = {
         OPTION_FUNCTION: build_and_run_locally
     },
     '3': {
+        OPTION_NAME: "build and deploy to remote",
+        OPTION_FUNCTION: build_and_deploy
+    },
+    '4': {
         OPTION_NAME: "resize images",
         OPTION_FUNCTION: resize_images
     }
