@@ -7,7 +7,8 @@ function fullUrls(prefix, names) {
 }
 
 export const Images = {
-    profile: fullUrl("igor.png"),
+    lightProfile: fullUrl("igor_light.png"),
+    darkProfile: fullUrl("igor_dark.png"),
     virtuocracy: [],
     foodController: fullUrls("food-controller", ["a.png", "b.png", "c.png", "d.png", "e.png", "f.png", "g.png", "h.png"]),
     smartQuery: fullUrls("smart-query", ["a.jpg", "b.jpg", "c.jpg", "d.jpg", "e.jpg", "f.jpg"]),

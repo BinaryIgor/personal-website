@@ -1,6 +1,5 @@
 const EXPANDED_CLASS = "expanded";
 const HIDDEN_CLASS = "hidden";
-const FADED_OUT_CLASS = "faded-out";
 const LOADER_WRAPPER_CLASS = "loader-wrapper";
 const LOADER_CLASS = "loader";
 
@@ -28,7 +27,6 @@ export function collapsible(title, body) {
             </section>`;
 }
 
-
 export function initCollapsibles() {
     document.querySelectorAll(".collapsible-container").forEach(c => {
         const icon = c.querySelector("span");
@@ -55,14 +53,21 @@ export function imageLoader(src, imgClass = "") {
             </div>`
 }
 
-export function initImageLoaders() {
+export function initImageLoaders(newSrc = null) {
     document.querySelectorAll(`.${LOADER_WRAPPER_CLASS}`).forEach(il => {
         const loader = il.querySelector(`.${LOADER_CLASS}`);
         const img = il.querySelector("img");
+
+        loader.classList.remove(HIDDEN_CLASS);
+        img.classList.add(HIDDEN_CLASS);
 
         img.addEventListener("load", () => {
             loader.classList.add(HIDDEN_CLASS);
             img.classList.remove(HIDDEN_CLASS);
         });
+
+        if (newSrc) {
+            img.src = newSrc;
+        }
     });
 }
