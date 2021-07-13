@@ -151,7 +151,7 @@ nav {
     z-index: 100;
     background-color: var(--menu-color);
     position: fixed;
-    top: -150vh;
+    top: -110vh;
     width: 100%;
     height: 100%;
     transition: all 0.5s ease-in-out;
@@ -405,7 +405,7 @@ p:not(:last-child) {
     flex-direction: column;
     top: 0;
     opacity: 0;
-    left: -150vw;
+    left: -110vw;
     z-index: 1;
     user-select: none;
     transition: all 0.75s ease-out;
