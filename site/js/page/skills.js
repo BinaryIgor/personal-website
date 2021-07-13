@@ -54,5 +54,5 @@ export function render(rootId = "component") {
         ${Components.collapsible("Other", sectionHtml(OTHER_CONTENT))}
     `);
 
-    Components.initAllCollapsibles();
+    Components.initCollapsibles();
 };

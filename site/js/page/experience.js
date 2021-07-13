@@ -52,5 +52,5 @@ export function render(rootId = "component") {
         ${Components.collapsible("Inovatica", sectionHtml(INOVATICA_CONTENT))}
     `);
 
-    Components.initAllCollapsibles();
+    Components.initCollapsibles();
 };

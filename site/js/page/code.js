@@ -89,6 +89,7 @@ const ALGORITHMS_AND_DATA_STRUCTURES_CONTENT = {
 
 const FOCUSED_IMAGE_CONTAINER_ID = "focused-image-container";
 const FOCUSED_IMAGE_CONTAINER_CLASS = "focused-image-container";
+const LOADER_WRAPPER_CLASS = "loader-fullscreen-wrapper";
 const DISPLAY_CLASS = "display";
 const HIDDEN_SCROLL_CLASS = "hidden-scroll";
 const IMAGE_CONTAINER_CLASS = "image-container";
@@ -167,6 +168,9 @@ export function render(rootId = "component") {
                 <div>&#10095</div>
             </div>
             <div class="${IMAGE_CONTAINER_CLASS}">
+                <div class="${LOADER_WRAPPER_CLASS} ${HIDDEN_CLASS}">
+                    <span class="loader">Loading...</span>
+                </div>
                 <img></img>
             </div>
             <div class="focused-image-container-background"></div>
@@ -180,7 +184,7 @@ export function render(rootId = "component") {
             ${Components.collapsible("Algorithms and Data Structures", sectionHtml(ALGORITHMS_AND_DATA_STRUCTURES_CONTENT))}
     `)}`;
 
-    Components.initAllCollapsibles();
+    Components.initCollapsibles();
 
     const focusedImageContainer = document.getElementById(FOCUSED_IMAGE_CONTAINER_ID);
 
@@ -188,6 +192,7 @@ export function render(rootId = "component") {
     const previousImage = previousImageContainer.querySelector('div');
     const nextImageContainer = document.querySelector(`.${ARROW_RIGHT_CLASS}`);
     const nextImage = nextImageContainer.querySelector(`div`);
+    const loaderWrapper = document.querySelector(`.${LOADER_WRAPPER_CLASS}`);
 
     const currentImageContainer = focusedImageContainer.querySelector(`.${IMAGE_CONTAINER_CLASS}`);
     const focusedImage = focusedImageContainer.querySelector(`.${IMAGE_CONTAINER_CLASS} > img`);
@@ -198,7 +203,10 @@ export function render(rootId = "component") {
 
     let currentZoom = 0;
 
-    focusedImage.addEventListener("load", () => focusedImage.classList.add(FADE_IN_CLASS));
+    focusedImage.addEventListener("load", () => {
+        focusedImage.classList.add(FADE_IN_CLASS);
+        loaderWrapper.classList.add(HIDDEN_CLASS);
+    });
 
     for (const gallery of document.querySelectorAll(`.${GALLERY_CLASS}`)) {
         setupGallery(gallery);
@@ -211,6 +219,9 @@ export function render(rootId = "component") {
 
         focusedImageContainer.classList.toggle(DISPLAY_CLASS);
         document.body.classList.toggle(HIDDEN_SCROLL_CLASS);
+
+        previousImageContainer.classList.add(HIDDEN_CLASS);
+        nextImageContainer.classList.add(HIDDEN_CLASS);
 
         resetZoomIf();
     };
@@ -284,6 +295,7 @@ export function render(rootId = "component") {
                 e.stopPropagation();
 
                 document.body.classList.toggle(HIDDEN_SCROLL_CLASS);
+                loaderWrapper.classList.remove(HIDDEN_CLASS);
 
                 setImageUrl(focusedImage, image);
 
@@ -310,6 +322,9 @@ export function render(rootId = "component") {
 
     function setImageUrl(focusedImage, image) {
         const url = image.getAttribute(IMAGE_URL_ATTRIBUTE);
+        
+        loaderWrapper.classList.remove(HIDDEN_CLASS);
+
         focusedImage.classList.remove(FADE_IN_CLASS);
         focusedImage.style.opacity = "0";
         focusedImage.src = url;

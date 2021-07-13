@@ -1,5 +1,8 @@
 const EXPANDED_CLASS = "expanded";
 const HIDDEN_CLASS = "hidden";
+const FADED_OUT_CLASS = "faded-out";
+const LOADER_WRAPPER_CLASS = "loader-wrapper";
+const LOADER_CLASS = "loader";
 
 const EXPAND = "+";
 const HIDE = "-";
@@ -26,7 +29,7 @@ export function collapsible(title, body) {
 }
 
 
-export function initAllCollapsibles() {
+export function initCollapsibles() {
     document.querySelectorAll(".collapsible-container").forEach(c => {
         const icon = c.querySelector("span");
         const content = c.nextElementSibling;
@@ -42,5 +45,24 @@ export function initAllCollapsibles() {
                 icon.textContent = EXPAND;
             }
         }
+    });
+}
+
+export function imageLoader(src, imgClass = "") {
+    return `<div class="${LOADER_WRAPPER_CLASS}">
+                <span class="${LOADER_CLASS}">Loading...</span>
+                <img class="${imgClass} ${HIDDEN_CLASS}" src="${src}"></img>
+            </div>`
+}
+
+export function initImageLoaders() {
+    document.querySelectorAll(`.${LOADER_WRAPPER_CLASS}`).forEach(il => {
+        const loader = il.querySelector(`.${LOADER_CLASS}`);
+        const img = il.querySelector("img");
+
+        img.addEventListener("load", () => {
+            loader.classList.add(HIDDEN_CLASS);
+            img.classList.remove(HIDDEN_CLASS);
+        });
     });
 }

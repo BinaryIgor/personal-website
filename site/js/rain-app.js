@@ -62,10 +62,10 @@ function newRainOptions() {
         fontSize: raintFontSize,
         fadeRange: 0.7,
         minimumCharChangeResistance: 80,
-        maximumCharChangeResistance: 99,
+        maximumCharChangeResistance: 98,
         columnsGap: 2,
         backgroundColor: 'hsla(0, 0%, 0%, 0%)',
-        firstCharLighterBy: 15
+        firstCharLighterBy: 20
     };
 }
 

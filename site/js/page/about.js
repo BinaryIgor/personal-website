@@ -5,7 +5,7 @@ const CONTENT = `
     <section class="expanded">
         <h2>Igor Roztropiński</h2>
         <p class="indented">born in 1994, Konin, Poland. Programmer, among other things.</p>
-            <img class="profile-image" src="${Images.profile}"></img>
+        ${Components.imageLoader(Images.profile, "profile-image")}
         <p>My road to become one was fairly long. Having wide range
             of interests, I studied psychology, food technology and electronics, not finishing any of them, searching
             for the craft to which I will want to commit for the long haul.
@@ -62,4 +62,6 @@ const CONTENT = `
 
 export function render(rootId = "component") {
     document.getElementById(rootId).innerHTML = Components.content(CONTENT);
+
+    Components.initImageLoaders();
 };
