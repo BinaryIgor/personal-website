@@ -49,7 +49,7 @@ function newRainOptions() {
     const raintFontSize = parseInt(extractedCssVar('rain-font-size'));
 
     return {
-        characters: `010101?`,
+        characters: `01010101?`,
         delay: -600,
         minimumSpeed: 21,
         maximumSpeed: 25,
@@ -61,12 +61,11 @@ function newRainOptions() {
         fontColor: rainColor,
         fontSize: raintFontSize,
         fadeRange: 0.7,
-        chainChangeResistance: 8,
         minimumCharChangeResistance: 50,
-        maximumCharChangeResistance: 100,
+        maximumCharChangeResistance: 99,
         columnsGap: 2,
         backgroundColor: 'hsla(0, 0%, 0%, 0%)',
-        firstCharLighterBy: 25
+        firstCharLighterBy: 15
     };
 }
 

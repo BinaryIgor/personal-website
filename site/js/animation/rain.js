@@ -90,6 +90,10 @@ export function Rain(userOptions) {
         return Math.ceil(Math.random() * (to - from) + from - 1);
     }
 
+    function randomResistance() {
+        return randomNumber(0, 1000);
+    }
+
     function randomFloat(from, to) {
         return Math.random() * (to - from) + from;
     }
@@ -113,7 +117,11 @@ export function Rain(userOptions) {
     }
 
     function randomCharacter() {
-        return new Character(options.characters.charAt(randomNumber(0, options.characters.length)), randomNumber(options.minimumCharChangeResistance, options.maximumCharChangeResistance));
+        return new Character(randomCharacterValue(), randomNumber(options.minimumCharChangeResistance, options.maximumCharChangeResistance));
+    }
+
+    function randomCharacterValue() {
+        return options.characters.charAt(randomNumber(0, options.characters.length));
     }
 
     function randomSpeed() {
@@ -204,7 +212,7 @@ export function Rain(userOptions) {
         this.fontFamily = 'monospace';
         this.fontColor = 'hsla(120, 87%, 53%, 1)';
         this.fadeRange = 0.7;
-        this.chainChangeResistance = 8;
+        this.chainChangeResistance = 900;
         this.minimumCharChangeResistance = 50;
         this.maximumCharChangeResistance = 100;
         this.columnsGap = 2;
@@ -246,9 +254,9 @@ export function Rain(userOptions) {
             }
         };
         this.randomizeCharacter = function (character) {
-            if (parseInt((performance.now() % (options.chainChangeResistance + character.changeResistance))) == 0) {
-                character.value = randomCharacter().value;
-                return true;
+            const resistance = randomResistance();
+            if (resistance > (options.chainChangeResistance + character.changeResistance)) {
+                character.value = randomCharacterValue();
             }
         };
         this.drawCharacters = function (chain) {
