@@ -5,6 +5,7 @@ import os
 import sys
 import shutil
 import assets_renamer
+import image_resizer
 import re
 from PIL import Image
 
@@ -26,7 +27,8 @@ DOCKER_DIR = path.join(ROOT_DIR, "nginx")
 NGINX_CONF_FILE = "nginx.conf"
 NGINX_CONF_PATH = path.join(ROOT_DIR, "nginx", NGINX_CONF_FILE)
 
-DEPLOY_LOCAL_NGINX_CONF_PATH = path.join(DEPLOY_LOCAL_ROOT_DIR, NGINX_CONF_FILE)
+DEPLOY_LOCAL_NGINX_CONF_PATH = path.join(
+    DEPLOY_LOCAL_ROOT_DIR, NGINX_CONF_FILE)
 
 DEPLOY_HOST = "igor@igor.roztropinski.com"
 DEPLOY_HOST_SSH_PORT = "44"
@@ -36,10 +38,12 @@ DEPLOY_REMOTE_SITE_DIR = "/usr/share/nginx/site"
 IMAGES_LINKS_JS_FILE_NAME = "images"
 IMAGE_NAME_OR_PATH_PATTERN = re.compile("(.*)\\.(png|jpeg|jpg)")
 
+TO_IGNORE_IN_DEPLOY_FILE_PATTERNS = re.compile("(.*)original(.*)")
+
 TO_EXCLUDE_FROM_ASSETS_RENAMING_PATTERNS = []
 
-MAX_IMAGE_WIDTH = 400
-MAX_IMAGE_HEIGHT = 400
+MAX_IMAGE_WIDTH = 300
+MAX_IMAGE_HEIGHT = 300
 RESIZED_IMAGE_PREFIX = "thumb"
 
 
@@ -48,13 +52,24 @@ def rendered_menu():
 
 
 def build():
+    def to_ignore_files(src, names):
+        to_ignore = []
+
+        for n in names:
+            full_path = path.join(src, n)
+            if re.match(TO_IGNORE_IN_DEPLOY_FILE_PATTERNS, full_path):
+                to_ignore.append(n)
+
+        return to_ignore
+
     print("Clearing build directory...")
     if path.exists(DEPLOY_LOCAL_ROOT_DIR):
         shutil.rmtree(DEPLOY_LOCAL_ROOT_DIR)
 
     print()
     print("Copying static content...")
-    shutil.copytree(SITE_DIR, DEPLOY_LOCAL_ROOT_CONTENT_DIR)
+    shutil.copytree(SITE_DIR, DEPLOY_LOCAL_ROOT_CONTENT_DIR,
+                    ignore=to_ignore_files)
 
     print()
     print("Renaming assets...")
@@ -226,7 +241,7 @@ def resize_images():
     print(f"Creating resized versions for {len(images_paths)} images")
     for p in images_paths:
         if not is_image_thumb(p):
-            resize_image(p)
+            image_resizer.execute(p, MAX_IMAGE_WIDTH, MAX_IMAGE_HEIGHT)
 
     print()
     print("Images resized")
@@ -235,37 +250,6 @@ def resize_images():
 def is_image_thumb(image_path):
     _, name = path.split(image_path)
     return name.startswith(RESIZED_IMAGE_PREFIX)
-
-
-def resize_image(image_path):
-    img = Image.open(image_path)
-
-    if img.width <= MAX_IMAGE_WIDTH and img.height <= MAX_IMAGE_HEIGHT:
-        scale = 1
-    elif img.width > img.height:
-        scale = MAX_IMAGE_WIDTH / img.width
-    else:
-        scale = MAX_IMAGE_HEIGHT / img.height
-
-    _, image_name = path.split(image_path)
-    output_image_path = image_path.replace(
-        image_name, f"{RESIZED_IMAGE_PREFIX}_{image_name}")
-
-    print(f"For {image_path} saving as {output_image_path}")
-
-    if scale == 1:
-        print("Image is in the limits already, not need to resize")
-        img.save(output_image_path)
-        return
-
-    print(
-        f"Applying scale: {scale} to get max_width: {MAX_IMAGE_WIDTH} and max_height: {MAX_IMAGE_HEIGHT}")
-
-    new_width = int(scale * img.width)
-    new_height = int(scale * img.height)
-
-    img = img.resize((new_width, new_height), Image.ANTIALIAS)
-    img.save(output_image_path)
 
 
 def build_and_run_locally():
