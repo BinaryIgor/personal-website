@@ -23,3 +23,6 @@ export const Stores = {
     dailyWisdom: "https://play.google.com/store/apps/details?id=control.self.igor.dailywisdom"
 };
 
+export const Libraries = {
+    maven: "https://search.maven.org/search?q=iprogrammerr"
+};
