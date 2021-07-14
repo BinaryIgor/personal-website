@@ -46,7 +46,7 @@ export function render(rootId = "component") {
             <p>Programming is my greatest passion, so I am
                 always learning and working on various <a href="/code">projects</a>.
                 I consider myself a programmer, not only web, desktop or mobile one. A problem solver, would perhaps be better description of me.
-                I am not married to any technology, language or framework. Most of my experience is related to
+                I am not married to any technology, language or framework. Most of my <a href="experience">experience</a> is related to
                 web development <a href="skills">using</a> Java and JavaScript related technologies.
                 Due to my work for Hycom and various side projects, I also have become proficient in Python.
                 Nevertheless, I am constantly expanding my expertise, always seeking for new knowledge and skills. 
@@ -65,4 +65,5 @@ export function render(rootId = "component") {
     document.getElementById(rootId).innerHTML = Components.content(content);
 
     Components.initImageLoaders();
+    Components.initInnerLinks();
 };

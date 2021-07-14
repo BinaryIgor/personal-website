@@ -1,3 +1,6 @@
+
+import * as Routes from "../routing/routes.js";
+
 const EXPANDED_CLASS = "expanded";
 const HIDDEN_CLASS = "hidden";
 const LOADER_WRAPPER_CLASS = "loader-wrapper";
@@ -68,6 +71,21 @@ export function initImageLoaders(newSrc = null) {
 
         if (newSrc) {
             img.src = newSrc;
+        }
+    });
+}
+
+export function initInnerLinks() {
+    document.querySelectorAll("a").forEach(a => {
+        const link = a.href;
+        const innerLink = link.includes(window.location.hostname);
+        
+        if (innerLink) {
+            a.onclick = e => {
+                e.preventDefault();
+                e.stopPropagation();
+                Routes.push(link);
+            }
         }
     });
 }
