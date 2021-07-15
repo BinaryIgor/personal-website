@@ -52,7 +52,7 @@ function newRainOptions() {
         characters: `01010101?`,
         delay: -600,
         minimumSpeed: 22,
-        maximumSpeed: 26,
+        maximumSpeed: 27,
         minimumChainLength: 10,
         maximumChainLength: 30,
         canvasId: 'canvas',
