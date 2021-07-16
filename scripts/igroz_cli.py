@@ -14,8 +14,6 @@ logging.basicConfig(level=logging.INFO)
 LOG = logging.getLogger()
 OWNER = "Igor"
 ROOT_DIR = path.split(os.getcwd())[0]
-# TODO: proper directory
-DEPLOY_ROOT_DIR = ROOT_DIR
 DEPLOY_LOCAL_ROOT_DIR = path.join(ROOT_DIR, "_deploy")
 DEPLOY_LOCAL_ROOT_CONTENT_DIR = path.join(DEPLOY_LOCAL_ROOT_DIR, "site")
 OUTPUT_JS_DIR = path.join(DEPLOY_LOCAL_ROOT_CONTENT_DIR, "js")
@@ -327,7 +325,7 @@ OPTIONS = {
 try:
     print(f"Welcome {OWNER}!")
     print("We are operating on...")
-    print(f'ROOT_DIR: {ROOT_DIR}, DEPLOY_ROOT_DIR: {DEPLOY_ROOT_DIR}')
+    print(f'ROOT_DIR: {ROOT_DIR}')
     print(
         f'Deploy package will be created in {DEPLOY_LOCAL_ROOT_DIR} directory')
     print()
