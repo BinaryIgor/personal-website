@@ -16,6 +16,7 @@ html {
     --main-text-color:  hsla(200, 80%, 10%, 0.9);
     --border-color: hsla(200, 80%, 20%, 1);
     --rain-color: hsla(200, 80%, 50%, 1);
+    --text-size: 1.1rem;
     --padding-little: 4px;
     --padding-small: 8px;
     --padding-medium: 16px;
@@ -278,6 +279,10 @@ nav {
     margin-bottom: var(--padding-next-paragraph);
 }
 
+.fragment > h2 {
+    font-size: 1.25rem;
+}
+
 section.expanded {
     margin-bottom: var(--padding-next-section);
 }
@@ -288,7 +293,7 @@ section > h1 {
 
 p {
     text-indent: var(--padding-medium);
-    font-size: 1.1rem;
+    font-size: var(--text-size);
 }
 
 p:not(:last-child) {
@@ -369,7 +374,7 @@ p:not(:last-child) {
     background-repeat: no-repeat;
     width: var(--gallery-width-four);
     height: var(--gallery-height-four);
-    opacity: 0.6;
+    opacity: 0.5;
 }
 
 .gallery-menu {
@@ -544,6 +549,7 @@ button.no-button[disabled] {
     html {
         font-size: 0.9rem;
         --nav-font-size: 2rem;
+        --text-size: 1.2rem;
     }
 
     .top-nav {

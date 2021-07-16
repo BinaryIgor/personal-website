@@ -57,8 +57,8 @@ export function render(rootId = "component") {
         const html = [];
         html.push(`
                 <div class="fragment">
-                    <h3>${section.position}</h3>
-                    <h3>${section.period}</h3>
+                    <h2>${section.position}</h2>
+                    <h2>${section.period}</h2>
                 </div>
                `);
 

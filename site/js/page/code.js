@@ -3,20 +3,11 @@ import { Images } from "../links/images.js";
 import { Repositories, Instances, Stores } from "../links/codes.js";
 
 
-//TODO: add virtuocracy content
-const VIRTUOCRACY_CONTENT = {
-    goal: "TODO",
-    description: "TODO",
-    images: [],
-    links: {
-        "Instance": Instances.virtuocracy,
-        "Code": Repositories.virtuocracy
-    }
-};
-
 const FOOD_CONTROLLER_CONTENT = {
     goal: "Easy to use mobile application for controlling food intake.",
-    description: `This was my first application written in Kotlin. It's entirely self-contained and is shipped with SQLite database containing most frequently eaten food products. It allows adding new ones, seting daily goals for food intake and keeping track of its history. All of which make it easy to control dieting habits.`,
+    description: `This was my first application written in Kotlin. 
+        It's entirely self-contained and is shipped with SQLite database containing most frequently eaten food products. 
+        It allows adding new ones, seting daily goals for food intake and keeping track of its history. All of which make it easy to control dieting habits.`,
     gallery: Images.foodController,
     links: {
         "Code": Repositories.foodController
@@ -25,12 +16,30 @@ const FOOD_CONTROLLER_CONTENT = {
 
 const SMART_QUERY_CONTENT = {
     goal: "Simple, yet powerful jdbc wrapper that gives both convenience and complete power over sql.",
-    description: `Finding many problems with ORMs and Hibernate especially, I looked for alternative approach. Being fan of SQL, I have trouble with justifing hiding it behind ORM magic. 
-        At the same time, writing repeative, simple SQL statements is very error-prone. <a href='https://www.jooq.org/'>JOOQ</a> is very nice, but I find it too complex. 
-        Being fanatic of simplicity and curious of how things work drives me to create this library. Related to this, I also created <a href='${Repositories.smartQueryMeta}'>database representation generator</a>.`,
+    description: `Finding many problems with ORMs and Hibernate especially, I looked for alternative approach.
+        Being fan of SQL, I have trouble with justifing hiding it behind ORM magic (experience that I have gained since only reinforces that view - ORM is a weak, leaky abstraction). 
+        At the same time, writing repeative, simple SQL statements is very error-prone. <a href='https://www.jooq.org/'>JOOQ</a> is pretty nice, <del>but I find it too complex</del>
+         (It just right, for medium and large projects). 
+        Being fanatic of simplicity and always curious of how things really work drove me to create this library.
+        Related to this, I also created <a href='${Repositories.smartQueryMeta}'>database representation generator</a>.`,
     gallery: Images.smartQuery,
     links: {
         "Code": Repositories.smartQuery
+    }
+};
+
+const VIRTUOCRACY_CONTENT = {
+    goal: "Creating a place for publishing various thoughts about growing virtualization of reality.",
+    description: `This project is something completely different. Together with my brother, we wanted to try our hand at blogging. 
+        As both of us are programmers and we like experimenting, we decided to code this blog ourselves. 
+        Frontend was done by using a mixture of static site generator - <a href="https://jekyllrb.com/">Jekyll</a> and Vue framework. 
+        Backend was wrriten in Java, using Vertx and JOOQ. 
+        We learned a lot during this journey - both in terms of programming and especially about writing and expressing ones thoughts clearly.
+        The most imporant part is, that we both prefer programming/engineering to writing/creating content and we will stick with it for now.`,
+    gallery: Images.virtuocracy,
+    links: {
+        "Instance": Instances.virtuocracy,
+        "Code": Repositories.virtuocracy
     }
 };
 
@@ -85,6 +94,11 @@ const ALGORITHMS_AND_DATA_STRUCTURES_CONTENT = {
     links: {
         "Code": Repositories.algorithmsAndDataStructures
     }
+};
+
+const PERSONAL_WEBSITE = {
+    goal: "TODO",
+    description: `TODO`
 };
 
 const FOCUSED_IMAGE_CONTAINER_ID = "focused-image-container";
@@ -178,10 +192,12 @@ export function render(rootId = "component") {
         ${Components.content(`
             ${Components.collapsible("Food Controller", sectionHtml(FOOD_CONTROLLER_CONTENT))}
             ${Components.collapsible("Smart Query", sectionHtml(SMART_QUERY_CONTENT))}
+            ${Components.collapsible("Wirtuokracja", sectionHtml(VIRTUOCRACY_CONTENT))}
             ${Components.collapsible("Daily Wisdom", sectionHtml(DAILY_WISDOM_CONTENT))}
             ${Components.collapsible("Bright Server", sectionHtml(BRIGHT_SERVER_CONTENT))}
             ${Components.collapsible("Gentle Request", sectionHtml(GENTLE_REQUEST_CONTENT))}
             ${Components.collapsible("Algorithms and Data Structures", sectionHtml(ALGORITHMS_AND_DATA_STRUCTURES_CONTENT))}
+            ${Components.collapsible("This website", sectionHtml(PERSONAL_WEBSITE))}
     `)}`;
 
     Components.initCollapsibles();

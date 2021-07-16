@@ -5,7 +5,7 @@ function projectUrl(name) {
 }
 
 export const Repositories = {
-    virtuocracy: projectUrl("wirtuokrokracja"),
+    virtuocracy: projectUrl("wirtuokracja"),
     foodController: projectUrl("Food-Controller"),
     smartQuery: projectUrl("Smart-Query"),
     smartQueryMeta: projectUrl("Smart-Query-Meta"),
