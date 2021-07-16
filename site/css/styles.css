@@ -12,10 +12,10 @@ html {
     --background-color: rgb(255,255,255);
     --content-background-color: rgba(255, 255, 255, 0.7);
     --menu-color: rgba(255, 255, 255, 0.85);
-    --text-color: hsla(200, 80%, 20%, 0.9);
-    --main-text-color:  hsla(200, 80%, 10%, 0.9);
-    --border-color: hsla(200, 80%, 20%, 1);
-    --rain-color: hsla(200, 80%, 50%, 1);
+    --text-color: hsla(200, 100%, 15%, 0.9);
+    --main-text-color:  hsla(200, 100%, 10%, 0.9);
+    --border-color: hsla(200, 100%, 15%, 1);
+    --rain-color: hsla(200, 100%, 50%, 1);
     --text-size: 1.1rem;
     --padding-little: 4px;
     --padding-small: 8px;
