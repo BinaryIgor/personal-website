@@ -42,7 +42,7 @@ html {
     --gallery-height-three: 24vw;
     --gallery-width-four: 10vw;
     --gallery-height-four: 13.5vw;
-    --arrow-size: 2.5rem;
+    --arrow-size: 2.25rem;
     --gallery-icons-size: 3.5rem;
     --close-icon-size: 3rem;
     --underline-offset: -4px;
@@ -239,7 +239,7 @@ nav {
 }
 
 .fade-in {
-    animation: fadeIn 3s ease 0s 1 forwards;
+    animation: fadeIn 2s ease 0s 1 forwards;
 }
 
 .fade-in-1 {
@@ -280,7 +280,7 @@ nav {
 }
 
 .fragment > h2 {
-    font-size: 1.25rem;
+    font-size: 1.3rem;
 }
 
 section.expanded {

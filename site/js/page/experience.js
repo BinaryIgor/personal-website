@@ -19,9 +19,9 @@ const HYCOM_CONTENT = {
             The absolute majority of our systems is not the next Facebook, Youtube, Netflix or Google and it will never have problems of their scale.`,
         "Tests": `Almost every application that I have created/modified here had very high test coverage (70%, often 80% and more). 
             We write both unit and integration tests, in both Python and Java applications.
-            After experience gained here and experimenting with many side projects I will never write anything of importance, without focusing on tests and testability first.
+            After this experience and experimenting with many side projects I will never write anything of importance, without focusing on tests and testability first.
             I have also encounter many drawbacks of heavy reliance on mocking. My approach to tests have evolved and is now very similar to one 
-            described in amazing article by <a href="https://www.jamesshore.com/v2/blog/2018/testing-without-mocks">James Shore: "Testing Without Mocks: A Pattern Language"</a>.`,
+            described in great article by <a href="https://www.jamesshore.com/v2/blog/2018/testing-without-mocks">James Shore: "Testing Without Mocks: A Pattern Language"</a>.`,
         "DevOps": `<del>Taking care and improving existing CI/CD infrastructure. 
             It's based on Jenkins and use host of Bash, Python, SQL and Ansible scripts.</del> 
             We rewrite it from scratch, using combination of Python scripts and AWS's CodeBuild service, automating everything that could be automated.

@@ -26,7 +26,7 @@ setupNavigation(topMobileNav, () => {
 });
 topMobileNav.addEventListener("click", e => e.stopPropagation());
 
-const delay = Routes.isMain() ? 2000 : 1000;
+const delay = Routes.isMain() ? 3000 : 1000;
 
 setTimeout(() => {
     document.querySelectorAll(".hidden").forEach(h => h.classList.remove("hidden"));

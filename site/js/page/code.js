@@ -19,8 +19,8 @@ const SMART_QUERY_CONTENT = {
     description: `Finding many problems with ORMs and Hibernate especially, I looked for alternative approach.
         Being fan of SQL, I have trouble with justifing hiding it behind ORM magic (experience that I have gained since only reinforces that view - ORM is a weak, leaky abstraction). 
         At the same time, writing repeative, simple SQL statements is very error-prone. <a href='https://www.jooq.org/'>JOOQ</a> is pretty nice, <del>but I find it too complex</del>
-         (It just right, for medium and large projects). 
-        Being fanatic of simplicity and always curious of how things really work drove me to create this library.
+         (It's just right, for medium and large projects). 
+        Being fanatic of simplicity and always curious of how things really work, drove me to create this library.
         Related to this, I also created <a href='${Repositories.smartQueryMeta}'>database representation generator</a>.`,
     gallery: Images.smartQuery,
     links: {
@@ -29,7 +29,7 @@ const SMART_QUERY_CONTENT = {
 };
 
 const VIRTUOCRACY_CONTENT = {
-    goal: "Creating a place for publishing various thoughts about growing virtualization of reality.",
+    goal: "Creating place for publishing various thoughts about growing virtualization of reality.",
     description: `This project is something completely different. Together with my brother, we wanted to try our hand at blogging. 
         As both of us are programmers and we like experimenting, we decided to code this blog ourselves. 
         Frontend was done by using a mixture of static site generator - <a href="https://jekyllrb.com/">Jekyll</a> and Vue framework. 
