@@ -12,7 +12,8 @@ export const Repositories = {
     dailyWisdomBackend: projectUrl("Daily-Wisdom-Backend"),
     brightServer: projectUrl("Bright-Server"),
     gentleRequest: projectUrl("Gentle-Request"),
-    algorithmsAndDataStructures: projectUrl("Algorithms-Data-Structures")
+    algorithmsAndDataStructures: projectUrl("Algorithms-Data-Structures"),
+    personalWebsite: projectUrl("personal-website")
 };
 
 export const Instances = {

@@ -61,8 +61,11 @@ const DAILY_WISDOM_CONTENT = {
 
 const BRIGHT_SERVER_CONTENT = {
     goal: "Lightweight, standalone easy to use http server and java web framework.",
-    description: `Soon after I began to search for less complex and opinionated alternatives to Spring I started to use Jetty in embedded mode. That was pretty good, but I think that idea of embedded servers can be further simplified.
-        My goal is to provide most of the conveniences that Spring gives when developing web applications, but at the same time create something a lot simpler and lightweight. It doesn't have any dependencies and its API is so simple that any seasoned Java developer could become familiar with it under an hour.`,
+    description: `Soon after I began to search for less complex and opinionated alternatives to Spring I started to use Jetty in embedded mode. 
+        That was pretty good, but I think that idea of embedded servers can be further simplified.
+        <del>My goal is to provide most of the conveniences that Spring gives when developing web applications, but at the same time create something a lot simpler and lightweight</del>
+         (It was amazing, eye-opening and confidence boosting, learning experience). 
+        It doesn't have any dependencies and its API is so simple that any seasoned Java developer could become familiar with it under an hour.`,
     gallery: Images.brightServer,
     links: {
         "Code": Repositories.brightServer
@@ -71,8 +74,10 @@ const BRIGHT_SERVER_CONTENT = {
 
 const GENTLE_REQUEST_CONTENT = {
     goal: "Compact library for making http requests.",
-    description: `When writing heavily reliant on http protocol Android applications I was never happy with libraries available on the market. Furthermore, as I have already written my own <a href="${Repositories.brightServer}">http server</a>
-        I took the opportunity to test it from the client side and deepen my knowledge about http protocol. It has simple, yet powerful api, which allows sending and receiving bytes, text, json and files. 
+    description: `When writing heavily reliant on http protocol Android applications I was never happy with libraries available on the market. 
+        Furthermore, as I have already written my own <a href="${Repositories.brightServer}">http server</a>
+        I took the opportunity to test it from the client side and deepen my knowledge about http protocol. 
+        It has simple, yet powerful api, which allows sending and receiving bytes, text, json and files. 
         Multipart requests and asynchronicity are also supported.`,
     gallery: Images.gentleRequest,
     links: {
@@ -83,8 +88,10 @@ const GENTLE_REQUEST_CONTENT = {
 const ALGORITHMS_AND_DATA_STRUCTURES_CONTENT = {
     goal: "Implementation of various algorithms and data structures.",
     description: `This is the documentation of my interest in this fundamental topic. It has solutions for many popular problems like <a href="${Repositories.algorithmsAndDataStructures}/blob/master/src/main/java/com/iprogrammerr/algorithms_data_structures/algorithm/DynamicTwoSumProblemSolution.java">Two Sum Problem</a>,
-        <a href="${Repositories.algorithmsAndDataStructures}/blob/master/src/main/java/com/iprogrammerr/algorithms_data_structures/algorithm/ReservoirSampling.java" >Reservoir Sampling</a>, <a href="${Repositories.algorithmsAndDataStructures}/tree/master/src/main/java/com/iprogrammerr/algorithms_data_structures/search">searching</a>,
-        <a href="${Repositories.algorithmsAndDataStructures}/tree/master/src/main/java/com/iprogrammerr/algorithms_data_structures/sort">sorting</a>, <a href="${Repositories.algorithmsAndDataStructures}/tree/master/src/main/java/com/iprogrammerr/algorithms_data_structures/graph">graph algorthms</a> or 
+        <a href="${Repositories.algorithmsAndDataStructures}/blob/master/src/main/java/com/iprogrammerr/algorithms_data_structures/algorithm/ReservoirSampling.java" >Reservoir Sampling</a>, 
+        <a href="${Repositories.algorithmsAndDataStructures}/tree/master/src/main/java/com/iprogrammerr/algorithms_data_structures/search">searching</a>,
+        <a href="${Repositories.algorithmsAndDataStructures}/tree/master/src/main/java/com/iprogrammerr/algorithms_data_structures/sort">sorting</a>, 
+        <a href="${Repositories.algorithmsAndDataStructures}/tree/master/src/main/java/com/iprogrammerr/algorithms_data_structures/graph">graph algorithms</a> or 
         <a href="${Repositories.algorithmsAndDataStructures}/tree/master/src/main/java/com/iprogrammerr/algorithms_data_structures/cache">cache</a>. 
         There are implementations of popular data structures like <a href="${Repositories.algorithmsAndDataStructures}/tree/master/src/main/java/com/iprogrammerr/algorithms_data_structures/tree">trees</a>,
         <a href="${Repositories.algorithmsAndDataStructures}/tree/master/src/main/java/com/iprogrammerr/algorithms_data_structures/hashtable">hash tables</a> and <a href="${Repositories.algorithmsAndDataStructures}/tree/master/src/main/java/com/iprogrammerr/algorithms_data_structures/queue">queues</a>. 
@@ -97,8 +104,16 @@ const ALGORITHMS_AND_DATA_STRUCTURES_CONTENT = {
 };
 
 const PERSONAL_WEBSITE = {
-    goal: "TODO",
-    description: `TODO`
+    goal: "Simple, self contained website with easy to change content.",
+    description: `I wanted to have easy to edit and maintain, personal website. 
+        It was achieved by creating simple SPA with static content (so without a need for backend), 
+        which is served by Nginx. Deployment is automated thanks to a few python scripts and everything is deployed on VPS.
+        Whole JS code is bundled (using <a href="https://rollupjs.org/">Rollup</a>) and minified (using <a href="https://terser.org/">terser</a>). 
+        Thanks to this approach, JS bundle with app code and content is pretty small (around 35KB) and besides images, 
+        there is no need to load any data from the server (which, like all assets, are cached).`,
+    links: {
+        "Code": Repositories.personalWebsite
+    }
 };
 
 const FOCUSED_IMAGE_CONTAINER_ID = "focused-image-container";
