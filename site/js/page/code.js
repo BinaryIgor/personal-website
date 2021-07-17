@@ -119,6 +119,7 @@ const PERSONAL_WEBSITE = {
 const FOCUSED_IMAGE_CONTAINER_ID = "focused-image-container";
 const FOCUSED_IMAGE_CONTAINER_CLASS = "focused-image-container";
 const LOADER_WRAPPER_CLASS = "loader-fullscreen-wrapper";
+const LOADER_GALLERY_CLASS = "loader-gallery";
 const DISPLAY_CLASS = "display";
 const HIDDEN_SCROLL_CLASS = "hidden-scroll";
 const IMAGE_CONTAINER_CLASS = "image-container";
@@ -154,7 +155,13 @@ export function render(rootId = "component") {
 
             html.push(`<div class="gallery">`)
             for (const i of section.gallery) {
-                html.push(`<div data-image="${i}" style="background-image: url('${thumbImageUrl(i)}')"></div>`);
+                html.push(`
+                    <div ${IMAGE_URL_ATTRIBUTE}="${i}">
+                        <div class="${LOADER_GALLERY_CLASS}">
+                            Loading...
+                        </div>
+                        <img class="gallery-image ${HIDDEN_CLASS}">
+                    </div>`);
             }
             html.push("</div>")
         }
@@ -215,7 +222,23 @@ export function render(rootId = "component") {
             ${Components.collapsible("This website", sectionHtml(PERSONAL_WEBSITE))}
     `)}`;
 
-    Components.initCollapsibles();
+    Components.initCollapsibles(extended => {
+        const loaders = extended.querySelectorAll(`.${LOADER_GALLERY_CLASS}`);
+        loaders.forEach(l => {
+            const parent = l.parentElement;
+            const img = parent.querySelector("img");
+
+            l.classList.remove(HIDDEN_CLASS);
+            img.classList.add(HIDDEN_CLASS);
+
+            img.onload = () => {
+                l.classList.add(HIDDEN_CLASS);
+                img.classList.remove(HIDDEN_CLASS);
+            };
+
+            img.src = thumbImageUrl(parent.getAttribute(IMAGE_URL_ATTRIBUTE));
+        });
+    });
 
     const focusedImageContainer = document.getElementById(FOCUSED_IMAGE_CONTAINER_ID);
 
@@ -316,7 +339,7 @@ export function render(rootId = "component") {
     };
 
     function setupGallery(gallery) {
-        const images = gallery.querySelectorAll('div');
+        const images = gallery.children;
         let focusedIdx = -1;
 
         for (let i = 0; i < images.length; i++) {
@@ -353,7 +376,7 @@ export function render(rootId = "component") {
 
     function setImageUrl(focusedImage, image) {
         const url = image.getAttribute(IMAGE_URL_ATTRIBUTE);
-        
+
         loaderWrapper.classList.remove(HIDDEN_CLASS);
 
         focusedImage.classList.remove(FADE_IN_CLASS);

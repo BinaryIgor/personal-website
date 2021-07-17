@@ -32,7 +32,7 @@ export function collapsible(title, body) {
             </section>`;
 }
 
-export function initCollapsibles() {
+export function initCollapsibles(onExpand = null) {
     document.querySelectorAll(".collapsible-container").forEach(c => {
         const icon = c.querySelector("span");
         const content = c.nextElementSibling;
@@ -44,6 +44,9 @@ export function initCollapsibles() {
 
             if (icon.textContent == EXPAND) {
                 icon.textContent = HIDE;
+                if (onExpand) {
+                    onExpand(c.parentElement);
+                }
             } else {
                 icon.textContent = EXPAND;
             }
@@ -54,7 +57,7 @@ export function initCollapsibles() {
 export function imageLoader(src, imgClass = "") {
     return `<div class="${LOADER_WRAPPER_CLASS}">
                 <span class="${LOADER_CLASS}">Loading...</span>
-                <img class="${imgClass} ${HIDDEN_CLASS}" src="${src}"></img>
+                <img class="${imgClass} ${HIDDEN_CLASS}" src="${src}">
             </div>`
 }
 
