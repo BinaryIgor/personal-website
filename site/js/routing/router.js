@@ -17,6 +17,11 @@ class Router {
         return this._resolve(route);
     }
 
+    replace(route) {
+        window.history.replaceState(null, null, route);
+        return this._resolve(route);
+    }
+
     _resolve(route) {
         route = this._routeWithoutLeadingSlash(route);
 

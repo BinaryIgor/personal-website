@@ -7,7 +7,7 @@ function setupNavigation(nav, afterPushHook = null) {
             e.preventDefault();
             e.stopPropagation();
 
-            Routes.push(a.href);
+            Routes.pushOrReplace(a.href);
 
             if (afterPushHook) {
                 afterPushHook();
@@ -22,14 +22,12 @@ const topMobileNav = document.querySelector(".top-nav-mobile");
 setupNavigation(topNav);
 setupNavigation(topMobileNav, () => {
     topMobileNav.classList.remove('display');
-    document.body.classList.remove("modal-open");
 });
 topMobileNav.addEventListener("click", e => e.stopPropagation());
 
-const delay = Routes.isMain() ? 3000 : 1000;
+const delay = Routes.isMain() ? 2000 : 1000;
 
 setTimeout(() => {
     document.querySelectorAll(".hidden").forEach(h => h.classList.remove("hidden"));
-
-    Routes.push();
+    Routes.pushOrReplace();
 }, delay);

@@ -1,6 +1,8 @@
 
 import * as Routes from "../routing/routes.js";
 
+const COMPONENT_ID = "component";
+
 const EXPANDED_CLASS = "expanded";
 const HIDDEN_CLASS = "hidden";
 const LOADER_WRAPPER_CLASS = "loader-wrapper";
@@ -75,16 +77,16 @@ export function initImageLoaders(newSrc = null) {
     });
 }
 
-export function initInnerLinks() {
-    document.querySelectorAll("a").forEach(a => {
+export function initInnerLinks(root = document.getElementById(COMPONENT_ID)) {
+    root.querySelectorAll("a").forEach(a => {
         const link = a.href;
         const innerLink = link.includes(window.location.hostname);
-        
+
         if (innerLink) {
             a.onclick = e => {
                 e.preventDefault();
                 e.stopPropagation();
-                Routes.push(link);
+                Routes.pushOrReplace(link);
             }
         }
     });
