@@ -1,9 +1,17 @@
 import * as Components from "../component/components.js";
 
 
+const UNCAPPED_CONTENT = {
+    position: "Backend Engineer",
+    period: "2021.11 - ",
+    experience: {
+        "Backend": `All things, backend related for <a href="https://weareuncapped.com">Uncapped</a>.`
+    }
+}
+
 const HYCOM_CONTENT = {
     position: "Java/Python developer",
-    period: "2019.11 - ",
+    period: "2019.11 - 2021.11",
     experience: {
         "Data Lake": `Creating and modifying apps that consume data from various resources, do some sort of processing with it and/or send/store it.
          All of them are containerized and deployed on AWS and make heavy use of its infrastructure, including RDS, DynamoDB, SQS, SNS, ECS and S3.
@@ -74,6 +82,7 @@ export function render(rootId = "component") {
     const root = document.getElementById(rootId);
     
     root.innerHTML = Components.content(`
+        ${Components.collapsible("Uncapped", sectionHtml(UNCAPPED_CONTENT))}
         ${Components.collapsible("Hycom", sectionHtml(HYCOM_CONTENT))}
         ${Components.collapsible("Inovatica", sectionHtml(INOVATICA_CONTENT))}
     `);
