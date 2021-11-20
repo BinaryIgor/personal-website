@@ -36,13 +36,14 @@ export function render(rootId = "component") {
                 domain specific Java applications that were interacting with <a href="http://www.ros.org">ROS</a> (Robot Operating System).
                 From the very first days of my career, I was relucatant to specialize. 
                 There is a burning desire in me to know and understand everything, and to acquire as much skills as possible.</p>
-            <p>Currently, I am working for <a href="https://www.hycom.pl">Hycom</a>.
+            <p>Afterwards, I worked for <a href="https://www.hycom.pl">Hycom</a>.
                 At at the very begining, I was involved in creating data lake, dealing with collecting and analyzing large amounts of data and
                 building infrastructure that makes it possible.
                 My responsibilities range from writing custom Java and Python applications to managing CI/CD pipelines, automating repeating tasks,
                 optimizing databases performance or even performing data analysis, occasionally. Again, not long after that, I got involved in working on Java and microservices based system. 
                 Seeing the whole picture of complex systems, being able to understand, design and implement their various parts is something that gives me tremendous ammount of joy.
             </p>
+            <p>Currently, I am working as a Backend Engineer for <a href="https://weareuncapped.com">Uncapped</a>, where things are moving very fast.</p>
             <p>Programming is my greatest passion, so I am
                 always learning and working on various <a href="/code">projects</a>.
                 I consider myself a programmer, not only web, desktop or mobile one. A problem solver, would perhaps be better description of me.
