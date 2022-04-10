@@ -43,7 +43,8 @@ export function render(rootId = "component") {
                 optimizing databases performance or even performing data analysis, occasionally. Again, not long after that, I got involved in working on Java and microservices based system. 
                 Seeing the whole picture of complex systems, being able to understand, design and implement their various parts is something that gives me tremendous ammount of joy.
             </p>
-            <p>Currently, I am working as a Backend Engineer for <a href="https://weareuncapped.com">Uncapped</a>, where things are moving very fast.</p>
+            <p>Then, I was a Backend Engineer in <a href="https://weareuncapped.com">Uncapped</a>, where things are moving rather fast.</p>
+            <p>Currently, I am working with my brother on our own idea, which will be public soon: <a href="http://hairo.io">hairo.io</a>.
             <p>Programming is my greatest passion, so I am
                 always learning and working on various <a href="/code">projects</a>.
                 I consider myself a programmer, not only web, desktop or mobile one. A problem solver, would perhaps be better description of me.

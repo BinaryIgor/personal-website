@@ -3,7 +3,7 @@ import * as Components from "../component/components.js";
 
 const UNCAPPED_CONTENT = {
     position: "Backend Engineer",
-    period: "2021.11 - ",
+    period: "2021.11 - 2022.04",
     experience: {
         "Backend": `All things, backend related for <a href="https://weareuncapped.com">Uncapped</a>.`
     }
