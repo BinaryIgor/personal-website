@@ -1,5 +1,15 @@
 import * as Components from "../component/components.js";
 
+const HAIRO_CONTENT = {
+    position: "Founder",
+    period: "2022.06",
+    experience: {
+        "Backend": `All things, backend related.`,
+        "Infrastructure": `All things, infrastructure related.`,
+        "Marketing": `All things, marketing related.`,
+        "Delivering": `Everything that needs to be done to improve and market our <a href="https://hairo.io">idea</a>. In any way, shape or form.`
+    }
+}
 
 const UNCAPPED_CONTENT = {
     position: "Backend Engineer",
@@ -82,6 +92,7 @@ export function render(rootId = "component") {
     const root = document.getElementById(rootId);
     
     root.innerHTML = Components.content(`
+        ${Components.collapsible("Hairo", sectionHtml(HAIRO_CONTENT))}
         ${Components.collapsible("Uncapped", sectionHtml(UNCAPPED_CONTENT))}
         ${Components.collapsible("Hycom", sectionHtml(HYCOM_CONTENT))}
         ${Components.collapsible("Inovatica", sectionHtml(INOVATICA_CONTENT))}
