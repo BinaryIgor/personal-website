@@ -17,7 +17,7 @@ export function render(rootId = "component") {
             <p class="indented">born in 1994, Konin, Poland. Programmer, among other things.</p>
             ${Components.imageLoader(profileImageUrl(), "profile-image")}
             <p>My road to become one was fairly long. Having many varied interests, I studied psychology, food technology and electronics.
-                I didn't finish any of these, continuously expanding my general knowledge, 
+                I didn't finish any of these majors, continuously expanding my general knowledge, 
                 exploring various paths and searching for the craft to which I will want to commit for the long haul and put all my heart into it.
                 In the meantime, I held various odd jobs. Among them were work in a construction,
                 paper carton production, electronics production, on a peony plantation, as a postman, bodyguard and a
