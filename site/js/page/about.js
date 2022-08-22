@@ -17,7 +17,7 @@ export function render(rootId = "component") {
             <p class="indented">born in 1994, Konin, Poland. Programmer, among other things.</p>
             ${Components.imageLoader(profileImageUrl(), "profile-image")}
             <p>My road to become one was fairly long. Having many varied interests, I studied psychology, food technology and electronics.
-                I didn't finish any of them, continuously expanding my general knowledge, 
+                I didn't finish any of these majors, continuously expanding my general knowledge, 
                 exploring various paths and searching for the craft to which I will want to commit for the long haul and put all my heart into it.
                 In the meantime, I held various odd jobs. Among them were work in a construction,
                 paper carton production, electronics production, on a peony plantation, as a postman, bodyguard and a
@@ -45,6 +45,8 @@ export function render(rootId = "component") {
             </p>
             <p>Then, I was a Backend Engineer in <a href="https://weareuncapped.com">Uncapped</a>, where things were moving rather fast.</p>
             <p>Currently, I am working with my brother, Aleksander Roztropiński, on our own idea, which is <a href="http://hairo.io">Hairo</a>, the first, automated system for meeting people.
+            At the same time, we are engaged in freelance software development at our own company - <a href="http://codyn.io">Codyn</a>.
+            </p>
             <p>Programming is my greatest passion, so I am
                 always learning and working on various <a href="/code">projects</a>.
                 I consider myself a programmer, not only web, desktop or mobile one. A problem solver, would perhaps be better description of me.
