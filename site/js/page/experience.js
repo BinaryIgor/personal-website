@@ -1,13 +1,24 @@
 import * as Components from "../component/components.js";
 
+const CODYN_CONTENT = {
+    position: "Owner and Software Developer",
+    period: "2022.08",
+    experience: {
+        "Software Development": `Custom software development for various clients. 
+        If you have any problem that can be solved by the code, feel free to reach us at <a href="https://codyn.io">Codyn</a>.`
+    }
+};
+
 const HAIRO_CONTENT = {
     position: "Founder",
     period: "2022.06",
     experience: {
-        "Backend": `All things, backend related.`,
-        "Infrastructure": `All things, infrastructure related.`,
-        "Marketing": `All things, marketing related.`,
-        "Delivering": `Everything that needs to be done to improve and market our <a href="https://hairo.io">idea</a>. In any way, shape or form.`
+        "Backend": `All things, backend related. Used technologies/paradigms: Java 17, Modular Monolith, JOOQ, PostgreSQL, RabbitMQ, WebRTC, WebSockets and Web Push Notifications.`,
+        "Infrastructure": `All things, infrastructure related.
+         Mostly the design and implementation of custom infrastructure. It was build on <a href="https://digitalocean.com">DigitalOcean</a> using Docker, Python/Bash scripts and is constantly monitored with the help of Grafana.`,
+        "Marketing": `All things, marketing related. Social media mainly.`,
+        "Delivering": `Everything that needs to be done to improve and market our <a href="https://hairo.io">idea</a>, together with my brother, Aleksander Roztropiński.
+        In any way, shape or form.`
     }
 }
 
@@ -15,12 +26,17 @@ const UNCAPPED_CONTENT = {
     position: "Backend Engineer",
     period: "2021.11 - 2022.04",
     experience: {
-        "Backend": `All things, backend related for <a href="https://weareuncapped.com">Uncapped</a>.`
+        "Backend": `All things, backend related for <a href="https://weareuncapped.com">Uncapped</a>.
+        I worked on their set of products, both internal and client facing.
+        Most important technologies/paradigms used were: Java 17, Spring Boot, Microservices, GCP, JOOQ, BigQuery and Kubernetes.
+        <br>
+        From time to time, I also implemented some small changes on the backoffice frontend, written in React.
+        `
     }
 }
 
 const HYCOM_CONTENT = {
-    position: "Java/Python developer",
+    position: "Java/Python Developer",
     period: "2019.11 - 2021.11",
     experience: {
         "Data Lake": `Creating and modifying apps that consume data from various resources, do some sort of processing with it and/or send/store it.
@@ -49,7 +65,7 @@ const HYCOM_CONTENT = {
 };
 
 const INOVATICA_CONTENT = {
-    position: "Java developer",
+    position: "Java Developer",
     period: "2017.09 - 2019.11",
     experience: {
         "Mobile": `Writing native mobile apps using Java and Kotlin. 
@@ -92,6 +108,7 @@ export function render(rootId = "component") {
     const root = document.getElementById(rootId);
     
     root.innerHTML = Components.content(`
+        ${Components.collapsible("Codyn", sectionHtml(CODYN_CONTENT))}
         ${Components.collapsible("Hairo", sectionHtml(HAIRO_CONTENT))}
         ${Components.collapsible("Uncapped", sectionHtml(UNCAPPED_CONTENT))}
         ${Components.collapsible("Hycom", sectionHtml(HYCOM_CONTENT))}
