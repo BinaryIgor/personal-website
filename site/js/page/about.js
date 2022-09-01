@@ -44,8 +44,7 @@ export function render(rootId = "component") {
                 Seeing the whole picture of complex systems, being able to understand, design and implement their various parts is something that gives me tremendous ammount of joy.
             </p>
             <p>Then, I was a Backend Engineer in <a href="https://weareuncapped.com">Uncapped</a>, where things were moving rather fast.</p>
-            <p>Currently, I am working with my brother, Aleksander Roztropiński, on our own idea, which is <a href="http://hairo.io">Hairo</a>, the first, automated system for meeting people.
-            At the same time, we are engaged in a freelance software development at our own company - <a href="http://codyn.io">Codyn</a>.
+            <p>Currently, I am working with my brother, Aleksander Roztropiński, on our own idea. It is <a href="http://hairo.io">Hairo</a>, the first, automated system for meeting people.
             </p>
             <p>Programming is my greatest passion, so I am
                 always learning and working on various <a href="/code">projects</a>.

@@ -1,17 +1,8 @@
 import * as Components from "../component/components.js";
 
-const CODYN_CONTENT = {
-    position: "Owner and Software Developer",
-    period: "2022.08",
-    experience: {
-        "Software Development": `Custom software development for various clients. 
-        If you have any problem that can be solved by the code, feel free to reach us at <a href="https://codyn.io">Codyn</a>.`
-    }
-};
-
 const HAIRO_CONTENT = {
     position: "Founder",
-    period: "2022.06",
+    period: "2022.04",
     experience: {
         "Backend": `All things, backend related. Used technologies/paradigms: Java 17, Modular Monolith, JOOQ, PostgreSQL, RabbitMQ, WebRTC, WebSockets and Web Push Notifications.`,
         "Infrastructure": `All things, infrastructure related.
@@ -20,7 +11,7 @@ const HAIRO_CONTENT = {
         "Delivering": `Everything that needs to be done to improve and market our <a href="https://hairo.io">idea</a>, together with my brother, Aleksander Roztropiński.
         In any way, shape or form.`
     }
-}
+};
 
 const UNCAPPED_CONTENT = {
     position: "Backend Engineer",
@@ -33,7 +24,7 @@ const UNCAPPED_CONTENT = {
         From time to time, I also implemented some small changes on the backoffice frontend, written in React.
         `
     }
-}
+};
 
 const HYCOM_CONTENT = {
     position: "Java/Python Developer",
@@ -108,7 +99,6 @@ export function render(rootId = "component") {
     const root = document.getElementById(rootId);
     
     root.innerHTML = Components.content(`
-        ${Components.collapsible("Codyn", sectionHtml(CODYN_CONTENT))}
         ${Components.collapsible("Hairo", sectionHtml(HAIRO_CONTENT))}
         ${Components.collapsible("Uncapped", sectionHtml(UNCAPPED_CONTENT))}
         ${Components.collapsible("Hycom", sectionHtml(HYCOM_CONTENT))}
