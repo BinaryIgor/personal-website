@@ -22,16 +22,18 @@ const LANGUAGES_CONTENT = {
 };
 
 const ENVIRONMENTS_CONTENT = {
-    "Web": `I created and participated in development of a few backends and websites, using both monolith and microservices architecture.
-        I am familiar with REST API concepts, HTTP protocol, HTML, CSS and JavaScript.`,
-    "Cloud": `Work in data lake project, which consists of various, dockerized apps, scripts and jobs deployed on AWS allowed me to learn specifics of cloud environment.`,
-    "Command Line": `I authored many programs and algorithms that can be interacted with only through cli. 
+    "Web": `I created and participated in a development of many backends and websites, using monolith, modular monolith and microservices architectures alike.
+        I am familiar with REST API concepts, HTTP protocol, WebRTC, HTML, CSS and JavaScript.`,
+    "Cloud": `Work in the Data Lake project, which consisted of various, dockerized apps, scripts and jobs deployed on AWS allowed me to learn the specifics of cloud environment.
+        I also had a chance to work with the GCP.`,
+    "Command Line": `I authored many programs and algorithms that can be interacted with only through CLI. 
         This includes utility programs like file transformers, parsers, mappers or custom CI/CD pipelines wrappers.
-        Participating in autonomous forklift project, when working for Inovatica, I developed a few algorithms exchanging data over TCP/IP using <a href="https://hazelcast.com/">Hazelcast</a>.`,
-    "Android": `I wrote quite a few native Android apps. Most of them used RESTful API as a data source.
-        In two cases, SQLite database and periodical synchronization of data with backend was used.
-        More than once there was a need to integrate with Google or Facebook services and to use hardware features.`,
-    "Desktop": `Creating apps using Swing and JavaFX. One of them had to work on a small, resistive touchscreen, which required very customized approach.`
+        Participating in the autonomous forklift project, when working for Inovatica, 
+        I developed a few algorithms that were exchanging data over TCP/IP, using <a href="https://hazelcast.com/">Hazelcast framework</a>.`,
+    "Android": `I wrote a few native Android apps. Most of them used RESTful API as a data source.
+        In two cases, SQLite database and periodical synchronization of data with backend were used.
+        More than once, there was a need to integrate with Google or Facebook services and to use hardware features.`,
+    "Desktop": `Creating apps using Swing and JavaFX. One of them had to work on a small, resistive touchscreen, which required customized approach.`
 };
 
 const TECHNOLOGIES_CONTENT = {
