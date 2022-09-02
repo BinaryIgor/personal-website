@@ -16,12 +16,12 @@ const FOOD_CONTROLLER_CONTENT = {
 
 const SMART_QUERY_CONTENT = {
     goal: "Simple, yet powerful jdbc wrapper that gives both convenience and complete power over sql.",
-    description: `Finding many problems with ORMs and Hibernate especially, I looked for alternative approach.
-        Being fan of SQL, I have trouble with justifing hiding it behind ORM magic (experience that I have gained since only reinforces that view - ORM is a weak, leaky abstraction). 
-        At the same time, writing repeative, simple SQL statements is very error-prone. <a href='https://www.jooq.org/'>JOOQ</a> is pretty nice, <del>but I find it too complex</del>
+    description: `Finding many problems with ORMs and Hibernate especially, I looked for alternatives.
+        Being a fan of SQL, I have problems with hiding it behind ORM magic (experience that I have gained since that time only reinforced that view - ORM is a weak, leaky abstraction). 
+        At the same time, writing repetitive, simple SQL statements is highly error-prone. <a href='https://www.jooq.org/'>JOOQ</a> is pretty nice, <del>but I find it too complex</del>
          (It's just right, for medium and large projects). 
-        Being fanatic of simplicity and always curious of how things really work, drove me to create this library.
-        Related to this, I also created <a href='${Repositories.smartQueryMeta}'>database representation generator</a>.`,
+        Being a fanatic of simplicity and being always curious of how things really work, drove me to create this library.
+        Related to this, I also created a <a href='${Repositories.smartQueryMeta}'>database representation generator</a>.`,
     gallery: Images.smartQuery,
     links: {
         "Code": Repositories.smartQuery
@@ -29,13 +29,14 @@ const SMART_QUERY_CONTENT = {
 };
 
 const VIRTUOCRACY_CONTENT = {
-    goal: "Creating place for publishing various thoughts about growing virtualization of reality.",
-    description: `This project is something completely different. Together with my brother, we wanted to try our hand at blogging. 
+    goal: "Creating a place for publishing various thoughts about growing virtualization of reality.",
+    description: `This project is something completely different. 
+        Together with my brother, we wanted to try our hand at blogging. 
         As both of us are programmers and we like experimenting, we decided to code this blog ourselves. 
         Frontend was done by using a mixture of static site generator - <a href="https://jekyllrb.com/">Jekyll</a> and Vue framework. 
-        Backend was wrriten in Java, using Vertx and JOOQ. 
-        We learned a lot during this journey - both in terms of programming and especially about writing and expressing ones thoughts clearly.
-        The most imporant part is, that we both prefer programming/engineering to writing/creating content and we will stick with it for now.`,
+        Backend was written in Java, using Vertx and JOOQ. 
+        We learned a lot during this journey - both in terms of programming and especially about writing and expressing one's thoughts clearly.
+        The most important part is that we both prefer programming/engineering to writing/creating content and we will stick with it for now.`,
     gallery: Images.virtuocracy,
     links: {
         "Instance": Instances.virtuocracy,
@@ -44,14 +45,15 @@ const VIRTUOCRACY_CONTENT = {
 };
 
 const DAILY_WISDOM_CONTENT = {
-    goal: "Mobile application for devices with Android that allows reading quotes from the greatest minds in history. CMS for adding and modyfing data consumed by mobile application. RESTful backend that serves as a source of data for both of them.",
+    goal: "Mobile application for devices with Android that allows reading quotes from the greatest minds in history. CMS for adding and modifying data consumed by mobile application. RESTful backend that serves as a source of data for both of them.",
     description: `RESTful service is written in Java, using Spring Boot nad Hibernate. CMS was created in pure JavaScript.
         It was my first JS application, so I figured out that writing everything from scratch is a great idea to learn it. 
-        It has very simple UI and doesn't handle well different screen resolutions. Modyfing content that mobile app consumes is its only purpose. 
+        It has a very simple UI and doesn't handle different screen resolutions well. 
+        Modifying content that mobile app consumes is its only purpose. 
         This app is the most important component of the project and at the same time the only one that matters for the end user.
          It's a native Android application written in Java. Its primary objective is to allow reading quotes in the most comfortable and encouraging way possible. 
          Data comes from the backend, is fetched at the moment of installation and saved locally to a SQLite database. 
-         From that time it's synchronized on a weekly basis. Thanks to this approach internet connection isn't needed most of the time.`,
+         From that time, data is synchronized on a weekly basis. Thanks to this approach, internet connection isn't needed most of the time.`,
     gallery: Images.dailyWisdom,
     links: {
         "Code": Repositories.dailyWisdomBackend,
@@ -60,12 +62,12 @@ const DAILY_WISDOM_CONTENT = {
 };
 
 const BRIGHT_SERVER_CONTENT = {
-    goal: "Lightweight, standalone easy to use http server and java web framework.",
+    goal: "Lightweight, standalone, easy to use http server and java web framework.",
     description: `Soon after I began to search for less complex and opinionated alternatives to Spring I started to use Jetty in embedded mode. 
         That was pretty good, but I think that idea of embedded servers can be further simplified.
         <del>My goal is to provide most of the conveniences that Spring gives when developing web applications, but at the same time create something a lot simpler and lightweight</del>
          (It was amazing, eye-opening and confidence boosting, learning experience). 
-        It doesn't have any dependencies and its API is so simple that any seasoned Java developer could become familiar with it under an hour.`,
+        It doesn't have any dependencies and its API is so simple that any seasoned Java developer could become familiar with it in under one hour.`,
     gallery: Images.brightServer,
     links: {
         "Code": Repositories.brightServer
@@ -77,7 +79,7 @@ const GENTLE_REQUEST_CONTENT = {
     description: `When writing heavily reliant on http protocol Android applications I was never happy with libraries available on the market. 
         Furthermore, as I have already written my own <a href="${Repositories.brightServer}">http server</a>
         I took the opportunity to test it from the client side and deepen my knowledge about http protocol. 
-        It has simple, yet powerful api, which allows sending and receiving bytes, text, json and files. 
+        It has a simple, yet powerful API, which allows sending and receiving bytes, text, json and files. 
         Multipart requests and asynchronicity are also supported.`,
     gallery: Images.gentleRequest,
     links: {
@@ -95,7 +97,7 @@ const ALGORITHMS_AND_DATA_STRUCTURES_CONTENT = {
         <a href="${Repositories.algorithmsAndDataStructures}/tree/master/src/main/java/com/iprogrammerr/algorithms_data_structures/cache">cache</a>. 
         There are implementations of popular data structures like <a href="${Repositories.algorithmsAndDataStructures}/tree/master/src/main/java/com/iprogrammerr/algorithms_data_structures/tree">trees</a>,
         <a href="${Repositories.algorithmsAndDataStructures}/tree/master/src/main/java/com/iprogrammerr/algorithms_data_structures/hashtable">hash tables</a> and <a href="${Repositories.algorithmsAndDataStructures}/tree/master/src/main/java/com/iprogrammerr/algorithms_data_structures/queue">queues</a>. 
-        Lastly, I grappled with a few <a href="${Repositories.algorithmsAndDataStructures}/tree/master/src/main/java/com/iprogrammerr/algorithms_data_structures/heuristics/meta">herustic algorithms</a>.
+        Lastly, I grappled with a few <a href="${Repositories.algorithmsAndDataStructures}/tree/master/src/main/java/com/iprogrammerr/algorithms_data_structures/heuristics/meta">heuristic algorithms</a>.
     `,
     gallery: Images.algorithmsAndDataStructures,
     links: {
@@ -105,11 +107,11 @@ const ALGORITHMS_AND_DATA_STRUCTURES_CONTENT = {
 
 const PERSONAL_WEBSITE = {
     goal: "Simple, self contained website with easy to change content.",
-    description: `I wanted to have easy to edit and maintain, personal website. 
-        It was achieved by creating simple SPA with static content (so without a need for backend), 
-        which is served by Nginx. Deployment is automated thanks to a few python scripts and everything is deployed on VPS.
-        Whole JS code is bundled (using <a href="https://rollupjs.org/">Rollup</a>) and minified (using <a href="https://terser.org/">terser</a>). 
-        Thanks to this approach, JS bundle with app code and content is pretty small (around 35KB) and besides images, 
+    description: `I wanted to have an easy to edit and maintain personal website. 
+        It was achieved by creating a simple SPA with static content (so without a need for a backend), 
+        which is served by Nginx. Deployment is automated thanks to a few python scripts and everything is deployed on a VPS.
+        The whole JS code is bundled (using <a href="https://rollupjs.org/">Rollup</a>) and minified (using <a href="https://terser.org/">terser</a>). 
+        Thanks to this approach, the JS bundle with app code and content is pretty small (around 35KB) and besides images, 
         there is no need to load any data from the server (which, like all assets, are cached).`,
     links: {
         "Code": Repositories.personalWebsite
