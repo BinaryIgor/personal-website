@@ -2,17 +2,18 @@ import * as Components from "../component/components.js";
 import { Repositories, Libraries } from "../links/codes.js";
 
 const LANGUAGES_CONTENT = {
-    "Java": `This is my primary and favorite langauge. Most projects in which I participated or created are written in it. 
-        I consider myself advanced Java programmer, as I have used it to created almost anything, including mobile, web, desktop and cli applications.
-        Nevertheless, I don't like overcomplication of most popular Java frameworks. In most cases, costs of using them overweight promised benefits.`,
-    "Python": `My tool of choice for writing helpful scripts, data analyses, predictions, simple tools and apps. 
+    "Java": `This is my primary and favorite language. Most projects, in which I participated or created, use it. 
+        I consider myself advanced Java programmer, as I have used it to created almost anything, including mobile, web, desktop and CLI applications.
+        Nevertheless, I don't like the overcomplication of most popular Java frameworks. In many cases, costs of using them overweight promised benefits.`,
+    "Python": `My tool of choice for writing helpful scripts, data analysis, predictions, simple tools and apps. 
         I love the simplicity of its philosophy. Java ecosystem has much to learn from it.`,
-    "JavaScript": `I used it exclusively for frontend, web development.
-        My minimalistic approach, which is to avoid frameworks in favor of small libraries, is constantly helping me to get deeper understanding of the language.`,
-    "Kotlin": `I have written two Android apps in this language so far. As it has a lot in common with Java, it was very easy to pick up. 
-        I enjoyed it a lot, will definitely use it in the future and have hope to see it as Java successor (or not, if Java will keep its current pace of development).`,
-    "C/C++": `This is the language in which I learned programming.
-        I have never create anything of substantial complexity in it, but if there will be a need I could quickly refresh and expand my skills.`,
+    "JavaScript": `I used it for frontend, web development and by playing with the Node.js.
+        My minimalistic approach, which is to avoid frameworks in favor of small libraries, is constantly helping me to get deeper understanding of the language.
+        I love its simplicity.`,
+    "Kotlin": `I have written two Android apps in this language so far. As it has a lot in common with Java, it was very easy language to pick up. 
+        I enjoyed it a lot, will definitely use it in the future and have hope to see it as Java successor (or not, if Java will keep its current pace of development, which seems to be the case with the Java 17 and beyond).`,
+    "C/C++": `This is the language in which I have learned programming.
+        I have never created anything of substantial complexity in it, but if there is a need I can quickly refresh and expand my skills.`,
     "Assembly": `I have also played with Assembly to have a better grasp of what is really going on on the lowest, machine level. 
         It's my strong conviction that every programmer should at least write some toy programs in it. 
         Even its basic knowledge gives comprehensive view of how words of high-level languages are translated to machine instructions and how many important details they hide from us. 
