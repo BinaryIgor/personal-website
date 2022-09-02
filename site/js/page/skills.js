@@ -38,21 +38,22 @@ const ENVIRONMENTS_CONTENT = {
 
 const TECHNOLOGIES_CONTENT = {
     "Git": `When it comes to version control system, choice is rather obvious now. I have used Git extensively both in my work and personal projects.`,
-    "Maven": `If we talk about build systems I prefer and have the most experience using Maven. I use it by default in every JVM project.
+    "Maven": `If we talk about build systems, I prefer and have the most experience using Maven. I use it by default in every JVM project.
         My libraries can be found in <a href="${Libraries.maven}">The Central Maven Repository</a>.`,
     "Gradle": `It has to be used, when creating Android apps. Having done that, I know the basics of this system.`,
-    "SQL": `Most applications, in which I needed to store data in a persistent manner take advantage of some relational database.
+    "SQL": `Most applications, where I needed to store data in a persistent manner, take advantage of some relational database.
         Mostly, I used Postgres or MySQL on a server-side and SQLite on Android.
-        Learning SQL through hours of practice and studying great materials from people like <a href="https://use-the-index-luke.com/">Markus Winand</a> or <a href="https://blog.jooq.org/">Lucas Edger</a>, made me a great fan of it.
+        Learning SQL through hours of practice and studying great materials from people like <a href="https://use-the-index-luke.com/">Markus Winand</a> or <a href="https://blog.jooq.org/">Lucas Edger</a>, made me a big fan of it.
         Relational data model has proved itself, through decades of practical use, to be extremely versatile and useful abstraction.
-        Sometimes there is a valid use case for NoSQL database, but more often than not, it's used only because now (2021) there is a hype around it,
+        Sometimes there is a valid use case for NoSQL database, but more often than not, it's used only because now (2022) there is a hype around it,
         as there is also hype around microservices.
         Unfortunately, hype, like propaganda and various ideologies, turns off thinking, which is quite dangerous. 
-        Especially, when trying to bend computers to our will, where hard and rigourous thinking is our only weapon and hope for succeeding.`,
-    "AWS": `Participating in creating data lake for Hycom, gives me a chance to use various AWS services.
-        We deploy applications on both Fargate and EC2, store a lot of data on ebs and S3 (even some in DynamoDB, which is NoSQL database!), 
-        take config parameters from SSM, store secrets in SecretsManager and exchange data through both SQS and SNS.
-        Using CodeBuild, <a href="https://aws.amazon.com/cdk">CDK</a> and Python scripts, we have created CI/CD system customized to our GitFlow approach.`
+        Especially, when trying to bend computers to our will, where hard, deep and rigorous thinking is our only weapon and hope for succeeding.`,
+    "AWS": `Participating in the creation of data lake at Hycom gave me a chance to use various AWS services.
+        We were deploying applications on both Fargate and EC2, storing lots of data on EBS and S3 (even some in DynamoDB). 
+        We were also taking config parameters from SSM and storing secrets in Secrets Manager.
+        Some data was exchanged through SQS and SNS.
+        Using CodeBuild, <a href="https://aws.amazon.com/cdk">CDK</a> and a host of Python scripts, we created CI/CD system customized to our GitFlow approach.`
 };
 
 const OTHER_CONTENT = {
