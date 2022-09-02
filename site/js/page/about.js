@@ -43,10 +43,10 @@ export function render(rootId = "component") {
                 optimizing performance of databases or even performing data analysis, occasionally. Not long after that, I got involved in working on a Java and microservices based system. 
                 Seeing the whole picture of complex systems, being able to understand, design and implement their various parts, is something that gives me tremendous joy.
             </p>
-            <p>Then, I was a Backend Engineer in <a href="https://weareuncapped.com">Uncapped</a>, where things were moving rather fast. 
+            <p>Then, I was a Backend Engineer at <a href="https://weareuncapped.com">Uncapped</a>, where things were moving rather fast. 
             Mainly, I worked with a system based on microservices, written in Java and deployed on GCP.</p>
             <p>Currently, I am working with my brother, Aleksander Roztropiński, on our own idea. It is <a href="http://hairo.io">Hairo</a>, the first, automated system for meeting people.
-            We have designed this application, implemented it completely from scratch and we also have been taking care of marketing. 
+            We have designed this application, built it completely from scratch and we also have been taking care of marketing. 
             I truly can't properly express, just how much I have learned doing all of that.
             </p>
             <p>Programming is my greatest passion, so I am
