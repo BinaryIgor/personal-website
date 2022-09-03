@@ -14,6 +14,8 @@ html {
     --menu-color: rgba(255, 255, 255, 0.85);
     --text-color: hsla(200, 100%, 15%, 0.9);
     --main-text-color:  hsla(200, 100%, 10%, 0.9);
+    --scrollbar-color: hsla(200, 100%, 10%, 0.9);
+    --scrollbar-hover-color: hsla(200, 100%, 25%, 1);
     --border-color: hsla(200, 100%, 15%, 1);
     --rain-color: hsla(200, 100%, 50%, 1);
     --text-size: 1.1rem;
@@ -57,9 +59,39 @@ html {
     --menu-color: rgba(0, 0, 0, 0.85);
     --text-color: hsla(180, 100%, 93%, 0.9);
     --main-text-color: hsla(180, 100%, 99%, 0.9);
+    --scrollbar-color: hsla(180, 100%, 99%, 0.9);
+    --scrollbar-hover-color: hsla(180, 100%, 95%, 1);
     --border-color: hsla(180, 100%, 93%, 1);
     --rain-color: hsla(180, 100%, 50%, 1);  
 }
+
+:root {
+     /* ==scroll firefox== */
+    /* "auto" or "thin" */
+    scrollbar-width: auto;
+    /* scroll thumb and track */
+    scrollbar-color: var(--scrollbar-color) var(--background-color);
+    /* ==scroll firefox== */
+}
+
+/* ==chrome,safari scroll== */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-hover-color);
+}
+/* ==chrome,safari scroll== */
 
 .no-select {
     user-select: none;
