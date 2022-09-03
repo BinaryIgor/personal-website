@@ -3,8 +3,8 @@ import { Repositories, Libraries } from "../links/codes.js";
 
 const LANGUAGES_CONTENT = {
     "Java": `This is my primary and favorite language. Most projects, in which I participated or created, use it. 
-        I consider myself advanced Java programmer, as I have used it to created almost anything, including mobile, web, desktop and CLI applications.
-        Nevertheless, I don't like the overcomplication of most popular Java frameworks. In many cases, costs of using them overweight promised benefits.`,
+        I consider myself an advanced Java programmer, as I have used it to create almost anything, including mobile, web, desktop and CLI applications.
+        Nevertheless, I don't like the overcomplication of most popular Java frameworks. In many cases, the costs of using them overweigh the promised benefits.`,
     "Python": `My tool of choice for writing helpful scripts, data analysis, predictions, simple tools and apps. 
         I love the simplicity of its philosophy. Java ecosystem has much to learn from it.`,
     "JavaScript": `I used it for frontend, web development and by playing with the Node.js.

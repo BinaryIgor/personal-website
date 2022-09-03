@@ -19,25 +19,25 @@ export function render(rootId = "component") {
             <p>My road to become one was fairly long. Having many varied interests, I studied psychology, food technology and electronics.
                 I didn't finish any of these majors. I was continuously expanding my general knowledge, 
                 exploring various paths and searching for the craft to which I will want to commit for the long haul, and put all my heart into it.
-                In the meantime, I held various odd jobs. Among them were work in a construction,
+                In the meantime, I held various odd jobs. Among them were work in construction,
                 paper carton production, electronics production, on a peony plantation, as a postman, bodyguard and a
                 warehouseman. Having interests as different as philosophy, history, economics, geopolitics, weightlifting,
                 dietetics, engineering and hard sciences, pushed me to try various things to
                 find what fits my character and abilities best. In 2017, after a year of studying electronics at the Lodz University of Technology, I got a programming internship at Inovatica in Lodz. 
                 Already before that opportunity, I developed a fondness for programming. 
                 I did well there, so taking the risk, negotiating and getting employed was the next, natural step for me. 
-                Not long after that, I dropped out of university and created rigorous plan of learning, 
+                Not long after that, I dropped out of university and created a rigorous plan of learning, 
                 which I had been executing zealously since then. 
                 From this moment onwards, my real journey as a programmer has begun.</p>
-            <p>From September 2017 to November 2019, I worked as a programmer for Inovatica in Lodz.
+            <p>From September 2017 to November 2019, I worked as a programmer for <a href="https://inovatica.com/">Inovatica</a> in Lodz.
                 At the very beginning, developing native Android applications was my only responsibility. Not long after
                 that, I was using Spring and Hibernate to create various backend services.
                 There was also a period when I was working on very customized and
                 domain specific Java applications that were interacting with <a href="http://www.ros.org">ROS</a> (Robot Operating System).
-                From the very first days of my career, I was relucatant to specialize. 
-                There is a burning desire in me to know and understand everything, and to acquire as much skills as possible.</p>
+                From the very first days of my career, I was reluctant to specialize. 
+                There is a burning desire in me to know and understand everything, and to acquire as many skills as possible.</p>
             <p>Afterwards, I worked for <a href="https://www.hycom.pl">Hycom</a>.
-                At at the very begining, I was involved in creating data lake, dealing with collecting and analyzing large amounts of data, and
+                At the very beginning, I was involved in creating a data lake, dealing with collecting and analyzing large amounts of data, and
                 building infrastructure that makes it possible.
                 My responsibilities ranged from writing custom Java and Python applications to managing CI/CD pipelines, automating repetitive tasks,
                 optimizing performance of databases or even performing data analysis, occasionally. Not long after that, I got involved in working on a Java and microservices based system. 
@@ -47,7 +47,7 @@ export function render(rootId = "component") {
             Mainly, I worked with a system based on microservices, written in Java and deployed on GCP.</p>
             <p>Currently, I am working with my brother, Aleksander Roztropiński, on our own idea. It is <a href="http://hairo.io">Hairo</a>, the first, automated system for meeting people.
             We have designed this application, built it completely from scratch and we also have been taking care of marketing. 
-            I truly can't properly express, just how much I have learned doing all of that.
+            I truly can't properly express just how much I have learned doing all of that.
             </p>
             <p>Programming is my greatest passion, so I am
                 always learning and working on various <a href="/code">projects</a>.
