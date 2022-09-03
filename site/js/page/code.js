@@ -137,8 +137,8 @@ const ARROW_RIGHT_CLASS = "arrow-right";
 const FADE_IN_CLASS = "fade-in-1";
 
 const MIN_ZOOM = 0;
-const MAX_ZOOM = 6;
-const ZOOM_STEP = 33;
+const MAX_ZOOM = 4;
+const ZOOM_STEP = 50;
 
 const INITIAL_SIZE = 100;
 
@@ -200,10 +200,10 @@ export function render(rootId = "component") {
                 <button class="no-button clickable" id="${CLOSE_GALLERY_ID}">x</button>
             </div>
             <div class="${ARROW_LEFT_CLASS} clickable ${HIDDEN_CLASS}">
-                <div>&#10094</div>
+                &#10094
             </div>
             <div class="${ARROW_RIGHT_CLASS} clickable ${HIDDEN_CLASS}">
-                <div>&#10095</div>
+                &#10095
             </div>
             <div class="${IMAGE_CONTAINER_CLASS}">
                 <div class="${LOADER_WRAPPER_CLASS} ${HIDDEN_CLASS}">
@@ -244,10 +244,8 @@ export function render(rootId = "component") {
 
     const focusedImageContainer = document.getElementById(FOCUSED_IMAGE_CONTAINER_ID);
 
-    const previousImageContainer = document.querySelector(`.${ARROW_LEFT_CLASS}`);
-    const previousImage = previousImageContainer.querySelector('div');
-    const nextImageContainer = document.querySelector(`.${ARROW_RIGHT_CLASS}`);
-    const nextImage = nextImageContainer.querySelector(`div`);
+    const previousImage = document.querySelector(`.${ARROW_LEFT_CLASS}`);
+    const nextImage = document.querySelector(`.${ARROW_RIGHT_CLASS}`);
     const loaderWrapper = document.querySelector(`.${LOADER_WRAPPER_CLASS}`);
 
     const currentImageContainer = focusedImageContainer.querySelector(`.${IMAGE_CONTAINER_CLASS}`);
@@ -276,8 +274,8 @@ export function render(rootId = "component") {
         focusedImageContainer.classList.toggle(DISPLAY_CLASS);
         document.body.classList.toggle(HIDDEN_SCROLL_CLASS);
 
-        previousImageContainer.classList.add(HIDDEN_CLASS);
-        nextImageContainer.classList.add(HIDDEN_CLASS);
+        previousImage.classList.add(HIDDEN_CLASS);
+        nextImage.classList.add(HIDDEN_CLASS);
 
         resetZoomIf();
     };
@@ -361,12 +359,12 @@ export function render(rootId = "component") {
                 setImagesCounter(focusedIdx, images);
 
                 if (images.length > 1) {
-                    previousImageContainer.classList.remove(HIDDEN_CLASS);
-                    nextImageContainer.classList.remove(HIDDEN_CLASS);
+                    previousImage.classList.remove(HIDDEN_CLASS);
+                    nextImage.classList.remove(HIDDEN_CLASS);
                     setPreviousNextImageButtons(focusedIdx, images);
                 } else {
-                    previousImageContainer.classList.add(HIDDEN_CLASS);
-                    nextImageContainer.classList.add(HIDDEN_CLASS);
+                    previousImage.classList.add(HIDDEN_CLASS);
+                    nextImage.classList.add(HIDDEN_CLASS);
                 }
             }
         }

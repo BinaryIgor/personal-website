@@ -2,6 +2,7 @@
 
 ## Needed tools
 * python3 with dependencies specified in scripts/requirements.txt
+* npm
 * rollup for creating js bundles (npm install rollup -g)
 * terser for js minification (npm install terser -g)
 * docker
