@@ -16,7 +16,7 @@ html {
     --main-text-color:  hsl(0, 0%, 0%);
     --scrollbar-color: hsl(0, 0%, 0%);
     --scrollbar-hover-color:hsl(0, 0%, 30%);
-    --border-color: hsl(0, 0%, 30%);
+    --border-color: hsl(0, 0%, 20%);
     --rain-color: hsla(0, 0%, 0%, 1);
     --text-size: 1.1rem;
     --padding-little: 4px;
@@ -55,13 +55,13 @@ html {
 
  html.dark {
     --background-color: rgb(0,0,0);
-    --content-background-color: rgba(0, 0, 0, 0.8);
+    --content-background-color: rgba(0, 0, 0, 0.7);
     --menu-color: rgba(0, 0, 0, 0.85);
     --text-color:  hsl(0, 0%, 90%);
     --main-text-color: hsl(0, 0%, 100%); 
     --scrollbar-color: hsl(0, 0%, 100%); 
-    --scrollbar-hover-color: hsl(0, 0%, 70%); 
-    --border-color: hsl(0, 0%, 70%); 
+    --scrollbar-hover-color: hsl(0, 0%, 80%); 
+    --border-color: hsl(0, 0%, 80%); 
     --rain-color: hsla(0, 100%, 100%, 1);  
 }
 
@@ -349,7 +349,7 @@ p:not(:last-child) {
 
 .profile-image {
     width: 100%;
-    max-height: 400px;
+    max-height: 450px;
     object-fit: contain;
     opacity: 0.85;
     margin-bottom: var(--padding-large);
