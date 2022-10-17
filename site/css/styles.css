@@ -16,7 +16,7 @@ html {
     --main-text-color:  hsl(0, 0%, 0%);
     --scrollbar-color: hsl(0, 0%, 0%);
     --scrollbar-hover-color:hsl(0, 0%, 30%);
-    --border-color: hsl(0, 0%, 20%);
+    --border-color: hsl(0, 0%, 30%);
     --rain-color: hsla(0, 0%, 0%, 1);
     --text-size: 1.1rem;
     --padding-little: 4px;
@@ -61,7 +61,7 @@ html {
     --main-text-color: hsl(0, 0%, 100%); 
     --scrollbar-color: hsl(0, 0%, 100%); 
     --scrollbar-hover-color: hsl(0, 0%, 80%); 
-    --border-color: hsl(0, 0%, 80%); 
+    --border-color: hsl(0, 0%, 70%); 
     --rain-color: hsla(0, 100%, 100%, 1);  
 }
 
@@ -247,7 +247,7 @@ nav {
     white-space: nowrap;
     overflow: hidden;
     font-size: var(--name-size);
-    border-right: var(--name-cursor-width) solid var(--border-color);
+    border-right: var(--name-cursor-width) solid var(--main-text-color);
     opacity: 0;
     animation-delay: 4s;
 }
@@ -260,7 +260,7 @@ nav {
     right: 0;
     margin: var(--padding-medium);
     font-size: var(--interact-size);
-    border-right: var(--interact-cursor-width) solid var(--border-color);
+    border-right: var(--interact-cursor-width) solid var(--main-text-color);
     opacity: 0;
     animation-delay: 6s;
 }
@@ -351,7 +351,7 @@ p:not(:last-child) {
     width: 100%;
     max-height: 450px;
     object-fit: contain;
-    opacity: 0.85;
+    opacity: 0.9;
     margin-bottom: var(--padding-large);
 }
 
@@ -563,7 +563,7 @@ button.no-button[disabled] {
 
 @keyframes blinkTextCursor {
     0% {
-        border-right-color: var(--border-color);
+        border-right-color: var(--main-text-color);
     }
     50% {
         border-right-color: rgba(0, 0, 0, 0);
