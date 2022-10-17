@@ -7,10 +7,10 @@ export function render(rootId = "component") {
 
     root.innerHTML = `
         <div class="home-container no-select">
-            <div class="home-container-name blink-cursor-animation">
+            <div class="home-container-name blink-cursor-animation main-text-color">
                 Igor Roztropiński
             </div>
-        <div class="interaction-hint blink-cursor-animation">Tap/click/press key...</div>
+        <div class="interaction-hint blink-cursor-animation main-text-color">Tap/click/press key...</div>
     `;
 
     const name = document.querySelector(".home-container-name");
