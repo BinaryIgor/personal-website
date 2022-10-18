@@ -1,5 +1,13 @@
 import * as Components from "../component/components.js";
 
+const MODIVO_CONTENT = {
+    position: "Senior Backend Developer",
+    period: "2022.10",
+    experience: {
+        "Backend": 'All things on the backend. Java/Kotlin mostly, but some cloud stuff also.'
+    }
+};
+
 const HAIRO_CONTENT = {
     position: "Founder",
     period: "2022.04",
@@ -102,6 +110,7 @@ export function render(rootId = "component") {
     const root = document.getElementById(rootId);
     
     root.innerHTML = Components.content(`
+        ${Components.collapsible("Modivo", sectionHtml(MODIVO_CONTENT))}
         ${Components.collapsible("Hairo", sectionHtml(HAIRO_CONTENT))}
         ${Components.collapsible("Uncapped", sectionHtml(UNCAPPED_CONTENT))}
         ${Components.collapsible("Hycom", sectionHtml(HYCOM_CONTENT))}
