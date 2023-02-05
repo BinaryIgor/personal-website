@@ -46,9 +46,8 @@ export function render(rootId = "component") {
             <p>Then, I was a Backend Engineer at <a href="https://weareuncapped.com">Uncapped</a>, where things were moving rather fast. 
             Mainly, I worked with a system based on microservices, written in Java and deployed on GCP.</p>
             <p>Currently, I am working for <a href="https://modivo.pl/">Modivo</a>. 
-            In the meantime however, I work with my brother, Aleksander Roztropiński, on our own idea. It is <a href="http://hairo.io">Hairo</a>, the first, automated system for meeting people.
-            We have designed this application, built it completely from scratch and we also have been taking care of marketing. 
-            I truly can't properly express just how much I have learned doing all of that.
+            In the meantime however, I work with my brother, <a href="https://aleksander.roztropinski.com">Aleksander Roztropiński</a>, on our own idea. It is <a href="http://hairo.io">Hairo</a>, the first, automated system for meeting people.
+            At the same time, we are engaged in a freelance software development at our own company - <a href="http://codyn.io">Codyn</a>.
             </p>
             <p>Programming is my greatest passion, so I am
                 always learning and working on various <a href="/code">projects</a>.
