@@ -1,4 +1,4 @@
-const githubUrl = "https://github.com/Iprogrammerr";
+export const githubUrl = "https://github.com/BinaryIgor";
 
 function projectUrl(name) {
     return `${githubUrl}/${name}`;

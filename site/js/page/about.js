@@ -1,4 +1,5 @@
 import { Images } from "../links/images.js";
+import { githubUrl } from "../links/codes.js";
 import * as Components from "../component/components.js";
 
 
@@ -45,9 +46,8 @@ export function render(rootId = "component") {
             </p>
             <p>Then, I was a Backend Engineer at <a href="https://weareuncapped.com">Uncapped</a>, where things were moving rather fast. 
             Mainly, I worked with a system based on microservices, written in Java and deployed on GCP.</p>
-            <p>Currently, I am working for <a href="https://modivo.pl/">Modivo</a>. 
-            In the meantime however, I work with my brother, <a href="https://aleksander.roztropinski.com">Aleksander Roztropiński</a>, on our own idea. It is <a href="http://hairo.io">Hairo</a>, the first, automated system for meeting people.
-            At the same time, we are engaged in a freelance software development at our own company - <a href="http://codyn.io">Codyn</a>.
+            <p>Currently, I am working for <a href="https://modivo.pl/">Modivo</a>, building ads system from scratch. 
+            In my spare time I explore new tech avenues, seeking for additional challenges and opportunities.
             </p>
             <p>Programming is my greatest passion, so I am
                 always learning and working on various <a href="/code">projects</a>.
@@ -62,8 +62,8 @@ export function render(rootId = "component") {
             <h2>Where am I?</h2>
             <ul class="links">
                 <li><a href="mailto: iroztropinski@gmail.com">iroztropinski@gmail.com</a></li>
-                <li><a href="https://github.com/Iprogrammerr">Github</a></li>
-                <li><a href="https://www.linkedin.com/in/igor-roztropi%C5%84ski-621825192/">LinkedIn</a></li>
+                <li><a href="${githubUrl}">Github</a></li>
+                <li><a href="https://www.linkedin.com/in/igroz">LinkedIn</a></li>
             </ul>
         </section>
     `;

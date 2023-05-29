@@ -8,18 +8,9 @@ const MODIVO_CONTENT = {
     }
 };
 
-const CODYN_CONTENT = {
-    position: "Founder/Software Developer",
-    period: "2022.12",
-    experience: {
-        "Software Development": `Custom software development for various clients. 
-        If you have any problem that can be solved by the code, feel free to reach us at <a href="https://codyn.io">Codyn</a>.`
-    }
-};
-
 const HAIRO_CONTENT = {
     position: "Founder",
-    period: "2022.04",
+    period: "2022.04 - 2023.05",
     experience: {
         "Backend": `Design and the implementation of the whole backend, from scratch. Used technologies/paradigms: Java 17, modular monolith, <a href="https://www.jooq.org/">JOOQ</a>, PostgreSQL, RabbitMQ, WebRTC, WebSockets and Web Push Notifications.
         <br>
@@ -120,7 +111,6 @@ export function render(rootId = "component") {
     
     root.innerHTML = Components.content(`
         ${Components.collapsible("Modivo", sectionHtml(MODIVO_CONTENT))}
-        ${Components.collapsible("Codyn", sectionHtml(CODYN_CONTENT))}
         ${Components.collapsible("Hairo", sectionHtml(HAIRO_CONTENT))}
         ${Components.collapsible("Uncapped", sectionHtml(UNCAPPED_CONTENT))}
         ${Components.collapsible("Hycom", sectionHtml(HYCOM_CONTENT))}
