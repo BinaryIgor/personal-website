@@ -4,7 +4,7 @@ const MODIVO_CONTENT = {
     position: "Senior Backend Developer",
     period: "2022.10",
     experience: {
-        "Backend": 'All things on the backend. Java/Kotlin mostly, but some cloud stuff also.'
+        "Backend": "All things on the backend. Mostly Java/Kotlin in the cloud, also Terraform/Kubernetes/Prometheus and other DevOps'y stuff, here and there."
     }
 };
 
