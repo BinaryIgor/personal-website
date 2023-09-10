@@ -33,7 +33,7 @@ DEPLOY_HOST_SSH_PORT = "44"
 DEPLOY_REMOTE_NGINX_CONF_PATH = "/etc/nginx/conf.d/default.conf"
 DEPLOY_REMOTE_SITE_DIR = "/usr/share/nginx/site"
 
-IMAGES_LINKS_JS_FILE_NAME = "images"
+IMAGES_LINKS_JS_FILE_NAME = "links"
 IMAGE_NAME_OR_PATH_PATTERN = re.compile("(.*)\\.(png|jpeg|jpg)")
 
 TO_IGNORE_IN_DEPLOY_FILE_PATTERNS = re.compile("(.*)original(.*)")
@@ -73,7 +73,7 @@ def build():
     print("Renaming assets...")
     old_new_images = assets_renamer.execute(
         DEPLOY_LOCAL_ROOT_DIR, TO_EXCLUDE_FROM_ASSETS_RENAMING_PATTERNS)
-
+    
     js_images_links_file = images_links_file_path(JS_DIR)
     if js_images_links_file:
         print()

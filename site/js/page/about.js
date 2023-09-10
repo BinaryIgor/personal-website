@@ -20,7 +20,7 @@ export function render(rootId = "component") {
         githubProjects: Components.aLink(Links.github, "projects"),
         email: Components.aLink(`mailto: ${Links.email}`, Links.email, "_blank"),
         linkedin: Components.aLink(Links.linkedin, "LinkedIn"),
-        github: Components.aLink(Links.github, "Githbu"),
+        github: Components.aLink(Links.github, "Github"),
         blog: Components.aLink(Links.blog, "Blog"),
         youtube: Components.aLink(Links.youtube, "Youtube")
     };
