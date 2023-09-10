@@ -60,7 +60,7 @@ export function render(rootId = "component") {
             <p>Then, I was a Backend Engineer at ${LinkComponents.uncapped}, where things were moving rather fast. 
             Mainly, I worked with a system based on microservices, written in Java and deployed on GCP.</p>
             <p>
-                In the meantime, I tried (together with my brother, Aleksander/Olek) to build my on ${LinkComponents.hairoVenture} and failed, but I have learned sooo much.
+                In the meantime, I tried (together with my brother Aleksander/Olek) to build my own ${LinkComponents.hairoVenture} and failed, but I have learned sooo much.
                 I am forever grateful for this experience.
             </p>
             <p>Currently, I am working for ${LinkComponents.modivo}, building ads system from scratch. 
