@@ -13,7 +13,7 @@ export function render(rootId = "component") {
     const LinkComponents = {
         inovatica: Components.aLink("https://inovatica.com", "Inovatica"),
         ros: Components.aLink("https://ros.org", "ROS"),
-        hairoVenture: Components.aLink("https://hairo.io", "venture (Hairo)"),
+        hairoVenture: Components.aLink("https://hairo.io", "build my own venture (Hairo)"),
         hycom: Components.aLink("https://hycom.digital", "Hycom"),
         uncapped: Components.aLink("https://weareuncapped.com", "Uncapped"),
         modivo: Components.aLink("https://modivo.pl", "Modivo"),
@@ -60,7 +60,7 @@ export function render(rootId = "component") {
             <p>Then, I was a Backend Engineer at ${LinkComponents.uncapped}, where things were moving rather fast. 
             Mainly, I worked with a system based on microservices, written in Java and deployed on GCP.</p>
             <p>
-                In the meantime, I tried (together with my brother Aleksander/Olek) to build my own ${LinkComponents.hairoVenture} and failed, but I have learned sooo much.
+                In the meantime, I tried (together with my brother Aleksander/Olek) to ${LinkComponents.hairoVenture} and failed, but I have learned sooo much.
                 I am forever grateful for this experience.
             </p>
             <p>Currently, I am working for ${LinkComponents.modivo}, building ads system from scratch. 
