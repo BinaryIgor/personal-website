@@ -1,5 +1,5 @@
 import * as Components from "../component/components.js";
-import { Repositories, Libraries } from "../links/codes.js";
+import { Repositories } from "../links/links.js";
 
 const LANGUAGES_CONTENT = {
     "Java": `This is my primary and favorite language. Most projects, in which I participated or created, use it. 
@@ -38,8 +38,7 @@ const ENVIRONMENTS_CONTENT = {
 
 const TECHNOLOGIES_CONTENT = {
     "Git": `When it comes to the version control system, choice is rather obvious now. I have used Git extensively both in my work and personal projects.`,
-    "Maven": `If we talk about build systems, I prefer and have the most experience using Maven. I use it by default in every JVM project.
-        My libraries can be found in <a href="${Libraries.maven}">The Central Maven Repository</a>.`,
+    "Maven": `If we talk about build systems, I prefer and have the most experience using Maven. I use it by default in every JVM project.`,
     "Gradle": `It has to be used, when creating Android apps. Having done that, I know the basics of this system.`,
     "SQL": `Most applications, where I needed to store data in a persistent manner, take advantage of some relational database.
         Mostly, I used Postgres or MySQL on a server-side and SQLite on Android.

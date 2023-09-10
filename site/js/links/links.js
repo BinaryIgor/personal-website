@@ -1,7 +1,22 @@
-export const githubUrl = "https://github.com/BinaryIgor";
+export const Links = {
+    email: "iroztropinski@gmail.com",
+    github: "https://github.com/BinaryIgor",
+    blog: "https://binaryigor.com",
+    youtube: "https://www.youtube.com/@BinaryIgor",
+    linkedin: "https://www.linkedin.com/in/igroz"
+};
+
+function fullUrl(name) {
+    return `/assets/${name}`;
+}
+
+export const Images = {
+    lightProfile: fullUrl("igor_light.png"),
+    darkProfile: fullUrl("igor_dark.png"),
+};
 
 function projectUrl(name) {
-    return `${githubUrl}/${name}`;
+    return `${Links.github}/${name}`;
 }
 
 export const Repositories = {
@@ -14,16 +29,4 @@ export const Repositories = {
     gentleRequest: projectUrl("Gentle-Request"),
     algorithmsAndDataStructures: projectUrl("Algorithms-Data-Structures"),
     personalWebsite: projectUrl("personal-website")
-};
-
-export const Instances = {
-    virtuocracy: "https://wirtuokracja.pl"
-};
-
-export const Stores = {
-    dailyWisdom: "https://play.google.com/store/apps/details?id=control.self.igor.dailywisdom"
-};
-
-export const Libraries = {
-    maven: "https://search.maven.org/search?q=iprogrammerr"
 };

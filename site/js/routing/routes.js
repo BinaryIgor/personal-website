@@ -2,7 +2,6 @@ import { render as renderHomePage } from "../page/home.js";
 import { render as renderAbout } from "../page/about.js";
 import { render as renderSkills } from "../page/skills.js";
 import { render as renderExperience } from "../page/experience.js";
-import { render as renderCode } from "../page/code.js";
 
 import Router from "./router.js";
 
@@ -35,16 +34,14 @@ const routes = {
     "home": renderHomePage,
     "about": renderAbout,
     "skills": renderSkills,
-    "experience": renderExperience,
-    "code": renderCode
+    "experience": renderExperience
 };
 
 const routesTitles = {
     "home": DEFAULT_ROUTE_TITLE,
     "about": "About",
     "skills": "Skills",
-    "experience": "Experience",
-    "code": "Code"
+    "experience": "Experience"
 };
 
 const navs = document.querySelectorAll("nav");

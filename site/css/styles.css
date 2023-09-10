@@ -348,11 +348,15 @@ p:not(:last-child) {
 }
 
 .profile-image {
+    max-width: 350px;
     width: 100%;
-    max-height: 450px;
+    margin: auto;
     object-fit: contain;
+    object-position: 50% 50%;
     opacity: 0.9;
+    border-radius: 8px;
     margin-bottom: var(--padding-large);
+    display: block;
 }
 
 .loader-wrapper {

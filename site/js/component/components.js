@@ -11,7 +11,6 @@ const LOADER_CLASS = "loader";
 const EXPAND = "+";
 const HIDE = "-";
 
-
 export function content(body) {
     return `<div class="content-container">
                 <div class="content fade-in">
@@ -93,4 +92,8 @@ export function initInnerLinks(root = document.getElementById(COMPONENT_ID)) {
             }
         }
     });
+}
+
+export function aLink(url, description, target="_blank") {
+    return `<a href="${url}" target="${target}" onclick="event.stopPropagation()">${description}</a>`
 }

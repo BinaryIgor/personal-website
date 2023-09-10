@@ -1,5 +1,4 @@
-import { Images } from "../links/images.js";
-import { githubUrl } from "../links/codes.js";
+import { Links, Images } from "../links/links.js";
 import * as Components from "../component/components.js";
 
 
@@ -11,6 +10,20 @@ function profileImageUrl() {
 document.addEventListener("themeChange", () => Components.initImageLoaders(profileImageUrl()));
 
 export function render(rootId = "component") {
+    const LinkComponents = {
+        inovatica: Components.aLink("https://inovatica.com", "Inovatica"),
+        ros: Components.aLink("https://ros.org", "ROS"),
+        hairoVenture: Components.aLink("https://hairo.io", "venture (Hairo)"),
+        hycom: Components.aLink("https://hycom.digital", "Hycom"),
+        uncapped: Components.aLink("https://weareuncapped.com", "Uncapped"),
+        modivo: Components.aLink("https://modivo.pl", "Modivo"),
+        githubProjects: Components.aLink(Links.github, "projects"),
+        email: Components.aLink(`mailto: ${Links.email}`, Links.email, "_blank"),
+        linkedin: Components.aLink(Links.linkedin, "LinkedIn"),
+        github: Components.aLink(Links.github, "Githbu"),
+        blog: Components.aLink(Links.blog, "Blog"),
+        youtube: Components.aLink(Links.youtube, "Youtube")
+    };
 
     const content = `
         <section class="expanded">
@@ -30,27 +43,31 @@ export function render(rootId = "component") {
                 Not long after that, I dropped out of university and created a rigorous plan of learning, 
                 which I had been executing zealously since then. 
                 From this moment onwards, my real journey as a programmer has begun.</p>
-            <p>From September 2017 to November 2019, I worked as a programmer for <a href="https://inovatica.com/">Inovatica</a> in Lodz.
+            <p>From September 2017 to November 2019, I worked as a programmer for ${LinkComponents.inovatica} in Lodz.
                 At the very beginning, developing native Android applications was my only responsibility. Not long after
                 that, I was using Spring and Hibernate to create various backend services.
                 There was also a period when I was working on very customized and
-                domain specific Java applications that were interacting with <a href="http://www.ros.org">ROS</a> (Robot Operating System).
+                domain specific Java applications that were interacting with ${LinkComponents.ros} (Robot Operating System).
                 From the very first days of my career, I was reluctant to specialize. 
                 There is a burning desire in me to know and understand everything, and to acquire as many skills as possible.</p>
-            <p>Afterwards, I worked for <a href="https://www.hycom.pl">Hycom</a>.
+            <p>Afterwards, I worked for ${LinkComponents.hycom}.
                 At the very beginning, I was involved in creating a data lake, dealing with collecting and analyzing large amounts of data, and
                 building infrastructure that makes it possible.
                 My responsibilities ranged from writing custom Java and Python applications to managing CI/CD pipelines, automating repetitive tasks,
                 optimizing performance of databases or even performing data analysis, occasionally. Not long after that, I got involved in working on a Java and microservices based system. 
                 Seeing the whole picture of complex systems, being able to understand, design and implement their various parts, is something that gives me tremendous joy.
             </p>
-            <p>Then, I was a Backend Engineer at <a href="https://weareuncapped.com">Uncapped</a>, where things were moving rather fast. 
+            <p>Then, I was a Backend Engineer at ${LinkComponents.uncapped}, where things were moving rather fast. 
             Mainly, I worked with a system based on microservices, written in Java and deployed on GCP.</p>
-            <p>Currently, I am working for <a href="https://modivo.pl/">Modivo</a>, building ads system from scratch. 
-            In my spare time I explore new tech avenues, seeking for additional challenges and opportunities.
+            <p>
+                In the meantime, I tried (together with my brother, Aleksander/Olek) to build my on ${LinkComponents.hairoVenture} and failed, but I have learned sooo much.
+                I am forever grateful for this experience.
+            </p>
+            <p>Currently, I am working for ${LinkComponents.modivo}, building ads system from scratch. 
+            In my spare time I explore new tech avenues (and sharing it on my blog and a youtube channel), seeking for additional challenges and opportunities.
             </p>
             <p>Programming is my greatest passion, so I am
-                always learning and working on various <a href="/code">projects</a>.
+                always learning and working on various ${LinkComponents.githubProjects}.
                 I consider myself a programmer, not only web, desktop or mobile one. A problem solver, would perhaps be a better description of me.
                 I am not married to any technology, language or framework. Most of my <a href="experience">experience</a> is related to
                 web development <a href="skills">using</a> Java and JavaScript related technologies.
@@ -59,11 +76,13 @@ export function render(rootId = "component") {
                 Thinking about better ways of solving various problems is something deeply ingrained in my nature. 
                 Being on this path for so long, I can't and don't want to stop improving myself, in every possible way.
             </p>
-            <h2>Where am I?</h2>
+            <h2>You can find me here:</h2>
             <ul class="links">
-                <li><a href="mailto: iroztropinski@gmail.com">iroztropinski@gmail.com</a></li>
-                <li><a href="${githubUrl}">Github</a></li>
-                <li><a href="https://www.linkedin.com/in/igroz">LinkedIn</a></li>
+                <li>${LinkComponents.email}</li>
+                <li>${LinkComponents.linkedin}</li>
+                <li>${LinkComponents.github}</li>
+                <li>${LinkComponents.blog}</li>
+                <li>${LinkComponents.youtube}</li>
             </ul>
         </section>
     `;
