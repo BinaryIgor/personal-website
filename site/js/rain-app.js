@@ -1,6 +1,8 @@
 import { Rain } from "./animation/rain.js";
 
-const MIN_WIDTH_DIFF = 10;
+// arbitrary values, height is more to avoid glitch on mobile browser url area hide
+const MIN_WIDTH_DIFF = 25;
+const MIN_HEIGHT_DIFF = 125;
 
 function RestartableRain(userOptionsProvider) {
     const rainFactory = () => new Rain(userOptionsProvider());
@@ -9,14 +11,18 @@ function RestartableRain(userOptionsProvider) {
 
     this.start = () => {
         let previousWidth = window.innerWidth;
+        let previousHeight = window.innerHeight;
 
         rain.start();
 
         window.addEventListener("resize", debounce(() => {
             const widthDiff = Math.abs(window.innerWidth - previousWidth);
-            if (widthDiff >= MIN_WIDTH_DIFF) {
+            const heightDiff = Math.abs(window.innerHeight - previousHeight);
+
+            if (widthDiff >= MIN_WIDTH_DIFF || heightDiff >= MIN_HEIGHT_DIFF) {
                 this.restart();
                 previousWidth = window.innerWidth;
+                previousHeight = window.innerHeight;
             }
         }));
     }

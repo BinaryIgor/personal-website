@@ -7,21 +7,20 @@ export function Rain(userOptions) {
     }
     // ------------------------setup----------------------
     let chainY = (window.innerHeight * -1);
-    let font = options.fontSize + 'px ' + options.fontFamily;
+    const font = options.fontSize + 'px ' + options.fontFamily;
 
-    let firstCharColor = lighten(options.fontColor);
+    const firstCharColor = lighten(options.fontColor);
 
     const canvas = document.getElementById(options.canvasId);
 
     const ctx = canvas.getContext('2d');
 
+    setCanvasSize();
+
     canvas.style.zIndex = -1;
     canvas.style.position = 'fixed';
     canvas.style.top = 0;
     canvas.style.left = 0;
-
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
 
     let matrix = new Matrix(canvas, ctx);
     let chains = createChainArray(columnsNumber());
@@ -32,7 +31,17 @@ export function Rain(userOptions) {
     document.body.addEventListener('keypress', toggleMatrix);
     document.body.addEventListener('click', toggleMatrix);
 
+    function setCanvasSize() {
+        //arbtrary value to accomodate for mobile browser url area
+        const canvasHeight = window.innerHeight * 1.2;
+        chainY = (canvasHeight * -1);
+        canvas.width = window.innerWidth;
+        canvas.height = canvasHeight;
+    }
+
     this.start = function (paused = false) {
+        setCanvasSize();
+
         pause = paused;
         if (matrixState()) {
             chains = recreateChainArray(JSON.parse(sessionStorage.getItem(CHAINS_KEY)), columnsNumber());
